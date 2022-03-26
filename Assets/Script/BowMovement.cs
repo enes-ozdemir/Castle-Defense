@@ -11,32 +11,21 @@ public class BowMovement : MonoBehaviour
     private Camera _camera;
     public GameObject bowPrefab;
     public GameObject arrowPrefab;
-    public GameObject arrorStart;
-
-    public float arrowSpeed = 60f;
+    public GameObject arrowStart;
+    public GameObject player;
+    public float arrowSpeed = 10f;
 
     private void Awake()
     {
         _camera = transform.GetComponent<Camera>();
     }
 
-    void Start()
-    {
-        
-    }
-
-    private void FixedUpdate()
-    {
-        
-    }
-
     private void FireBullet(Vector2 dir, float rotationZ)
     {
-        GameObject arrow = Instantiate(arrowPrefab);
-        arrow.transform.position = arrorStart.transform.position;
+        GameObject arrow = Instantiate(arrowPrefab,player.transform);
+        arrow.transform.position = arrowStart.transform.position;
         arrow.transform.rotation = Quaternion.Euler(0,0,rotationZ);
         arrow.GetComponent<Rigidbody2D>().velocity = dir * arrowSpeed;
-
     }
 
     private void SetCrossHairToMouse()
@@ -50,19 +39,17 @@ public class BowMovement : MonoBehaviour
         // if(rotationZ<90f && rotationZ>-90f)
         bowPrefab.transform.rotation = Quaternion.Euler(0,0,rotationZ);
         
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             float distance = difference.magnitude;
             Vector2 dir = difference / distance;
             dir.Normalize();
             FireBullet(dir, rotationZ);
         }
-
     }
 
-    void Update()
+    void FixedUpdate()
     {
         SetCrossHairToMouse();
-       
     }
 }
