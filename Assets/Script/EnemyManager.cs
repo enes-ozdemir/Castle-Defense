@@ -1,43 +1,37 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
     public int waveDifficulty;
+    private bool isMovementAllowed;
+    private bool isAttackAllowed;
 
-    public Enemy enemy;
-
-    private Rigidbody2D rb;
-
-    private GameObject bloodEffect;
-
-    public int maxHealth;
-    public int currentHealth;
-    private Animator anim;
-
-    public GameObject prefab;
-
+    [Header("Dependencies")] public Enemy enemy;
     private Player player;
+    public CastleHealthManager castleManager;
+
+    [Header("Components")] public GameObject prefab;
+    private Collider2D col;
+    private Rigidbody2D rb;
+    private Animator anim;
 
     [Space(10)] [Header("Bars UI")] [SerializeField]
     private HealthBar healthBar;
 
-    private bool isMovementAllowed;
-
-    private Collider2D col;
-
+    public int maxHealth;
+    public int currentHealth;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        col = GetComponent<Collider2D>();
+
         maxHealth = enemy.health;
         currentHealth = maxHealth;
-        anim = GetComponent<Animator>();
         isMovementAllowed = true;
-        col = GetComponent<Collider2D>();
+        isAttackAllowed = false;
     }
 
     void FixedUpdate()
@@ -48,12 +42,6 @@ public class EnemyManager : MonoBehaviour
     private void MoveTowardsTower()
     {
         rb.transform.position += new Vector3(1, 0, 0) * Time.deltaTime * enemy.speed;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        GetHit(collision.GetComponentInParent<Player>().damage);
-        Destroy(collision.gameObject);
     }
 
     private void GetHit(int damage)
@@ -69,7 +57,34 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
-            healthBar.SetHealth(maxHealth / currentHealth);
+            healthBar.SetHealth((float) maxHealth / currentHealth);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag.Equals("Arrow"))
+        {
+            GetHit(collision.GetComponentInParent<Player>().damage);
+            Destroy(collision.gameObject);
+        }
+        else if (collision.tag.Equals("Castle"))
+        {
+            anim.Play("Attack");
+            isMovementAllowed = false;
+            isAttackAllowed = true;
+
+            var castle = collision.gameObject;
+            castle.GetComponent<CastleHealthManager>().Hit(enemy.damage);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag.Equals("Castle"))
+        {
+            var castle = collision.gameObject;
+            castle.GetComponent<CastleHealthManager>().Hit(enemy.damage);
         }
     }
 }
