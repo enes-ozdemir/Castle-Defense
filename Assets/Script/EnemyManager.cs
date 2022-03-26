@@ -8,8 +8,6 @@ public class EnemyManager : MonoBehaviour
     private bool isAttackAllowed;
 
     [Header("Dependencies")] public Enemy enemy;
-    private Player player;
-    public CastleHealthManager castleManager;
 
     [Header("Components")] public GameObject prefab;
     private Collider2D col;
@@ -21,7 +19,6 @@ public class EnemyManager : MonoBehaviour
 
     public int maxHealth;
     public int currentHealth;
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -65,7 +62,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (collision.tag.Equals("Arrow"))
         {
-            GetHit(collision.GetComponentInParent<Player>().damage);
+            GetHit(collision.GetComponent<ArrowManager>().damage);
             Destroy(collision.gameObject);
         }
         else if (collision.tag.Equals("Castle"))

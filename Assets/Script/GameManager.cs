@@ -8,18 +8,23 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI countText;
     [SerializeField] private TextMeshProUGUI goldText;
 
+    [SerializeField] private CastleHealthManager castleHealthManager;
+    [SerializeField] private int castleLevel;
+    
+    [SerializeField] private WeaponManager weaponManager;
+    [SerializeField] private int weaponLevel;
+
     private int maxEnemyCount;
     private int currentEnemyCount;
 
     private int waveNumber;
     
-    // Start is called before the first frame update
     void Start()
     {
-        
+        castleHealthManager.SetCastleLevel(castleLevel);
+        weaponManager.SetWeaponLevel(weaponLevel);
     }
 
-    // Update is called once per frame
     void Update()
     {
         

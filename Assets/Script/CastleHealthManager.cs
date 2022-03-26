@@ -28,6 +28,12 @@ public class CastleHealthManager : MonoBehaviour
         
     }
 
+    public void SetCastleLevel(int level)
+    {
+        maxHealth *=level;
+        currentHealth = maxHealth;
+    }
+
     public void Hit(int enemyDamage)
     {
         Debug.Log("Hit");
