@@ -10,7 +10,6 @@ public class HealthBar : MonoBehaviour
 
     public void SetHealth(float amount)
     {
-        Debug.Log("Health changed to" + amount);
         healthBar.fillAmount /= amount;
     }
 

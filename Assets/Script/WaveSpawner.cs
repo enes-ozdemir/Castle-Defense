@@ -50,7 +50,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void GenerateWave()
     {
-        waveValue = currentWave * 10;
+        waveValue = currentWave * 250;
         GenerateEnemies();
 
         spawnInterval = waveDuration / enemiesToSpawn.Count;

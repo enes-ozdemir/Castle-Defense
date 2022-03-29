@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         castleHealthManager.SetCastleLevel(castleLevel);
-        weaponManager.SetWeaponLevel(weaponLevel);
     }
 
     void Update()

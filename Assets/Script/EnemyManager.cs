@@ -38,7 +38,7 @@ public class EnemyManager : MonoBehaviour
 
     private void MoveTowardsTower()
     {
-        rb.transform.position += new Vector3(1, 0, 0) * Time.deltaTime * enemy.speed;
+        rb.transform.position += new Vector3(-1, 0, 0) * Time.deltaTime * enemy.speed;
     }
 
     private void GetHit(int damage)
@@ -47,6 +47,7 @@ public class EnemyManager : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            healthBar.SetHealth((float) maxHealth / 1f);
             isMovementAllowed = false;
             anim.Play("Dead");
             Destroy(col);
@@ -64,6 +65,13 @@ public class EnemyManager : MonoBehaviour
         {
             GetHit(collision.GetComponent<ArrowManager>().damage);
             Destroy(collision.gameObject);
+
+            Vector3 hitForce =
+                new Vector3(
+                    0.05f, 0, 0);
+
+            transform.position += hitForce;
+
         }
         else if (collision.tag.Equals("Castle"))
         {
