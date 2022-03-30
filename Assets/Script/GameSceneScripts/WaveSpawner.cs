@@ -15,11 +15,12 @@ public class WaveSpawner : MonoBehaviour
     private float spawnInterval;
     private float spawnTimer;
 
-
     private Enemy currentEnemy;
 
     private void Start()
     {
+        currentWave = GameManager.CurrentLevel;
+        waveDuration = currentWave * 15;
         GenerateWave();
     }
 
@@ -50,14 +51,14 @@ public class WaveSpawner : MonoBehaviour
 
     private void GenerateWave()
     {
-        waveValue = currentWave * 250;
+        waveValue = currentWave * 100;
         GenerateEnemies();
 
         spawnInterval = waveDuration / enemiesToSpawn.Count;
         waveTimer = waveDuration;
     }
 
-    public void GenerateEnemies()
+    private void GenerateEnemies()
     {
         List<GameObject> generatedEnemies = new List<GameObject>();
         while (waveValue > 0)
