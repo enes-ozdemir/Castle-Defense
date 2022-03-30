@@ -9,5 +9,6 @@ public class Weapon : MonoBehaviour
     private void Awake()
     {
         GameManager.Weapon = this;
+        WeaponStats = new WeaponStats();
     }
 }

@@ -43,8 +43,8 @@ public class WeaponManager : MonoBehaviour
     {
         currentBowPrefab = bowSprites[weaponLevel];
         damage = weaponLevel * 20;
-        bowSprite.sprite = currentBowPrefab;
-
+        //bowSprite.sprite = currentBowPrefab;
+        bowSprite.sprite = GameManager.Weapon.weaponSprite;
         currentArrowPrefab = arrowSprites[arrowLevel];
         arrowSprite.sprite = currentArrowPrefab;
     }
