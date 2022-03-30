@@ -343,7 +343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &45408554
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2178,7 +2178,7 @@ MonoBehaviour:
   shopButton: {fileID: 1813842825}
   upgradeButton: {fileID: 1301622396}
   skillButton: {fileID: 0}
-  shopUI: {fileID: 1540144559}
+  shopUI: {fileID: 45408553}
   upgradeUI: {fileID: 737133846}
 --- !u!4 &791732445
 Transform:
