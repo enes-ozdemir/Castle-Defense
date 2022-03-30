@@ -8,7 +8,7 @@ public class CastleHealthManager : MonoBehaviour
 {
 
     [SerializeField] private Image castleHealth;
-    [SerializeField] private int maxHealth;
+    private int maxHealth;
     [SerializeField] private int currentHealth;
     [SerializeField] private TextMeshProUGUI healthText;
     
@@ -17,6 +17,7 @@ public class CastleHealthManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = GameManager.Castle.castleHealth;
         currentHealth = maxHealth;
         healthText.text = currentHealth + " / " + maxHealth;
 

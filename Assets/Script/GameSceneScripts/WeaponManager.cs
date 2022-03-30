@@ -20,7 +20,7 @@ public class WeaponManager : MonoBehaviour
 
     private void Awake()
     {
-        weaponLevel = 1;
+        arrowLevel = GameManager.Weapon.weaponLevel;
         bowSprite = GetComponent<SpriteRenderer>();
         damage = 10;
         arrowSprite = arrowPrefab.GetComponent<SpriteRenderer>();
