@@ -63,7 +63,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (collision.tag.Equals("Arrow"))
         {
-            GetHit(collision.GetComponent<ArrowManager>().damage);
+            GetHit(GameManager.Weapon.WeaponStats.WeaponDamage);
             Destroy(collision.gameObject);
 
             Vector3 hitForce =

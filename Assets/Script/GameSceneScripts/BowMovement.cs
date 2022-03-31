@@ -1,12 +1,11 @@
+using System;
 using UnityEngine;
+
 
 public class BowMovement : MonoBehaviour
 {
     public GameObject crosshairs;
     private Vector3 target;
-    public GameObject arrowStart;
-    public GameObject player;
-    public float arrowSpeed = 10f;
 
     private WeaponManager weaponManager;
 
@@ -19,17 +18,9 @@ public class BowMovement : MonoBehaviour
 
     private void Start()
     {
-       // Cursor.visible = false;
+        // Cursor.visible = false;
     }
 
-    private void FireBullet(Vector2 dir, float rotationZ)
-    {
-        GameObject arrow = Instantiate(weaponManager.arrowPrefab, player.transform);
-        weaponManager.arrowPrefab.GetComponent<ArrowManager>().damage = weaponManager.damage;
-        arrow.transform.position = arrowStart.transform.position;
-        arrow.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
-        arrow.GetComponent<Rigidbody2D>().velocity = dir * arrowSpeed;
-    }
 
     private void SetCrossHairToMouse()
     {
@@ -37,19 +28,19 @@ public class BowMovement : MonoBehaviour
             _camera.transform.position.z));
         crosshairs.transform.position = new Vector3(target.x, target.y);
 
-        Vector3 difference = target - player.transform.position;
-        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg -50f;
+        Vector3 difference = target - weaponManager.arrowManager.player.transform.position;
+        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 50f;
 
         // if(rotationZ<90f && rotationZ>-90f)
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
 
-       // weaponManager.bowPrefab.transform.LookAt(crosshairs.transform.position);
         if (Input.GetMouseButton(0))
         {
             float distance = difference.magnitude;
             Vector2 dir = difference / distance;
             dir.Normalize();
-            FireBullet(dir, rotationZ+50f);
+            var arrow = GameManager.Arrow.arrowSprite;
+            weaponManager.arrowManager.FireArrow(dir, rotationZ + 50f);
         }
     }
 

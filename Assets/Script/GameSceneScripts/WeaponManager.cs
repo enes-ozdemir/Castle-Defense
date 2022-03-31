@@ -17,6 +17,8 @@ public class WeaponManager : MonoBehaviour
     private SpriteRenderer bowSprite;
     private SpriteRenderer arrowSprite;
 
+    [SerializeField] public ArrowManager arrowManager;
+
 
     private void Awake()
     {
