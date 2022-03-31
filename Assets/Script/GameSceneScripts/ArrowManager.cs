@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using System.Collections.Generic;
+﻿using UnityEngine;
 using Script;
 
 public class ArrowManager : MonoBehaviour
@@ -21,12 +19,7 @@ public class ArrowManager : MonoBehaviour
     {
         GameObject arrow = ObjectPooler.Instance.SpawnArrowFromPool("Arrow", arrowStart.transform.position,
             Quaternion.Euler(0, 0, rotationZ));
-        var spriteRenderer = arrow.gameObject.GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = arrowSprite;
-        //  GameObject arrow = Instantiate(weaponManager.arrowPrefab, player.transform);
-        // arrow.transform.position = arrowStart.transform.position;
-        //arrow.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
-
+        arrow.gameObject.GetComponent<SpriteRenderer>().sprite = arrowSprite;
         arrow.GetComponent<Rigidbody2D>().velocity = dir * arrowSpeed;
     }
 }

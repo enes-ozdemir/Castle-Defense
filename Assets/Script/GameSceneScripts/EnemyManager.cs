@@ -50,6 +50,7 @@ public class EnemyManager : MonoBehaviour
             healthBar.SetHealth((float) maxHealth / 1f);
             isMovementAllowed = false;
             anim.Play("Dead");
+            WaveSpawner.currentEnemyCount--;
             Destroy(col);
             Destroy(prefab, 1f);
         }
@@ -63,8 +64,8 @@ public class EnemyManager : MonoBehaviour
     {
         if (collision.tag.Equals("Arrow"))
         {
+            collision.gameObject.SetActive(false);
             GetHit(GameManager.Weapon.WeaponStats.WeaponDamage);
-            Destroy(collision.gameObject);
 
             Vector3 hitForce =
                 new Vector3(

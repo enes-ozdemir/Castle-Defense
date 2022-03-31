@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,11 +19,23 @@ public class WaveSpawner : MonoBehaviour
 
     private Enemy currentEnemy;
 
+    [SerializeField] private TextMeshProUGUI enemyCountText;
+    private int maxEnemyCount;
+    
+    public static int currentEnemyCount;
+
     private void Start()
     {
         currentWave = GameManager.CurrentLevel;
         waveDuration = currentWave * 15;
         GenerateWave();
+        maxEnemyCount = enemiesToSpawn.Count;
+        currentEnemyCount = maxEnemyCount;
+    }
+
+    private void Update()
+    {
+        enemyCountText.text = currentEnemyCount + " / " + maxEnemyCount;
     }
 
     private void FixedUpdate()

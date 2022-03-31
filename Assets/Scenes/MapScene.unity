@@ -4796,6 +4796,7 @@ GameObject:
   - component: {fileID: 1896310801}
   - component: {fileID: 1896310800}
   - component: {fileID: 1896310802}
+  - component: {fileID: 1896310803}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4846,6 +4847,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponLevel: 1
   weaponSprite: {fileID: 21300000, guid: 883c203083067a942b35b4f4aafdeb5d, type: 3}
+--- !u!114 &1896310803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896310799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26dd95c2c565419ca9f07973752b6549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrowLevel: 1
+  arrowSprite: {fileID: 21300000, guid: 3624318f092eb924f83ba3829f7355ad, type: 3}
 --- !u!1 &1912406550
 GameObject:
   m_ObjectHideFlags: 0
