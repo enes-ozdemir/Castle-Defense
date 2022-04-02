@@ -29,6 +29,8 @@ public class EnemyManager : MonoBehaviour
         currentHealth = maxHealth;
         isMovementAllowed = true;
         isAttackAllowed = false;
+
+        healthBar.healthCanvas.gameObject.SetActive(false);
     }
 
     void FixedUpdate()
@@ -43,6 +45,7 @@ public class EnemyManager : MonoBehaviour
 
     private void GetHit(int damage)
     {
+        healthBar.healthCanvas.gameObject.SetActive(true);
         currentHealth -= damage;
 
         if (currentHealth <= 0)

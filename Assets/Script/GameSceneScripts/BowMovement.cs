@@ -31,7 +31,6 @@ public class BowMovement : MonoBehaviour
         Vector3 difference = target - weaponManager.arrowManager.player.transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 50f;
 
-        // if(rotationZ<90f && rotationZ>-90f)
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
 
         if (Input.GetMouseButton(0))
@@ -39,7 +38,6 @@ public class BowMovement : MonoBehaviour
             float distance = difference.magnitude;
             Vector2 dir = difference / distance;
             dir.Normalize();
-            var arrow = GameManager.Arrow.arrowSprite;
             weaponManager.arrowManager.FireArrow(dir, rotationZ + 50f);
         }
     }
