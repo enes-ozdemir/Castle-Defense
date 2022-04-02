@@ -7,7 +7,11 @@ using UnityEngine;
 public class Enemy : ScriptableObject
 {
     [Header("Enemy Info")] 
-    [SerializeField] private string enemyName;
+    [SerializeField] public string enemyName;
+    [SerializeField] public int enemyCost;
+    [SerializeField] public int enemyGoldAward;
+    
+    [Header("Enemy Stats")] 
     [SerializeField] public int health;
     [SerializeField] public float speed;
     [SerializeField] public int damage;
@@ -15,6 +19,5 @@ public class Enemy : ScriptableObject
     [SerializeField] public AttackType attackType;
     
     [Space(10)]
-    [SerializeField] public GameObject enemyPrefab;
-
+    public GameObject enemyPrefab;
 }

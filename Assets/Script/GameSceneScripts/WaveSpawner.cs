@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public List<EnemyUnit> enemies = new List<EnemyUnit>();
-    public List<GameObject> enemiesToSpawn = new List<GameObject>();
+    public List<Wave> enemyWaves = new();
+    public List<GameObject> enemiesToSpawn = new();
     public int currentWave;
     private int waveValue;
 
@@ -21,14 +23,18 @@ public class WaveSpawner : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI enemyCountText;
     private int maxEnemyCount;
-    
+
     public static int currentEnemyCount;
 
-    private void Start()
+    //new feature
+    public float timeBetweenWaves = 2f;
+
+    private void Awake()
     {
         currentWave = GameManager.CurrentLevel;
-        waveDuration = currentWave * 15;
+        waveDuration = 45;
         GenerateWave();
+
         maxEnemyCount = enemiesToSpawn.Count;
         currentEnemyCount = maxEnemyCount;
     }
@@ -40,6 +46,8 @@ public class WaveSpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+        
         if (spawnTimer <= 0)
         {
             if (enemiesToSpawn.Count > 0)
@@ -49,11 +57,14 @@ public class WaveSpawner : MonoBehaviour
                     spawnLoc.position,
                     Quaternion.identity);
 
-                 var enemyManager = enemyObject.GetComponent<EnemyManager>();
-                 enemyManager.prefab = enemyObject;
+                var enemyManager = enemyObject.GetComponent<EnemyManager>();
+                enemyManager.prefab = enemyObject;
 
                 enemiesToSpawn.RemoveAt(0);
-                spawnTimer = spawnInterval;
+                if (enemiesToSpawn.Count < 10)
+                {
+                    spawnTimer = 0.1f;
+                }else spawnTimer = spawnInterval;
             }
         }
         else
@@ -65,10 +76,14 @@ public class WaveSpawner : MonoBehaviour
 
     private void GenerateWave()
     {
-        waveValue = currentWave * 100;
+        waveValue = currentWave * 200;
         GenerateEnemies();
 
-        spawnInterval = waveDuration / enemiesToSpawn.Count;
+        if (enemiesToSpawn != null)
+        {
+            spawnInterval = waveDuration / enemiesToSpawn.Count;
+        }
+
         waveTimer = waveDuration;
     }
 
@@ -77,26 +92,31 @@ public class WaveSpawner : MonoBehaviour
         List<GameObject> generatedEnemies = new List<GameObject>();
         while (waveValue > 0)
         {
-            int randEnemyId = Random.Range(0, enemies.Count);
-            int randEnemyCost = enemies[randEnemyId].cost;
+            Enemy enemyToGenerate = GenerateEnemy();
 
-            if (waveValue - randEnemyCost >= 0)
+            if (enemyToGenerate != null)
             {
-                currentEnemy = enemies[randEnemyId].enemyObject;
-                generatedEnemies.Add(currentEnemy.enemyPrefab);
-                waveValue -= randEnemyCost;
+                int randEnemyCost = enemyToGenerate.enemyCost;
+                
+                if (waveValue - randEnemyCost >= 0)
+                {
+                    currentEnemy = enemyToGenerate;
+                    generatedEnemies.Add(currentEnemy.enemyPrefab);
+                    waveValue -= randEnemyCost;
+                }
+                else if (waveValue <= 5) break;
             }
-            else if (waveValue <= 2) break;
+            else Debug.Log("No enemy to generate");
         }
 
         enemiesToSpawn.Clear();
         enemiesToSpawn = generatedEnemies;
     }
 
-    [System.Serializable]
-    public class EnemyUnit
+    private Enemy GenerateEnemy()
     {
-        public Enemy enemyObject;
-        public int cost;
+        var waveUnits = enemyWaves[currentWave - 1].waveUnits;
+        var enemyToGenerate = RandomEnemyGenerator.GetRandomEnemy(waveUnits);
+        return enemyToGenerate;
     }
 }

@@ -4346,11 +4346,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500c4664584cf8c42add37981347d414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - enemyObject: {fileID: 11400000, guid: f679fb2539fbabb43b711401c847619e, type: 2}
-    cost: 2
-  - enemyObject: {fileID: 11400000, guid: 1b894badf38432446a32620f8d41396b, type: 2}
-    cost: 4
+  enemyWaves:
+  - {fileID: 11400000, guid: beac387a4827f5042ace15ac6940ce17, type: 2}
+  - {fileID: 11400000, guid: d323a2458f65c4144abdb33d0aafa8e4, type: 2}
   enemiesToSpawn: []
   currentWave: 1
   spawnLocations:
@@ -4366,8 +4364,9 @@ MonoBehaviour:
   - {fileID: 633464705}
   - {fileID: 393816867}
   - {fileID: 182820337}
-  waveDuration: 60
+  waveDuration: 20
   enemyCountText: {fileID: 200557684}
+  timeBetweenWaves: 2
 --- !u!1 &1992999191
 GameObject:
   m_ObjectHideFlags: 0

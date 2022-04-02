@@ -17,6 +17,7 @@
 /[Aa]ssets/Asset
 /[Aa]ssets/Prefabs
 /[Aa]ssets/Objects
+/[Aa]ssets/Plugins/Sirenix
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
