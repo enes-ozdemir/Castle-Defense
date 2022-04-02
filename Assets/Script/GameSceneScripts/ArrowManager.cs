@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Script;
 
 public class ArrowManager : MonoBehaviour
@@ -7,15 +8,61 @@ public class ArrowManager : MonoBehaviour
     public float arrowSpeed = 10f;
     public GameObject player;
 
-    [SerializeField] private WeaponManager weaponManager;
+    [SerializeField] private BowMovement bowMovement;
+
+    private Vector3 target;
 
     private Sprite arrowSprite;
-    private void Start()
+
+    [SerializeField] private float fireInterval = 1f;
+    [SerializeField] private float fireTimer;
+    private Vector3 difference;
+    private float rotationZ;
+
+    private void Awake()
     {
         arrowSprite = GameManager.Arrow.arrowSprite;
+        bowMovement = GetComponent<BowMovement>();
     }
 
-    public void FireArrow(Vector2 dir, float rotationZ)
+    private void FixedUpdate()
+    {
+        SetBowRotation();
+      
+    }
+
+    private void Update()
+    {
+        if (fireTimer <= 0)
+        {
+            IsArrowFired();
+            fireTimer = fireInterval;
+        }
+        else
+        {
+            fireTimer -= Time.fixedDeltaTime;
+        }
+    }
+
+    private void SetBowRotation()
+    {
+        difference = bowMovement.target - player.transform.position;
+        rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 50f;
+        transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
+    }
+
+    private void IsArrowFired()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            float distance = difference.magnitude;
+            Vector2 dir = difference / distance;
+            dir.Normalize();
+            FireArrow(dir, rotationZ + 50f);
+        }
+    }
+
+    private void FireArrow(Vector2 dir, float rotationZ)
     {
         GameObject arrow = ObjectPooler.Instance.SpawnArrowFromPool("Arrow", arrowStart.transform.position,
             Quaternion.Euler(0, 0, rotationZ));

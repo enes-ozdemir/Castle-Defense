@@ -7,10 +7,13 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private int arrowLevel;
     [SerializeField] public int damage;
 
+
     [SerializeField] private Sprite[] bowSprites;
-    public GameObject bowPrefab;
     [SerializeField] private Sprite[] arrowSprites;
+
+    public GameObject bowPrefab;
     public GameObject arrowPrefab;
+    
     [SerializeField] private Sprite currentBowPrefab;
     [SerializeField] private Sprite currentArrowPrefab;
 

@@ -1,9 +1,5 @@
-using System;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,24 +7,26 @@ public class WaveSpawner : MonoBehaviour
 {
     public List<Wave> enemyWaves = new();
     public List<GameObject> enemiesToSpawn = new();
+    public Transform[] spawnLocations;
+
     public int currentWave;
     private int waveValue;
-
-    public Transform[] spawnLocations;
     public int waveDuration;
+
     [SerializeField] private float spawnInterval;
     private float spawnTimer;
 
-    private Enemy currentEnemy;
+    private bool isBossArrived;
 
+    //Seperate the UI
     [SerializeField] private TextMeshProUGUI enemyCountText;
     private int maxEnemyCount;
     public static int currentEnemyCount;
-    private bool isBossArrived;
 
     private void Awake()
     {
         isBossArrived = false;
+        
         //Set Wave settings
         currentWave = GameManager.CurrentLevel;
         waveDuration = enemyWaves[currentWave].waveDuration;
@@ -51,19 +49,18 @@ public class WaveSpawner : MonoBehaviour
         {
             if (enemiesToSpawn.Count > 0)
             {
-                var spawnLoc = spawnLocations[Random.Range(0, spawnLocations.Length - 1)];
-                var enemyObject = Instantiate(enemiesToSpawn[0],
-                    spawnLoc.position,
-                    Quaternion.identity, transform);
+                var spawnLoc = spawnLocations[Random.Range(0, spawnLocations.Length - 1)].position;
 
-                var enemyManager = enemyObject.GetComponent<EnemyManager>();
-                enemyManager.prefab = enemyObject;
+                var enemyObject = Instantiate(enemiesToSpawn[0], spawnLoc, Quaternion.identity, transform);
+
+                enemyObject.GetComponent<EnemyManager>().prefab = enemyObject;
 
                 enemiesToSpawn.RemoveAt(0);
-                
+
+                //Require further edit
                 if (enemiesToSpawn.Count < 5 && !isBossArrived)
                 {
-                    SpawnBoss(spawnLoc);
+                    SpawnBoss();
                 }
                 else if (enemiesToSpawn.Count < 25)
                 {
@@ -79,17 +76,20 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
-    private void SpawnBoss(Transform spawnLoc)
+    private void SpawnBoss()
     {
+        var shake = gameObject.AddComponent<CameraShake>();
+        shake.ShakeCaller(1,2.5f);
         isBossArrived = true;
         spawnTimer = 1f;
         Debug.Log("Boss spawned");
-        var enemyObject = Instantiate(enemyWaves[currentWave].boss.enemyPrefab,
-            spawnLoc.position,
+
+        var bossPrefab = enemyWaves[currentWave].boss.enemyPrefab;
+        var enemyObject = Instantiate(bossPrefab,
+            spawnLocations[1].position,
             Quaternion.identity, transform);
 
-        var enemy = enemyObject.GetComponent<EnemyManager>();
-        enemy.prefab = enemyObject;
+        enemyObject.GetComponent<EnemyManager>().prefab = enemyObject;
     }
 
     private void GenerateWave()
@@ -98,7 +98,7 @@ public class WaveSpawner : MonoBehaviour
 
         if (enemiesToSpawn != null)
         {
-            spawnInterval = waveDuration / enemiesToSpawn.Count;
+            spawnInterval = waveDuration / (float) enemiesToSpawn.Count;
         }
     }
 
@@ -115,15 +115,13 @@ public class WaveSpawner : MonoBehaviour
 
                 if (waveValue - randEnemyCost >= 0)
                 {
-                    currentEnemy = enemyToGenerate;
-                    generatedEnemies.Add(currentEnemy.enemyPrefab);
+                    generatedEnemies.Add(enemyToGenerate.enemyPrefab);
                     waveValue -= randEnemyCost;
                 }
                 else if (waveValue <= 5) break;
             }
             else Debug.Log("No enemy to generate");
         }
-
         enemiesToSpawn.Clear();
         enemiesToSpawn = generatedEnemies;
     }

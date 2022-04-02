@@ -1,5 +1,8 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 public class EnemyManager : MonoBehaviour
 {
@@ -19,6 +22,7 @@ public class EnemyManager : MonoBehaviour
 
     public int maxHealth;
     public int currentHealth;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -50,17 +54,25 @@ public class EnemyManager : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            healthBar.SetHealth((float) maxHealth / 1f);
-            isMovementAllowed = false;
-            anim.Play("Dead");
-            WaveSpawner.currentEnemyCount--;
-            Destroy(col);
-            Destroy(prefab, 1f);
+            Die();
         }
         else
         {
             healthBar.SetHealth((float) maxHealth / currentHealth);
         }
+    }
+
+    private void Die()
+    {
+        healthBar.SetHealth((float) maxHealth / 1f);
+        isMovementAllowed = false;
+        anim.Play("Dead");
+        
+        GoldDropManager.Instance.CheckLoot(enemy.enemyGoldAward,transform.position);
+        
+        WaveSpawner.currentEnemyCount--;
+        Destroy(col);
+        Destroy(prefab, 1f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -75,7 +87,6 @@ public class EnemyManager : MonoBehaviour
                     0.05f, 0, 0);
 
             transform.position += hitForce;
-
         }
         else if (collision.tag.Equals("Castle"))
         {
@@ -84,7 +95,7 @@ public class EnemyManager : MonoBehaviour
             isAttackAllowed = true;
 
             var castle = collision.gameObject;
-            castle.GetComponent<CastleHealthManager>().Hit(enemy.damage);
+            castle.GetComponentInParent<CastleHealthManager>().Hit(enemy.damage);
         }
     }
 
@@ -93,7 +104,7 @@ public class EnemyManager : MonoBehaviour
         if (collision.tag.Equals("Castle"))
         {
             var castle = collision.gameObject;
-            castle.GetComponent<CastleHealthManager>().Hit(enemy.damage);
+            castle.GetComponentInParent<CastleHealthManager>().Hit(enemy.damage);
         }
     }
 }

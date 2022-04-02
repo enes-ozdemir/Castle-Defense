@@ -1,20 +1,13 @@
 using System;
 using UnityEngine;
 
-
 public class BowMovement : MonoBehaviour
 {
     public GameObject crosshairs;
-    private Vector3 target;
+    public Vector3 target;
 
-    private WeaponManager weaponManager;
 
     [SerializeField] private Camera _camera;
-
-    private void Awake()
-    {
-        weaponManager = GetComponent<WeaponManager>();
-    }
 
     private void Start()
     {
@@ -27,22 +20,9 @@ public class BowMovement : MonoBehaviour
         target = _camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
             _camera.transform.position.z));
         crosshairs.transform.position = new Vector3(target.x, target.y);
-
-        Vector3 difference = target - weaponManager.arrowManager.player.transform.position;
-        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 50f;
-
-        transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
-
-        if (Input.GetMouseButton(0))
-        {
-            float distance = difference.magnitude;
-            Vector2 dir = difference / distance;
-            dir.Normalize();
-            weaponManager.arrowManager.FireArrow(dir, rotationZ + 50f);
-        }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         SetCrossHairToMouse();
     }
