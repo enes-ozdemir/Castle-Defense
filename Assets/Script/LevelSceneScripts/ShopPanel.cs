@@ -5,18 +5,25 @@ using UnityEngine.UI;
 
 public class ShopPanel : MonoBehaviour
 {
+    [Header("Bow")]
     [SerializeField] private Button bowUpgradeButton;
     [SerializeField] private Image bowImage;
-     private int bowUpgradeCost;
-
+    [SerializeField] private TextMeshProUGUI bowText;
+    private int bowUpgradeCost;
+    
+    [Header("Arrow")]
     [SerializeField] private Button arrowUpgradeButton;
     [SerializeField] private Image arrowImage;
-     private int arrowUpgradeCost;
-
+    [SerializeField] private TextMeshProUGUI arrowText;
+    private int arrowUpgradeCost;
+    
+    [Header("Castle")]
     [SerializeField] private Button castleUpgradeButton;
     [SerializeField] private Image castleImage;
+    [SerializeField] private TextMeshProUGUI castleText;
     private int castleUpgradeCost;
-
+    
+    [Header("Money")]
     [SerializeField] private int money;
     [SerializeField] private TextMeshProUGUI moneyText;
 
@@ -32,6 +39,7 @@ public class ShopPanel : MonoBehaviour
 
     private void SetBowInfo()
     {
+        bowText.text = "Level " + GameManager.Weapon.weaponLevel;
         bowImage.sprite = GameManager.Weapon.weaponSprite;
         bowUpgradeCost = GameManager.Weapon.WeaponStats.WeaponUpgradeCost;
         bowUpgradeButton.onClick.AddListener(OnBowUpgrade);
@@ -39,6 +47,7 @@ public class ShopPanel : MonoBehaviour
 
     private void SetArrowInfo()
     {
+        arrowText.text = "Level " + GameManager.Arrow.arrowLevel;
         arrowImage.sprite = GameManager.Arrow.arrowSprite;
         arrowUpgradeCost = GameManager.Arrow.ArrowStats.ArrowUpgradeCost;
         arrowUpgradeButton.onClick.AddListener(OnArrowUpgrade);
@@ -46,12 +55,15 @@ public class ShopPanel : MonoBehaviour
 
     private void SetCastleInfo()
     {
+        Debug.Log("SetCastleInfo called");
+        castleText.text = "Level " + GameManager.Castle.castleLevel;
         castleUpgradeCost = GameManager.Castle.castleUpgradeCost;
         castleUpgradeButton.onClick.AddListener(OnCastleUpgrade);
     }
 
     private void OnArrowUpgrade()
     {
+        Debug.Log("OnArrowUpgrade called");
         var currentUpgradeCost = GameManager.Arrow.ArrowStats.ArrowUpgradeCost;
         var currentMoney = GameManager.Money;
         if (currentUpgradeCost <= currentMoney)
@@ -69,6 +81,7 @@ public class ShopPanel : MonoBehaviour
 
     private void OnCastleUpgrade()
     {
+        Debug.Log("OnCastleUpgrade called");
         var currentUpgradeCost = GameManager.Castle.castleUpgradeCost;
         var currentMoney = GameManager.Money;
         if (currentUpgradeCost <= currentMoney)
@@ -86,6 +99,7 @@ public class ShopPanel : MonoBehaviour
 
     private void OnBowUpgrade()
     {
+        Debug.Log("OnBowUpgrade called");
         var currentUpgradeCost = GameManager.Weapon.WeaponStats.WeaponUpgradeCost;
         var currentMoney = GameManager.Money;
         if (currentUpgradeCost <= currentMoney)

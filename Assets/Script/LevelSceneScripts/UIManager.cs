@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private int money;
-    
+
     [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private Button settingsButton;
     [SerializeField] private Button shopButton;
@@ -26,17 +26,16 @@ public class UIManager : MonoBehaviour
         upgradeButton.onClick.AddListener(OnUpgradeClick);
     }
 
-    private void OnShopClick()
+    public void OnShopClick()
     {
-        shopUI.SetActive(true);
+        shopUI.SetActive(!shopUI.activeInHierarchy);
         GameManager.Money += 100;
     }
 
-    private void OnUpgradeClick()
+    public void OnUpgradeClick()
     {
-        upgradeUI.SetActive(true);
+        upgradeUI.SetActive(!upgradeUI.activeInHierarchy);
         GameManager.Money += 1000;
-
     }
 
     private void Update()
