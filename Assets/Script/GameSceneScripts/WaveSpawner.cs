@@ -17,16 +17,13 @@ public class WaveSpawner : MonoBehaviour
     private float spawnTimer;
 
     private bool isBossArrived;
-
-    //Seperate the UI
-    [SerializeField] private TextMeshProUGUI enemyCountText;
-    private int maxEnemyCount;
+    public int maxEnemyCount;
     public static int currentEnemyCount;
 
     private void Awake()
     {
         isBossArrived = false;
-        
+
         //Set Wave settings
         currentWave = GameManager.CurrentLevel;
         waveDuration = enemyWaves[currentWave].waveDuration;
@@ -36,11 +33,6 @@ public class WaveSpawner : MonoBehaviour
 
         maxEnemyCount = enemiesToSpawn.Count;
         currentEnemyCount = maxEnemyCount;
-    }
-
-    private void Update()
-    {
-        enemyCountText.text = currentEnemyCount + " / " + maxEnemyCount;
     }
 
     private void FixedUpdate()
@@ -79,7 +71,7 @@ public class WaveSpawner : MonoBehaviour
     private void SpawnBoss()
     {
         var shake = gameObject.AddComponent<CameraShake>();
-        shake.ShakeCaller(1,2.5f);
+        shake.ShakeCaller(1, 2.5f);
         isBossArrived = true;
         spawnTimer = 1f;
         Debug.Log("Boss spawned");
@@ -122,6 +114,7 @@ public class WaveSpawner : MonoBehaviour
             }
             else Debug.Log("No enemy to generate");
         }
+
         enemiesToSpawn.Clear();
         enemiesToSpawn = generatedEnemies;
     }

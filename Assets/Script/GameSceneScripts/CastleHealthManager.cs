@@ -1,43 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CastleHealthManager : MonoBehaviour
 {
-
     [SerializeField] private Image castleHealth;
-    private int maxHealth;
     [SerializeField] private int currentHealth;
+    
     [SerializeField] private TextMeshProUGUI healthText;
     
-    
-    
+    private int maxHealth;
+
+
     // Start is called before the first frame update
     void Start()
     {
         maxHealth = GameManager.Castle.castleHealth;
         currentHealth = maxHealth;
         healthText.text = currentHealth + " / " + maxHealth;
-
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GetHit(int enemyDamage)
     {
-        
-    }
-
-    public void SetCastleLevel(int level)
-    {
-        maxHealth *=level;
-        currentHealth = maxHealth;
-    }
-
-    public void Hit(int enemyDamage)
-    {
-        Debug.Log("Hit");
         currentHealth -= enemyDamage;
         castleHealth.fillAmount /= (float) maxHealth / currentHealth;
         healthText.text = currentHealth + " / " + maxHealth;
@@ -46,7 +30,5 @@ public class CastleHealthManager : MonoBehaviour
         {
             Debug.Log("Game Over");
         }
-
     }
-    
 }

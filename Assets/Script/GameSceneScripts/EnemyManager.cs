@@ -6,7 +6,6 @@ using Random = UnityEngine.Random;
 
 public class EnemyManager : MonoBehaviour
 {
-    public int waveDifficulty;
     private bool isMovementAllowed;
     private bool isAttackAllowed;
 
@@ -95,7 +94,7 @@ public class EnemyManager : MonoBehaviour
             isAttackAllowed = true;
 
             var castle = collision.gameObject;
-            castle.GetComponentInParent<CastleHealthManager>().Hit(enemy.damage);
+            castle.GetComponentInParent<CastleHealthManager>().GetHit(enemy.damage);
         }
     }
 
@@ -104,7 +103,7 @@ public class EnemyManager : MonoBehaviour
         if (collision.tag.Equals("Castle"))
         {
             var castle = collision.gameObject;
-            castle.GetComponentInParent<CastleHealthManager>().Hit(enemy.damage);
+            castle.GetComponentInParent<CastleHealthManager>().GetHit(enemy.damage);
         }
     }
 }

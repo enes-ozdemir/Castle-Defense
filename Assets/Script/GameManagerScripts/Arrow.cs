@@ -9,5 +9,7 @@ public class Arrow : MonoBehaviour
     private void Awake()
     {
         GameManager.Arrow = this;
+        ArrowStats = new ArrowStats();
+
     }
 }

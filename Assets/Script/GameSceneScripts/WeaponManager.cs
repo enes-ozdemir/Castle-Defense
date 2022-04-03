@@ -35,7 +35,7 @@ public class WeaponManager : MonoBehaviour
     public void SetWeaponLevel(int level)
     {
         weaponLevel = level;
-        damage = level * 10;
+        damage = level * 100;
     }
 
     private void Update()

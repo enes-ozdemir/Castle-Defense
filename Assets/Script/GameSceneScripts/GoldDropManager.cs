@@ -2,11 +2,12 @@ using System;
 using Sirenix.Utilities.Editor;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using DG.Tweening;
 
 public class GoldDropManager : MonoBehaviour
 {
     public GameObject goldDrop;
-    public GameObject goldTarget;
+    public Transform goldTarget;
 
     public static GoldDropManager Instance;
 
@@ -14,24 +15,25 @@ public class GoldDropManager : MonoBehaviour
 
     private void Awake()
     {
-            Instance = this;
+        Instance = this;
     }
+
     #endregion
 
-    public void CheckLoot(int goldAmount,Vector3 position)
+    public void CheckLoot(int goldAmount, Vector3 position)
     {
         Debug.Log("Checking Gold");
         var goldDropChange = Random.Range(0, 5);
         if (goldDropChange >= 3)
         {
-            Debug.Log("Gold earned "+ goldAmount);
-            Instantiate(goldDrop, position, Quaternion.identity);
-            goldDrop.GetComponent<Animator>().transform.parent.gameObject.transform.position  = position;
+            Debug.Log("Gold earned " + goldAmount);
+            var coin = Instantiate(goldDrop, position, Quaternion.identity);
+            coin.transform.DOMove(goldTarget.position, 1f)
+                .SetEase(Ease.InOutBack)
+                .OnComplete((() => GameManager.Money += goldAmount));
+
+
             //Add this to end of the animation later
-            GameManager.Money += goldAmount;
         }
-   
     }
-
 }
-
