@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameUIManager : MonoBehaviour
 {
-    [SerializeField] private int money;
+    public int tempMoney;
 
     [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private TextMeshProUGUI enemyCountText;
@@ -23,13 +23,12 @@ public class GameUIManager : MonoBehaviour
         maxEnemyCount = waveSpawner.enemiesToSpawn.Count;
         currentEnemyCount = maxEnemyCount;
         levelText.text = "Level " + GameManager.CurrentLevel;
+        tempMoney = 0;
     }
 
     private void Update()
     {
         enemyCountText.text = currentEnemyCount + " / " + maxEnemyCount;
-
-        money = GameManager.Money;
-        moneyText.text = money.ToString();
+        moneyText.text = tempMoney.ToString();
     }
 }

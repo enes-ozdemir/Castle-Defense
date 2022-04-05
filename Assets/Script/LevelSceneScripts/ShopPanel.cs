@@ -5,26 +5,28 @@ using UnityEngine.UI;
 
 public class ShopPanel : MonoBehaviour
 {
-    [Header("Bow")]
-    [SerializeField] private Button bowUpgradeButton;
+    [Header("Bow")] [SerializeField] private Button bowUpgradeButton;
     [SerializeField] private Image bowImage;
     [SerializeField] private TextMeshProUGUI bowText;
+    [SerializeField] private TextMeshProUGUI bowDamageText;
+    [SerializeField] private TextMeshProUGUI bowUpgradeText;
     private int bowUpgradeCost;
-    
-    [Header("Arrow")]
-    [SerializeField] private Button arrowUpgradeButton;
+
+    [Header("Arrow")] [SerializeField] private Button arrowUpgradeButton;
     [SerializeField] private Image arrowImage;
     [SerializeField] private TextMeshProUGUI arrowText;
+    [SerializeField] private TextMeshProUGUI arrowDamageText;
+    [SerializeField] private TextMeshProUGUI arrowUpgradeText;
     private int arrowUpgradeCost;
-    
-    [Header("Castle")]
-    [SerializeField] private Button castleUpgradeButton;
+
+    [Header("Castle")] [SerializeField] private Button castleUpgradeButton;
     [SerializeField] private Image castleImage;
     [SerializeField] private TextMeshProUGUI castleText;
+    [SerializeField] private TextMeshProUGUI castleHealthText;
+    [SerializeField] private TextMeshProUGUI castleUpgradeText;
     private int castleUpgradeCost;
-    
-    [Header("Money")]
-    [SerializeField] private int money;
+
+    [Header("Money")] [SerializeField] private int money;
     [SerializeField] private TextMeshProUGUI moneyText;
 
 
@@ -40,36 +42,39 @@ public class ShopPanel : MonoBehaviour
     private void SetBowInfo()
     {
         bowText.text = "Level " + GameManager.Weapon.weaponLevel;
-        bowImage.sprite = GameManager.Weapon.weaponSprite;
+        bowDamageText.text = "Damage " + GameManager.Weapon.WeaponStats.WeaponDamage;
         bowUpgradeCost = GameManager.Weapon.WeaponStats.WeaponUpgradeCost;
-        bowUpgradeButton.onClick.AddListener(OnBowUpgrade);
+        bowUpgradeText.text = bowUpgradeCost.ToString();
+        bowImage.sprite = GameManager.Weapon.weaponSprite;
     }
 
     private void SetArrowInfo()
     {
         arrowText.text = "Level " + GameManager.Arrow.arrowLevel;
         arrowImage.sprite = GameManager.Arrow.arrowSprite;
-        arrowUpgradeCost = GameManager.Arrow.ArrowStats.ArrowUpgradeCost;
-        arrowUpgradeButton.onClick.AddListener(OnArrowUpgrade);
+        arrowUpgradeCost = GameManager.Arrow.ArrowStats.arrowUpgradeCost;
+        arrowDamageText.text = "Attack Speed " + GameManager.Arrow.ArrowStats.fireInterval;
+        arrowUpgradeText.text = arrowUpgradeCost.ToString();
     }
 
     private void SetCastleInfo()
     {
         Debug.Log("SetCastleInfo called");
         castleText.text = "Level " + GameManager.Castle.castleLevel;
-        castleUpgradeCost = GameManager.Castle.castleUpgradeCost;
-        castleUpgradeButton.onClick.AddListener(OnCastleUpgrade);
+        castleHealthText.text = "Health " + GameManager.Castle.castleHealth;
+        castleUpgradeText.text = GameManager.Castle.castleUpgradeCost.ToString();
     }
 
-    private void OnArrowUpgrade()
+    public void OnArrowUpgrade()
     {
         Debug.Log("OnArrowUpgrade called");
-        var currentUpgradeCost = GameManager.Arrow.ArrowStats.ArrowUpgradeCost;
+        var currentUpgradeCost = GameManager.Arrow.ArrowStats.arrowUpgradeCost;
         var currentMoney = GameManager.Money;
         if (currentUpgradeCost <= currentMoney)
         {
             GameManager.Money -= currentUpgradeCost;
-            GameManager.Arrow.ArrowStats.ArrowUpgradeCost += 10;
+            GameManager.Arrow.ArrowStats.arrowUpgradeCost += 10;
+            GameManager.Arrow.ArrowStats.fireInterval += 0.1f;
             GameManager.Arrow.arrowLevel++;
             SetArrowInfo();
         }
@@ -79,7 +84,7 @@ public class ShopPanel : MonoBehaviour
         }
     }
 
-    private void OnCastleUpgrade()
+    public void OnCastleUpgrade()
     {
         Debug.Log("OnCastleUpgrade called");
         var currentUpgradeCost = GameManager.Castle.castleUpgradeCost;
@@ -88,6 +93,7 @@ public class ShopPanel : MonoBehaviour
         {
             GameManager.Money -= currentUpgradeCost;
             GameManager.Castle.castleUpgradeCost += 10;
+            GameManager.Castle.castleHealth += 100;
             GameManager.Castle.castleLevel++;
             SetCastleInfo();
         }
@@ -97,7 +103,7 @@ public class ShopPanel : MonoBehaviour
         }
     }
 
-    private void OnBowUpgrade()
+    public void OnBowUpgrade()
     {
         Debug.Log("OnBowUpgrade called");
         var currentUpgradeCost = GameManager.Weapon.WeaponStats.WeaponUpgradeCost;
@@ -106,6 +112,7 @@ public class ShopPanel : MonoBehaviour
         {
             GameManager.Money -= currentUpgradeCost;
             GameManager.Weapon.WeaponStats.WeaponUpgradeCost += 10;
+            GameManager.Weapon.WeaponStats.WeaponDamage += 10;
             GameManager.Weapon.weaponLevel++;
             SetBowInfo();
         }
@@ -117,7 +124,6 @@ public class ShopPanel : MonoBehaviour
 
     private void Update()
     {
-        bowUpgradeCost = GameManager.Weapon.WeaponStats.WeaponUpgradeCost;
         money = GameManager.Money;
         moneyText.text = money.ToString();
     }

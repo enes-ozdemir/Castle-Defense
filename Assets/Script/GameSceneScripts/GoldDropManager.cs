@@ -1,5 +1,3 @@
-using System;
-using Sirenix.Utilities.Editor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using DG.Tweening;
@@ -10,6 +8,8 @@ public class GoldDropManager : MonoBehaviour
     public Transform goldTarget;
 
     public static GoldDropManager Instance;
+
+    [SerializeField] private GameUIManager gameUIManager;
 
     #region "Singleton"
 
@@ -30,10 +30,17 @@ public class GoldDropManager : MonoBehaviour
             var coin = Instantiate(goldDrop, position, Quaternion.identity);
             coin.transform.DOMove(goldTarget.position, 1f)
                 .SetEase(Ease.InOutBack)
-                .OnComplete((() => GameManager.Money += goldAmount));
+                .OnComplete((() => EarnMoney(goldAmount)));
 
 
             //Add this to end of the animation later
         }
+    }
+
+    private void EarnMoney(int goldAmount)
+    {
+        GameManager.Money += goldAmount;
+        gameUIManager.tempMoney += goldAmount;
+
     }
 }
