@@ -1,10 +1,6 @@
-using System;
-using Unity.Mathematics;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : BaseEnemyManager
 {
     private bool isMovementAllowed;
     private bool isAttackAllowed;
@@ -31,14 +27,13 @@ public class EnemyManager : MonoBehaviour
         maxHealth = enemy.health;
         currentHealth = maxHealth;
         isMovementAllowed = true;
-        isAttackAllowed = false;
 
         healthBar.healthCanvas.gameObject.SetActive(false);
     }
 
     void FixedUpdate()
     {
-        if (isMovementAllowed) MoveTowardsTower();
+        if (isMovementAllowed && isBaseMovementAllowed) MoveTowardsTower();
     }
 
     private void MoveTowardsTower()
@@ -58,6 +53,7 @@ public class EnemyManager : MonoBehaviour
         else
         {
             healthBar.SetHealth((float) maxHealth / currentHealth);
+            Debug.Log((float) maxHealth / currentHealth + "Oranı can");
         }
     }
 
@@ -66,10 +62,10 @@ public class EnemyManager : MonoBehaviour
         healthBar.SetHealth((float) maxHealth / 1f);
         isMovementAllowed = false;
         anim.Play("Dead");
-        
-        GoldDropManager.Instance.CheckLoot(enemy.enemyGoldAward,transform.position);
-        
-        WaveSpawner.currentEnemyCount--;
+
+        GoldDropManager.Instance.CheckLoot(enemy.enemyGoldAward, transform.position);
+
+        WaveSpawner.RemoveEnemyFromWave();
         Destroy(col);
         Destroy(prefab, 1f);
     }
@@ -87,23 +83,25 @@ public class EnemyManager : MonoBehaviour
 
             transform.position += hitForce;
         }
-        else if (collision.tag.Equals("Castle"))
+        else if (collision.tag.Equals("Castle") && isBaseAttackAllowed)
         {
+            //todo remove the attack from here
             anim.Play("Attack");
             isMovementAllowed = false;
             isAttackAllowed = true;
 
             var castle = collision.gameObject;
-            castle.GetComponentInParent<CastleHealthManager>().GetHit(enemy.damage);
+            castle.GetComponentInParent<CastleHealthManager>().CastleGotHit(enemy.damage);
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag.Equals("Castle"))
+        //todo Change this according to attack speed
+        if (collision.tag.Equals("Castle") && isBaseAttackAllowed)
         {
             var castle = collision.gameObject;
-            castle.GetComponentInParent<CastleHealthManager>().GetHit(enemy.damage);
+            castle.GetComponentInParent<CastleHealthManager>().CastleGotHit(enemy.damage);
         }
     }
 }

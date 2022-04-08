@@ -4,30 +4,37 @@ using UnityEngine.UI;
 
 public class CastleHealthManager : MonoBehaviour
 {
-    [SerializeField] private Image castleHealth;
-    [SerializeField] private int currentHealth;
-    
     [SerializeField] private TextMeshProUGUI healthText;
-    
+    [SerializeField] private Image castleHealth;
+
     private int maxHealth;
+    [HideInInspector] public int currentHealth;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         maxHealth = GameManager.Castle.castleHealth;
         currentHealth = maxHealth;
+        SetCastleHealthUI();
+        }
+
+    public void CastleGotHit(int enemyDamage)
+    {
+        currentHealth -= enemyDamage;
+        SetCastleHealthUI();
+        CheckIfGameOver();
+    }
+
+    private void SetCastleHealthUI()
+    {
+        castleHealth.fillAmount /= (float) maxHealth / currentHealth;
         healthText.text = currentHealth + " / " + maxHealth;
     }
 
-    public void GetHit(int enemyDamage)
+    private void CheckIfGameOver()
     {
-        currentHealth -= enemyDamage;
-        castleHealth.fillAmount /= (float) maxHealth / currentHealth;
-        healthText.text = currentHealth + " / " + maxHealth;
-
         if (currentHealth <= 0)
         {
+            GameController.Instance.UpdateGameState(GameController.State.Lose);
             Debug.Log("Game Over");
         }
     }

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -18,7 +17,7 @@ public class WaveSpawner : MonoBehaviour
 
     private bool isBossArrived;
     public int maxEnemyCount;
-    public static int currentEnemyCount;
+    private static int _currentEnemyCount;
 
     private void Awake()
     {
@@ -31,8 +30,31 @@ public class WaveSpawner : MonoBehaviour
 
         GenerateWave();
 
+        SetEnemyCount();
+    }
+
+    private void SetEnemyCount()
+    {
         maxEnemyCount = enemiesToSpawn.Count;
-        currentEnemyCount = maxEnemyCount;
+        if (enemyWaves[currentWave].boss != null)
+        {
+            _currentEnemyCount = maxEnemyCount + 1;
+        }
+        else
+        {
+            _currentEnemyCount = maxEnemyCount;
+        }
+    }
+
+    public static void RemoveEnemyFromWave()
+    {
+        _currentEnemyCount--;
+        CheckIfPlayerWon();
+    }
+
+    private static void CheckIfPlayerWon()
+    {
+        if (_currentEnemyCount <= 0) GameController.Instance.UpdateGameState(GameController.State.Win);
     }
 
     private void FixedUpdate()
@@ -71,7 +93,7 @@ public class WaveSpawner : MonoBehaviour
     private void SpawnBoss()
     {
         var shake = gameObject.AddComponent<CameraShake>();
-        shake.ShakeCaller(1, 2.5f);
+        shake.ShakeCaller(1, 1f);
         isBossArrived = true;
         spawnTimer = 1f;
         Debug.Log("Boss spawned");

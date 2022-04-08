@@ -11,7 +11,6 @@ public class ArrowManager : MonoBehaviour
     [SerializeField] private BowMovement bowMovement;
 
     private Vector3 target;
-
     private Sprite arrowSprite;
 
     [SerializeField] private float fireInterval = 1f;
@@ -19,10 +18,13 @@ public class ArrowManager : MonoBehaviour
     private Vector3 difference;
     private float rotationZ;
 
+    [HideInInspector] public static bool canAttack;
+
     private void Awake()
     {
         arrowSprite = GameManager.Arrow.arrowSprite;
         bowMovement = GetComponent<BowMovement>();
+        canAttack = true;
     }
 
     private void FixedUpdate()
@@ -53,6 +55,7 @@ public class ArrowManager : MonoBehaviour
 
     private void IsArrowFired()
     {
+        if(!canAttack) return;
         if (Input.GetMouseButton(0))
         {
             float distance = difference.magnitude;

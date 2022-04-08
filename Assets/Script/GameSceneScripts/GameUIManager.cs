@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -16,7 +13,6 @@ public class GameUIManager : MonoBehaviour
 
     private int currentEnemyCount;
     private int maxEnemyCount;
-
 
     private void Start()
     {
