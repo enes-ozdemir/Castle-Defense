@@ -5,51 +5,54 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private Level[] levelSystem;
-    [SerializeField] private GameObject[] levelObjets;
+    [SerializeField] private GameObject[] levels;
     [SerializeField] public int currentLevel;
+    [SerializeField] private Level levelObject;
 
     private void Start()
     {
-        SetLevelPrefab();
-    }
-
-    public void LevelChanged()
-    {
-        currentLevel++;
+        currentLevel = GameManager.currentLevel;
         SetLevelPrefab();
     }
 
     private void SetLevelPrefab()
     {
-        for (int i = 0; i < currentLevel + 1; i++)
-        {
-            levelObjets[i].SetActive(true);
-            var spriteRenderer = levelObjets[i].GetComponentsInChildren<Image>();
-            var levelButton = levelObjets[i].GetComponent<Button>();
-            levelButton.onClick.AddListener(() => LevelButtonClick(i));
-            for (int j = 0; j < spriteRenderer.Length; j++)
-            {
-                switch (spriteRenderer[j].name)
-                {
-                    case "LevelImage":
-                        spriteRenderer[j].sprite = levelSystem[i].levelImage;
-                        break;
-                    case "BackgroundImage":
-                        spriteRenderer[j].sprite = levelSystem[i].backgroundImage;
-                        break;
-                    case "NumberImage":
-                        spriteRenderer[j].sprite = levelSystem[i].levelCountImage;
-                        break;
-                    case "LockImage":
-                        if (i > currentLevel + 1)
-                        {
-                            spriteRenderer[j].sprite = levelSystem[i].lockImage;
-                        }
+        SetLevelButtonClicks();
+        SetOldLevelImages();
+        SetLockedLevelImages();
+        SetCurrentLevelImage();
+    }
 
-                        break;
-                }
-            }
+    private void SetCurrentLevelImage()
+    {
+        var currentLevelImage = levels[currentLevel].gameObject.GetComponent<Image>();
+        currentLevelImage.sprite = levelObject.currentLevelImage;
+    }
+
+    private void SetLockedLevelImages()
+    {
+        for (int j = levels.Length - 1; j > levels.Length - (levels.Length - currentLevel); j--)
+        {
+            var levelImage = levels[j].gameObject.GetComponent<Image>();
+            levelImage.sprite = levelObject.lockImage;
+        }
+    }
+
+    private void SetOldLevelImages()
+    {
+        for (int i = 0; i < currentLevel; i++)
+        {
+            var levelImage = levels[i].gameObject.GetComponent<Image>();
+            levelImage.sprite = levelObject.oldLevelImage;
+        }
+    }
+
+    private void SetLevelButtonClicks()
+    {
+        for (int i = 1; i < currentLevel; i++)
+        {
+            var levelButton = levels[i].GetComponent<Button>();
+            levelButton.onClick.AddListener(() => LevelButtonClick(i));
         }
     }
 
@@ -57,8 +60,7 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log($" {selectedLevel} Level selected");
         //GameManager.Castle.castleHealth = 20000;
-        GameManager.CurrentLevel = selectedLevel;
-        GameManager.Weapon.weaponLevel = selectedLevel;
+        GameManager.selectedLevel = selectedLevel;
         SceneManager.LoadScene("GameScene");
     }
 }

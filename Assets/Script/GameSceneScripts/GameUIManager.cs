@@ -4,8 +4,10 @@ using UnityEngine;
 public class GameUIManager : MonoBehaviour
 {
     public int tempMoney;
+    public int tempDiamond;
 
     [SerializeField] private TextMeshProUGUI moneyText;
+    [SerializeField] private TextMeshProUGUI diamondText;
     [SerializeField] private TextMeshProUGUI enemyCountText;
     [SerializeField] private TextMeshProUGUI levelText;
 
@@ -18,13 +20,15 @@ public class GameUIManager : MonoBehaviour
     {
         maxEnemyCount = waveSpawner.enemiesToSpawn.Count;
         currentEnemyCount = maxEnemyCount;
-        levelText.text = "Level " + GameManager.CurrentLevel;
+        levelText.text = "Level " + GameManager.currentLevel;
         tempMoney = 0;
+        tempDiamond = 0;
     }
 
     private void Update()
     {
         enemyCountText.text = currentEnemyCount + " / " + maxEnemyCount;
         moneyText.text = tempMoney.ToString();
+        diamondText.text = tempDiamond.ToString();
     }
 }

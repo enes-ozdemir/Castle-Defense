@@ -1,9 +1,11 @@
 public static class GameManager
 {
     //Player 
-    public static Castle Castle;
-    public static Weapon Weapon;
-    public static Arrow Arrow;
-    public static int CurrentLevel = 1;
-    public static int Money = 0;
+    public static Castle castle;
+    public static Weapon weapon;
+    public static Arrow arrow;
+    public static int currentLevel = 1;
+    public static int selectedLevel=1;
+    public static int money = 0;
+    public static int diamond = 0;
 }

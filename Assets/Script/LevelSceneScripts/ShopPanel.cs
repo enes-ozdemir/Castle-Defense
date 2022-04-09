@@ -36,46 +36,46 @@ public class ShopPanel : MonoBehaviour
         SetArrowInfo();
         SetCastleInfo();
 
-        money = GameManager.Money;
+        money = GameManager.money;
     }
 
     private void SetBowInfo()
     {
-        bowText.text = "Level " + GameManager.Weapon.weaponLevel;
-        bowDamageText.text = "Damage " + GameManager.Weapon.WeaponStats.WeaponDamage;
-        bowUpgradeCost = GameManager.Weapon.WeaponStats.WeaponUpgradeCost;
+        bowText.text = "Level " + GameManager.weapon.weaponLevel;
+        bowDamageText.text = "Damage " + GameManager.weapon.WeaponStats.WeaponDamage;
+        bowUpgradeCost = GameManager.weapon.WeaponStats.WeaponUpgradeCost;
         bowUpgradeText.text = bowUpgradeCost.ToString();
-        bowImage.sprite = GameManager.Weapon.weaponSprite;
+        bowImage.sprite = GameManager.weapon.weaponSprite;
     }
 
     private void SetArrowInfo()
     {
-        arrowText.text = "Level " + GameManager.Arrow.arrowLevel;
-        arrowImage.sprite = GameManager.Arrow.arrowSprite;
-        arrowUpgradeCost = GameManager.Arrow.ArrowStats.arrowUpgradeCost;
-        arrowDamageText.text = "Attack Speed " + GameManager.Arrow.ArrowStats.fireInterval;
+        arrowText.text = "Level " + GameManager.arrow.arrowLevel;
+        arrowImage.sprite = GameManager.arrow.arrowSprite;
+        arrowUpgradeCost = GameManager.arrow.ArrowStats.arrowUpgradeCost;
+        arrowDamageText.text = "Attack Speed " + GameManager.arrow.ArrowStats.fireInterval;
         arrowUpgradeText.text = arrowUpgradeCost.ToString();
     }
 
     private void SetCastleInfo()
     {
         Debug.Log("SetCastleInfo called");
-        castleText.text = "Level " + GameManager.Castle.castleLevel;
-        castleHealthText.text = "Health " + GameManager.Castle.castleHealth;
-        castleUpgradeText.text = GameManager.Castle.castleUpgradeCost.ToString();
+        castleText.text = "Level " + GameManager.castle.castleLevel;
+        castleHealthText.text = "Health " + GameManager.castle.castleHealth;
+        castleUpgradeText.text = GameManager.castle.castleUpgradeCost.ToString();
     }
 
     public void OnArrowUpgrade()
     {
         Debug.Log("OnArrowUpgrade called");
-        var currentUpgradeCost = GameManager.Arrow.ArrowStats.arrowUpgradeCost;
-        var currentMoney = GameManager.Money;
+        var currentUpgradeCost = GameManager.arrow.ArrowStats.arrowUpgradeCost;
+        var currentMoney = GameManager.money;
         if (currentUpgradeCost <= currentMoney)
         {
-            GameManager.Money -= currentUpgradeCost;
-            GameManager.Arrow.ArrowStats.arrowUpgradeCost += 10;
-            GameManager.Arrow.ArrowStats.fireInterval += 0.1f;
-            GameManager.Arrow.arrowLevel++;
+            GameManager.money -= currentUpgradeCost;
+            GameManager.arrow.ArrowStats.arrowUpgradeCost += 10;
+            GameManager.arrow.ArrowStats.fireInterval += 0.1f;
+            GameManager.arrow.arrowLevel++;
             SetArrowInfo();
         }
         else
@@ -87,14 +87,14 @@ public class ShopPanel : MonoBehaviour
     public void OnCastleUpgrade()
     {
         Debug.Log("OnCastleUpgrade called");
-        var currentUpgradeCost = GameManager.Castle.castleUpgradeCost;
-        var currentMoney = GameManager.Money;
+        var currentUpgradeCost = GameManager.castle.castleUpgradeCost;
+        var currentMoney = GameManager.money;
         if (currentUpgradeCost <= currentMoney)
         {
-            GameManager.Money -= currentUpgradeCost;
-            GameManager.Castle.castleUpgradeCost += 10;
-            GameManager.Castle.castleHealth += 100;
-            GameManager.Castle.castleLevel++;
+            GameManager.money -= currentUpgradeCost;
+            GameManager.castle.castleUpgradeCost += 10;
+            GameManager.castle.castleHealth += 100;
+            GameManager.castle.castleLevel++;
             SetCastleInfo();
         }
         else
@@ -106,14 +106,14 @@ public class ShopPanel : MonoBehaviour
     public void OnBowUpgrade()
     {
         Debug.Log("OnBowUpgrade called");
-        var currentUpgradeCost = GameManager.Weapon.WeaponStats.WeaponUpgradeCost;
-        var currentMoney = GameManager.Money;
+        var currentUpgradeCost = GameManager.weapon.WeaponStats.WeaponUpgradeCost;
+        var currentMoney = GameManager.money;
         if (currentUpgradeCost <= currentMoney)
         {
-            GameManager.Money -= currentUpgradeCost;
-            GameManager.Weapon.WeaponStats.WeaponUpgradeCost += 10;
-            GameManager.Weapon.WeaponStats.WeaponDamage += 10;
-            GameManager.Weapon.weaponLevel++;
+            GameManager.money -= currentUpgradeCost;
+            GameManager.weapon.WeaponStats.WeaponUpgradeCost += 10;
+            GameManager.weapon.WeaponStats.WeaponDamage += 10;
+            GameManager.weapon.weaponLevel++;
             SetBowInfo();
         }
         else
@@ -124,7 +124,7 @@ public class ShopPanel : MonoBehaviour
 
     private void Update()
     {
-        money = GameManager.Money;
+        money = GameManager.money;
         moneyText.text = money.ToString();
     }
 }

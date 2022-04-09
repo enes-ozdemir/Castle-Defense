@@ -24,7 +24,8 @@ public class WaveSpawner : MonoBehaviour
         isBossArrived = false;
 
         //Set Wave settings
-        currentWave = GameManager.CurrentLevel;
+        currentWave = GameManager.selectedLevel;
+        Debug.Log(currentWave + "currentWave");
         waveDuration = enemyWaves[currentWave].waveDuration;
         waveValue = enemyWaves[currentWave].waveValue;
 

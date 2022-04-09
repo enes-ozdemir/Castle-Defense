@@ -9,6 +9,6 @@ public class Castle : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.Castle = this;
+        GameManager.castle = this;
     }
 }

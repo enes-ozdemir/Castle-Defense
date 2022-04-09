@@ -22,7 +22,7 @@ public class ArrowManager : MonoBehaviour
 
     private void Awake()
     {
-        arrowSprite = GameManager.Arrow.arrowSprite;
+        arrowSprite = GameManager.arrow.arrowSprite;
         bowMovement = GetComponent<BowMovement>();
         canAttack = true;
     }

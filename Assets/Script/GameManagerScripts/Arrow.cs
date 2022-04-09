@@ -8,7 +8,7 @@ public class Arrow : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.Arrow = this;
+        GameManager.arrow = this;
         ArrowStats = new ArrowStats();
 
     }

@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        money = GameManager.Money;
+        money = GameManager.money;
         shopButton.onClick.AddListener(OnShopClick);
         upgradeButton.onClick.AddListener(OnUpgradeClick);
     }
@@ -29,18 +29,18 @@ public class UIManager : MonoBehaviour
     public void OnShopClick()
     {
         shopUI.SetActive(!shopUI.activeInHierarchy);
-        GameManager.Money += 100;
+        GameManager.money += 100;
     }
 
     public void OnUpgradeClick()
     {
         upgradeUI.SetActive(!upgradeUI.activeInHierarchy);
-        GameManager.Money += 1000;
+        GameManager.money += 1000;
     }
 
     private void Update()
     {
-        money = GameManager.Money;
+        money = GameManager.money;
         moneyText.text = money.ToString();
     }
 }

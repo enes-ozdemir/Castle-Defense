@@ -75,7 +75,7 @@ public class EnemyManager : BaseEnemyManager
         if (collision.tag.Equals("Arrow"))
         {
             collision.gameObject.SetActive(false);
-            GetHit(GameManager.Weapon.WeaponStats.WeaponDamage);
+            GetHit(GameManager.weapon.WeaponStats.WeaponDamage);
 
             Vector3 hitForce =
                 new Vector3(

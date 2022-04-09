@@ -6,7 +6,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject victoryCanvas;
     [SerializeField] private GameObject defeatCanvas;
 
-    [SerializeField] private BaseEnemyManager enemyManager;
+    [SerializeField] private EarningsPanel earningsPanel;
+
 
     private State currentState;
 
@@ -68,6 +69,7 @@ public class GameController : MonoBehaviour
 
     private void PauseTheGame()
     {
+        earningsPanel.UpdatePanel();
         BaseEnemyManager.isBaseAttackAllowed = false;
         BaseEnemyManager.isBaseMovementAllowed = false;
         ArrowManager.canAttack = false;
