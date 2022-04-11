@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -49,11 +50,12 @@ public class LevelManager : MonoBehaviour
 
     private void SetLevelButtonClicks()
     {
-        for (int i = 1; i < currentLevel; i++)
-        {
-            var levelButton = levels[i].GetComponent<Button>();
-            levelButton.onClick.AddListener(() => LevelButtonClick(i));
-        }
+            for (int i = 0; i <= currentLevel; i++)
+            {
+                var index = i;
+                var levelButton = levels[index].GetComponent<Button>();
+                levelButton.onClick.AddListener(() => LevelButtonClick(index));
+            }
     }
 
     private void LevelButtonClick(int selectedLevel)
