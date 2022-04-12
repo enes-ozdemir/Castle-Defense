@@ -37,7 +37,7 @@ public class GoldDropManager : MonoBehaviour
             var coin = Instantiate(diamondDrop, position, Quaternion.identity);
             coin.transform.DOMove(goldTarget.position, 1f)
                 .SetEase(Ease.InOutBack)
-                .OnComplete((() => EarnDiamond(goldAmount)));
+                .OnComplete((() => EarnDiamond(1)));
             //Add this to end of the animation later
         }
     }

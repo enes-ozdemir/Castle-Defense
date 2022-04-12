@@ -2363,6 +2363,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &458399894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 458399895}
+  m_Layer: 0
+  m_Name: Enemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &458399895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458399894}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.95, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1060331368}
+  m_RootOrder: 30
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &498516698
 GameObject:
   m_ObjectHideFlags: 0
@@ -4381,6 +4412,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1060331368}
+  - component: {fileID: 1060331369}
   m_Layer: 0
   m_Name: CastlePrefabs
   m_TagString: Untagged
@@ -4430,9 +4462,25 @@ Transform:
   - {fileID: 1294365097}
   - {fileID: 2110505520}
   - {fileID: 427039306}
+  - {fileID: 458399895}
   m_Father: {fileID: 1436820920}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1060331369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060331367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7028d4598ef60f74db4783ff32d27d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 338184526}
+  castleHealth: {fileID: 943412553}
+  currentHealth: 1000
 --- !u!1 &1093353311
 GameObject:
   m_ObjectHideFlags: 0
@@ -7988,7 +8036,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2135041570}
-  - component: {fileID: 2135041571}
   m_Layer: 0
   m_Name: CastleManager
   m_TagString: Untagged
@@ -8014,21 +8061,6 @@ Transform:
   m_Father: {fileID: 1187631135}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2135041571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2135041569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7028d4598ef60f74db4783ff32d27d4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthText: {fileID: 338184526}
-  castleHealth: {fileID: 943412553}
-  currentHealth: 1000
 --- !u!1 &2140517938
 GameObject:
   m_ObjectHideFlags: 0

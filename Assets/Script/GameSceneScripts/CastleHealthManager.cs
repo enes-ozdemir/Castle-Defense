@@ -15,7 +15,7 @@ public class CastleHealthManager : MonoBehaviour
         maxHealth = GameManager.castle.castleHealth;
         currentHealth = maxHealth;
         SetCastleHealthUI();
-        }
+    }
 
     public void CastleGotHit(int enemyDamage)
     {
@@ -26,7 +26,7 @@ public class CastleHealthManager : MonoBehaviour
 
     private void SetCastleHealthUI()
     {
-        castleHealth.fillAmount /= (float) maxHealth / currentHealth;
+        castleHealth.fillAmount = (float) currentHealth / maxHealth;
         healthText.text = currentHealth + " / " + maxHealth;
     }
 

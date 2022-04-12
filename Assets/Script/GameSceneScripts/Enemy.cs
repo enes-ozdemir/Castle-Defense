@@ -15,8 +15,8 @@ public class Enemy : ScriptableObject
     [SerializeField] public int health;
     [SerializeField] public float speed;
     [SerializeField] public int damage;
-    [SerializeField] public int attackSpeed;
-    [SerializeField] public AttackType attackType;
+    [SerializeField] public int attackSpeed=1;
+    [SerializeField] public float attackRange=1f;
     
     [Space(10)]
     public GameObject enemyPrefab;

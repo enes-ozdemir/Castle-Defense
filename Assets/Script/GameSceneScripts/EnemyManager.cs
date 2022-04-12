@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager : BaseEnemyManager
@@ -18,6 +21,11 @@ public class EnemyManager : BaseEnemyManager
     public int maxHealth;
     public int currentHealth;
 
+    private float lastAttackTime;
+    public float attackDelay;
+
+    public Transform target;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,6 +37,25 @@ public class EnemyManager : BaseEnemyManager
         isMovementAllowed = true;
 
         healthBar.healthCanvas.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        CheckAttack();
+    }
+
+    private void CheckAttack()
+    {
+        float distanceToCastle = Vector3.Distance(transform.position, target.position);
+        Debug.Log("Enemy distance to Castle = " + distanceToCastle);
+        if (distanceToCastle < enemy.attackRange && Time.time > lastAttackTime + attackDelay)
+        {
+            anim.Play("Attack");
+            isMovementAllowed = false;
+            isAttackAllowed = true;
+            target.GetComponentInParent<CastleHealthManager>().CastleGotHit(enemy.damage);
+            lastAttackTime = Time.time;
+        }
     }
 
     void FixedUpdate()
@@ -52,14 +79,13 @@ public class EnemyManager : BaseEnemyManager
         }
         else
         {
-            healthBar.SetHealth((float) maxHealth / currentHealth);
-            Debug.Log((float) maxHealth / currentHealth + "Oranı can");
+            healthBar.SetHealth((float) currentHealth / maxHealth);
         }
     }
 
     private void Die()
     {
-        healthBar.SetHealth((float) maxHealth / 1f);
+        healthBar.SetHealth((float) currentHealth / maxHealth);
         isMovementAllowed = false;
         anim.Play("Dead");
 
@@ -83,25 +109,15 @@ public class EnemyManager : BaseEnemyManager
 
             transform.position += hitForce;
         }
-        else if (collision.tag.Equals("Castle") && isBaseAttackAllowed)
-        {
-            //todo remove the attack from here
-            anim.Play("Attack");
-            isMovementAllowed = false;
-            isAttackAllowed = true;
-
-            var castle = collision.gameObject;
-            castle.GetComponentInParent<CastleHealthManager>().CastleGotHit(enemy.damage);
-        }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        //todo Change this according to attack speed
-        if (collision.tag.Equals("Castle") && isBaseAttackAllowed)
+        if (collision.tag.Equals("Castle"))
         {
-            var castle = collision.gameObject;
-            castle.GetComponentInParent<CastleHealthManager>().CastleGotHit(enemy.damage);
+            isMovementAllowed = true;
+            MoveTowardsTower();
+            anim.Play("Walk");
         }
     }
 }

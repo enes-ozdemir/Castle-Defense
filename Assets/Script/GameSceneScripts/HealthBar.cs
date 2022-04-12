@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour
 
     public void SetHealth(float amount)
     {
-        healthBar.fillAmount /= amount;
+        healthBar.fillAmount = amount;
     }
 
 }
