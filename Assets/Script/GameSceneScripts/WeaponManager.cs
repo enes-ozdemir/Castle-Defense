@@ -7,7 +7,6 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private int arrowLevel;
     [SerializeField] public int damage;
 
-
     [SerializeField] private Sprite[] bowSprites;
     [SerializeField] private Sprite[] arrowSprites;
 
@@ -20,22 +19,10 @@ public class WeaponManager : MonoBehaviour
     private SpriteRenderer bowSprite;
     private SpriteRenderer arrowSprite;
 
-    [SerializeField] public ArrowManager arrowManager;
-
-
     private void Awake()
     {
-        arrowLevel = GameManager.weapon.weaponLevel;
         bowSprite = GetComponent<SpriteRenderer>();
-        damage = 10;
         arrowSprite = arrowPrefab.GetComponent<SpriteRenderer>();
-        SetWeaponLevel(1);
-    }
-
-    public void SetWeaponLevel(int level)
-    {
-        weaponLevel = level;
-        damage = level * 100;
     }
 
     private void Update()
@@ -46,11 +33,8 @@ public class WeaponManager : MonoBehaviour
 
     private void SetWeaponSprite()
     {
-        currentBowPrefab = bowSprites[weaponLevel];
-        damage = weaponLevel * 20;
-        //bowSprite.sprite = currentBowPrefab;
+        damage = GameManager.weapon.WeaponStats.WeaponDamage;
         bowSprite.sprite = GameManager.weapon.weaponSprite;
-        currentArrowPrefab = arrowSprites[arrowLevel];
-        arrowSprite.sprite = currentArrowPrefab;
+        arrowSprite.sprite = GameManager.arrow.arrowSprite;
     }
 }

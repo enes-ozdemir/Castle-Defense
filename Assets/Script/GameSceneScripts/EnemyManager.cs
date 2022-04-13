@@ -24,7 +24,9 @@ public class EnemyManager : BaseEnemyManager
     public float attackDelay;
 
     [SerializeField] private CastleHealthManager castleHealthManager;
-    
+
+    [SerializeField] private GameObject bloodParticle;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -37,13 +39,13 @@ public class EnemyManager : BaseEnemyManager
 
         healthBar.healthCanvas.gameObject.SetActive(false);
         castleHealthManager = GetComponentInParent<CastleHealthManager>();
-
     }
 
     private void Update()
     {
         CheckAttack();
     }
+
     private void FixedUpdate()
     {
         if (isMovementAllowed && isBaseMovementAllowed) MoveTowardsTower();
@@ -62,17 +64,19 @@ public class EnemyManager : BaseEnemyManager
             if (enemy.isRangeUnit)
             {
                 var position = transform.position;
-                
-                Instantiate(enemy.enemySkill.skillStartEffect, position, Quaternion.identity);
+
+                var attackEffect = Instantiate(enemy.enemySkill.skillStartEffect, position, Quaternion.identity);
+                Destroy(attackEffect, 1f);
                 vfx = Instantiate(enemy.enemySkill.skillPrefab, position, Quaternion.identity);
                 var skillManager = vfx.AddComponent<SkillManager>();
                 skillManager.enemy = enemy;
             }
+
             castleHealthManager.CastleGotHit(enemy.damage);
             lastAttackTime = Time.time;
         }
     }
-   
+
 
     private void MoveTowardsTower()
     {
@@ -81,6 +85,7 @@ public class EnemyManager : BaseEnemyManager
 
     private void GetHit(int damage)
     {
+        Instantiate(bloodParticle, transform.position, Quaternion.identity);
         healthBar.healthCanvas.gameObject.SetActive(true);
         currentHealth -= damage;
 
@@ -114,11 +119,13 @@ public class EnemyManager : BaseEnemyManager
             collision.gameObject.SetActive(false);
             GetHit(GameManager.weapon.WeaponStats.WeaponDamage);
 
-            Vector3 hitForce =
-                new Vector3(
-                    0.05f, 0, 0);
-
-            transform.position += hitForce;
+            if (isMovementAllowed)
+            {
+                Vector3 hitForce =
+                    new Vector3(
+                        0.05f, 0, 0);
+                transform.position += hitForce;
+            }
         }
     }
 
