@@ -10,6 +10,8 @@ public class CastleHealthManager : MonoBehaviour
     private int maxHealth;
     [HideInInspector] public int currentHealth;
 
+    public Transform castleLocation;
+
     void Start()
     {
         maxHealth = GameManager.castle.castleHealth;

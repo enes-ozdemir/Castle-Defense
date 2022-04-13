@@ -1,7 +1,6 @@
-using System;
-using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyManager : BaseEnemyManager
 {
@@ -24,8 +23,8 @@ public class EnemyManager : BaseEnemyManager
     private float lastAttackTime;
     public float attackDelay;
 
-    public Transform target;
-
+    [SerializeField] private CastleHealthManager castleHealthManager;
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -37,6 +36,8 @@ public class EnemyManager : BaseEnemyManager
         isMovementAllowed = true;
 
         healthBar.healthCanvas.gameObject.SetActive(false);
+        castleHealthManager = GetComponentInParent<CastleHealthManager>();
+
     }
 
     private void Update()
@@ -50,7 +51,7 @@ public class EnemyManager : BaseEnemyManager
 
     private void CheckAttack()
     {
-        float distanceToCastle = Vector2.Distance(transform.position, target.position);
+        float distanceToCastle = Mathf.Abs(transform.position.x - castleHealthManager.castleLocation.position.x);
         if (distanceToCastle < enemy.attackRange && Time.time > lastAttackTime + attackDelay)
         {
             anim.Play("Attack");
@@ -62,13 +63,12 @@ public class EnemyManager : BaseEnemyManager
             {
                 var position = transform.position;
                 
-                Instantiate(enemy.enemySkillEffect, position, Quaternion.identity);
-                vfx = Instantiate(enemy.enemySkill, position, Quaternion.identity);
-                vfx.GetComponent<Skill>().skillSpeed = enemy.enemySkillSpeed;
-                vfx.GetComponent<Skill>().target = target;
+                Instantiate(enemy.enemySkill.skillStartEffect, position, Quaternion.identity);
+                vfx = Instantiate(enemy.enemySkill.skillPrefab, position, Quaternion.identity);
+                var skillManager = vfx.AddComponent<SkillManager>();
+                skillManager.enemy = enemy;
             }
-            
-            target.GetComponentInParent<CastleHealthManager>().CastleGotHit(enemy.damage);
+            castleHealthManager.CastleGotHit(enemy.damage);
             lastAttackTime = Time.time;
         }
     }

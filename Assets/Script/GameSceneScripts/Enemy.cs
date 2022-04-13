@@ -16,10 +16,8 @@ public class Enemy : ScriptableObject
     [SerializeField] public float attackRange=1f;
     [SerializeField] public bool isRangeUnit;
 
-    [SerializeField] public GameObject enemySkill;
-    [SerializeField] public GameObject enemySkillEffect;
-    [SerializeField] public float enemySkillSpeed=1f;
-    
+    [SerializeField] public Skill enemySkill;
+
     [Space(10)]
     public GameObject enemyPrefab;
 }
