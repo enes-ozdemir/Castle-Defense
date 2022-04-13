@@ -93,18 +93,21 @@ public class WaveSpawner : MonoBehaviour
 
     private void SpawnBoss()
     {
-        var shake = gameObject.AddComponent<CameraShake>();
-        shake.ShakeCaller(1, 1f);
-        isBossArrived = true;
-        spawnTimer = 1f;
-        Debug.Log("Boss spawned");
+        if (enemyWaves[currentWave].boss != null)
+        {
+            var shake = gameObject.AddComponent<CameraShake>();
+            shake.ShakeCaller(1, 1f);
+            isBossArrived = true;
+            spawnTimer = 1f;
+            Debug.Log("Boss spawned");
 
-        var bossPrefab = enemyWaves[currentWave].boss.enemyPrefab;
-        var enemyObject = Instantiate(bossPrefab,
-            spawnLocations[1].position,
-            Quaternion.identity, transform);
+            var bossPrefab = enemyWaves[currentWave].boss.enemyPrefab;
+            var enemyObject = Instantiate(bossPrefab,
+                spawnLocations[1].position,
+                Quaternion.identity, transform);
 
-        enemyObject.GetComponent<EnemyManager>().prefab = enemyObject;
+            enemyObject.GetComponent<EnemyManager>().prefab = enemyObject;
+        }
     }
 
     private void GenerateWave()

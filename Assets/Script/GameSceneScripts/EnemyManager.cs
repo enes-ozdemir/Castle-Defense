@@ -43,25 +43,36 @@ public class EnemyManager : BaseEnemyManager
     {
         CheckAttack();
     }
+    private void FixedUpdate()
+    {
+        if (isMovementAllowed && isBaseMovementAllowed) MoveTowardsTower();
+    }
 
     private void CheckAttack()
     {
-        float distanceToCastle = Vector3.Distance(transform.position, target.position);
-        Debug.Log("Enemy distance to Castle = " + distanceToCastle);
+        float distanceToCastle = Vector2.Distance(transform.position, target.position);
         if (distanceToCastle < enemy.attackRange && Time.time > lastAttackTime + attackDelay)
         {
             anim.Play("Attack");
             isMovementAllowed = false;
             isAttackAllowed = true;
+            GameObject vfx;
+
+            if (enemy.isRangeUnit)
+            {
+                var position = transform.position;
+                
+                Instantiate(enemy.enemySkillEffect, position, Quaternion.identity);
+                vfx = Instantiate(enemy.enemySkill, position, Quaternion.identity);
+                vfx.GetComponent<Skill>().skillSpeed = enemy.enemySkillSpeed;
+                vfx.GetComponent<Skill>().target = target;
+            }
+            
             target.GetComponentInParent<CastleHealthManager>().CastleGotHit(enemy.damage);
             lastAttackTime = Time.time;
         }
     }
-
-    void FixedUpdate()
-    {
-        if (isMovementAllowed && isBaseMovementAllowed) MoveTowardsTower();
-    }
+   
 
     private void MoveTowardsTower()
     {
@@ -116,6 +127,7 @@ public class EnemyManager : BaseEnemyManager
         if (collision.tag.Equals("Castle"))
         {
             isMovementAllowed = true;
+            isAttackAllowed = false;
             MoveTowardsTower();
             anim.Play("Walk");
         }
