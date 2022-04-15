@@ -10,5 +10,4 @@ public class HealthBar : MonoBehaviour
     {
         healthBar.fillAmount = amount;
     }
-
 }

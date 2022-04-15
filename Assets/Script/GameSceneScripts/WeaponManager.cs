@@ -12,7 +12,7 @@ public class WeaponManager : MonoBehaviour
 
     public GameObject bowPrefab;
     public GameObject arrowPrefab;
-    
+
     [SerializeField] private Sprite currentBowPrefab;
     [SerializeField] private Sprite currentArrowPrefab;
 

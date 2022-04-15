@@ -2,6 +2,8 @@
 {
     public enum AttackType
     {
-        Melee,Range,Spell
+        Melee,
+        Range,
+        Spell
     }
 }

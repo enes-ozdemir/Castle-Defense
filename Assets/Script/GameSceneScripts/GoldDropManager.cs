@@ -60,7 +60,8 @@ public class GoldDropManager : MonoBehaviour
     {
         GameManager.money += goldAmount;
         gameUIManager.tempMoney += goldAmount;
-    } 
+    }
+
     private void EarnDiamond(int diamondAmount)
     {
         GameManager.diamond += diamondAmount;

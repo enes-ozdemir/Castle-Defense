@@ -6,7 +6,6 @@ namespace Script
 {
     public class ObjectPooler : MonoBehaviour
     {
-        
         [System.Serializable]
         public class Pool
         {
@@ -16,12 +15,14 @@ namespace Script
         }
 
         #region "Singleton"
+
         public static ObjectPooler Instance;
 
         private void Awake()
         {
             Instance = this;
         }
+
         #endregion
 
         private Dictionary<string, Queue<GameObject>> poolDictionary;
@@ -30,14 +31,13 @@ namespace Script
         private void Start()
         {
             SetPool();
-            
         }
 
         private void SetPool()
         {
             poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
-            foreach (Pool pool in pools )
+            foreach (Pool pool in pools)
             {
                 Queue<GameObject> objectPool = new Queue<GameObject>();
 
@@ -47,25 +47,24 @@ namespace Script
                     obj.SetActive(false);
                     objectPool.Enqueue(obj);
                 }
-                poolDictionary.Add(pool.tag,objectPool);
-            }
-        } 
 
-        public GameObject SpawnArrowFromPool(string tag,Vector3 position,Quaternion rotation)
+                poolDictionary.Add(pool.tag, objectPool);
+            }
+        }
+
+        public GameObject SpawnArrowFromPool(string tag, Vector3 position, Quaternion rotation)
         {
-            if(!poolDictionary.ContainsKey(tag)) return null;
-        
+            if (!poolDictionary.ContainsKey(tag)) return null;
+
             GameObject objectToSpawn = poolDictionary[tag].Dequeue();
-        
+
             objectToSpawn.SetActive(transform);
             objectToSpawn.transform.position = position;
             objectToSpawn.transform.rotation = rotation;
-        
+
             poolDictionary[tag].Enqueue(objectToSpawn);
 
             return objectToSpawn;
-
         }
-        
     }
 }

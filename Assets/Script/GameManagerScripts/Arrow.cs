@@ -10,6 +10,5 @@ public class Arrow : MonoBehaviour
     {
         GameManager.arrow = this;
         ArrowStats = new ArrowStats();
-
     }
 }

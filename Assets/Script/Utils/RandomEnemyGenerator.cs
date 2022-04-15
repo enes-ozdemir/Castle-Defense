@@ -17,7 +17,7 @@ public static class RandomEnemyGenerator
         var randomWeightValue = Random.Range(1, totalWeight + 1);
 
         var processedWeight = 0;
-        
+
         foreach (var enemyType in weightedValues)
         {
             processedWeight += enemyType.rarity;
@@ -26,11 +26,8 @@ public static class RandomEnemyGenerator
                 enemyToGenerate = enemyType.enemy;
                 break;
             }
-
         }
+
         return enemyToGenerate;
     }
-
-
-
 }

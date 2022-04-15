@@ -20,10 +20,10 @@ public class SkillManager : MonoBehaviour
         if (col.tag.Equals("Castle"))
         {
             var explosionPosition = col.ClosestPoint(transform.position);
-            var explosion=Instantiate(skillEndPrefab, explosionPosition, Quaternion.identity);
+            var explosion = Instantiate(skillEndPrefab, explosionPosition, Quaternion.identity);
             //var particle = GetComponent<ParticleSystem>();
             Destroy(gameObject);
-            Destroy(explosion,1.5f);
+            Destroy(explosion, 1.5f);
         }
     }
 }

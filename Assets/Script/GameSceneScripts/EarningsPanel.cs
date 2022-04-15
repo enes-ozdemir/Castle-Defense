@@ -4,9 +4,8 @@ using UnityEngine.UI;
 
 public class EarningsPanel : MonoBehaviour
 {
-
     [SerializeField] private Image mainImage;
-    
+
     [SerializeField] private Image goldImage;
     [SerializeField] private Image diamondImage;
 
@@ -20,5 +19,4 @@ public class EarningsPanel : MonoBehaviour
         moneyText.text = gameUIManager.tempMoney.ToString();
         diamondText.text = gameUIManager.tempDiamond.ToString();
     }
-
 }

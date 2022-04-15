@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Wave : ScriptableObject
 {
-   public List<WaveUnit> waveUnits;
+    public List<WaveUnit> waveUnits;
     public int award;
     public int waveDuration;
     public int waveValue;

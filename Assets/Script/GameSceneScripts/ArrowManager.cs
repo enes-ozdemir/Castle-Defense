@@ -30,7 +30,6 @@ public class ArrowManager : MonoBehaviour
     private void FixedUpdate()
     {
         SetBowRotation();
-      
     }
 
     private void Update()
@@ -55,7 +54,7 @@ public class ArrowManager : MonoBehaviour
 
     private void IsArrowFired()
     {
-        if(!canAttack) return;
+        if (!canAttack) return;
         if (Input.GetMouseButton(0))
         {
             float distance = difference.magnitude;

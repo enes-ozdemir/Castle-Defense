@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
 public class ShopPanel : MonoBehaviour
 {
     [SerializeField] private SellableItem[] items;
-    [SerializeField] private ShopItem shopItems;
     [SerializeField] private GameObject shopItemPrafab;
 
     void Start()
+    {
+        SetShopItems();
+    }
+
+    private void SetShopItems()
     {
         foreach (var item in items)
         {

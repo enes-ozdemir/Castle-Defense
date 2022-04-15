@@ -147,7 +147,7 @@ public class WaveSpawner : MonoBehaviour
 
     private Enemy GenerateEnemy()
     {
-        var waveUnits = enemyWaves[currentWave - 1].waveUnits;
+        var waveUnits = enemyWaves[currentWave].waveUnits;
         var enemyToGenerate = RandomEnemyGenerator.GetRandomEnemy(waveUnits);
         return enemyToGenerate;
     }
