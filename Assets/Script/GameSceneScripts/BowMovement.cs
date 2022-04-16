@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BowMovement : MonoBehaviour
 {
-    public GameObject crosshairs;
+    [FormerlySerializedAs("crosshairs")] public GameObject crosshair;
     public Vector3 target;
 
 
@@ -19,7 +20,7 @@ public class BowMovement : MonoBehaviour
     {
         target = _camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
             _camera.transform.position.z));
-        crosshairs.transform.position = new Vector3(target.x, target.y);
+        crosshair.transform.position = new Vector3(target.x, target.y);
     }
 
     private void FixedUpdate()

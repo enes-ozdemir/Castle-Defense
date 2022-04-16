@@ -1,10 +1,11 @@
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ShopPanel : MonoBehaviour
 {
     [SerializeField] private SellableItem[] items;
-    [SerializeField] private GameObject shopItemPrafab;
+    [FormerlySerializedAs("shopItemPrafab")] [SerializeField] private GameObject shopItemPrefab;
 
     void Start()
     {
@@ -15,7 +16,7 @@ public class ShopPanel : MonoBehaviour
     {
         foreach (var item in items)
         {
-            var newItem = Instantiate(shopItemPrafab, transform.position, quaternion.identity);
+            var newItem = Instantiate(shopItemPrefab, transform.position, quaternion.identity);
             newItem.transform.SetParent(gameObject.transform);
             newItem.GetComponent<ShopItem>().displayedItem = item;
         }

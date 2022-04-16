@@ -117,7 +117,7 @@ public class EnemyManager : BaseEnemyManager
         if (collision.tag.Equals("Arrow"))
         {
             collision.gameObject.SetActive(false);
-            GetHit(GameManager.weapon.WeaponStats.WeaponDamage);
+            GetHit(GameManager.weapon.weaponStats.additionalWeaponDamage + GameManager.weapon.weaponStats.weaponBaseDamage);
 
             if (isMovementAllowed)
             {

@@ -33,7 +33,7 @@ public class WeaponManager : MonoBehaviour
 
     private void SetWeaponSprite()
     {
-        damage = GameManager.weapon.WeaponStats.WeaponDamage;
+        damage = GameManager.weapon.weaponStats.additionalWeaponDamage;
         bowSprite.sprite = GameManager.weapon.weaponSprite;
         arrowSprite.sprite = GameManager.arrow.arrowSprite;
     }

@@ -44,7 +44,7 @@ public class ShopItem : MonoBehaviour
     {
         if (displayedItem is WeaponItem item)
         {
-            GameManager.weapon.WeaponStats.WeaponBaseDamage = item.baseDamage;
+            GameManager.weapon.weaponStats.weaponBaseDamage = item.baseDamage;
             GameManager.weapon.weaponSprite = item.itemSprite;
         }
     }
