@@ -29,6 +29,8 @@ public class EnemyManager : BaseEnemyManager
 
     private void Awake()
     {
+        attackDelay = enemy.attackSpeed;
+        
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         col = GetComponent<Collider2D>();
@@ -71,7 +73,7 @@ public class EnemyManager : BaseEnemyManager
                     var attackEffect = Instantiate(enemy.enemySkill.skillStartEffect, position, Quaternion.identity);
                     Destroy(attackEffect, 1f);
                 }
-                vfx = Instantiate(enemy.enemySkill.skillPrefab, position, Quaternion.identity);
+                vfx = Instantiate(enemy.enemySkill.skillPrefab, position+new Vector3(0,0.2f,0), Quaternion.identity);
                 var skillManager = vfx.AddComponent<SkillManager>();
                 skillManager.enemy = enemy;
             }

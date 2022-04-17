@@ -14,7 +14,7 @@ public class Enemy : ScriptableObject
 
     [SerializeField] public float speed;
     [SerializeField] public int damage;
-    [SerializeField] public int attackSpeed = 1;
+    [SerializeField] public float attackSpeed = 1;
     [SerializeField] public float attackRange = 1f;
     [SerializeField] public bool isRangeUnit;
 

@@ -103,7 +103,7 @@ public class WaveSpawner : MonoBehaviour
 
             var bossPrefab = enemyWaves[currentWave].boss.enemyPrefab;
             var enemyObject = Instantiate(bossPrefab,
-                spawnLocations[1].position,
+                spawnLocations[0].position,
                 Quaternion.identity, transform);
 
             enemyObject.GetComponent<EnemyManager>().prefab = enemyObject;
