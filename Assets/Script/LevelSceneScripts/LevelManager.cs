@@ -60,7 +60,6 @@ public class LevelManager : MonoBehaviour
     private void LevelButtonClick(int selectedLevel)
     {
         Debug.Log($" {selectedLevel} Level selected");
-        //GameManager.Castle.castleHealth = 20000;
         GameManager.selectedLevel = selectedLevel;
         SceneManager.LoadScene("GameScene");
     }

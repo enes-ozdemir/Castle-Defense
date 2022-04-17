@@ -1,8 +1,8 @@
 using TMPro;
 using UnityEngine;
+
 public class EarningsPanel : MonoBehaviour
 {
-
     [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private TextMeshProUGUI diamondText;
 
@@ -10,7 +10,7 @@ public class EarningsPanel : MonoBehaviour
 
     public void UpdatePanel()
     {
-        moneyText.text = gameUIManager.tempMoney +" "+ Constant.SpriteIndex;
-        diamondText.text = gameUIManager.tempDiamond +" "+ Constant.SpriteIndex;
+        moneyText.text = gameUIManager.tempMoney + " " + Constant.SpriteIndex;
+        diamondText.text = gameUIManager.tempDiamond + " " + Constant.SpriteIndex;
     }
 }

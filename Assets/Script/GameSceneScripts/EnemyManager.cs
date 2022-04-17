@@ -53,6 +53,7 @@ public class EnemyManager : BaseEnemyManager
 
     private void CheckAttack()
     {
+        //Todo integrate attack speed
         float distanceToCastle = Mathf.Abs(transform.position.x - castleHealthManager.castleLocation.position.x);
         if (distanceToCastle < enemy.attackRange && Time.time > lastAttackTime + attackDelay)
         {
@@ -65,8 +66,11 @@ public class EnemyManager : BaseEnemyManager
             {
                 var position = transform.position;
 
-                var attackEffect = Instantiate(enemy.enemySkill.skillStartEffect, position, Quaternion.identity);
-                Destroy(attackEffect, 1f);
+                if (enemy.enemySkill.skillStartEffect != null)
+                {
+                    var attackEffect = Instantiate(enemy.enemySkill.skillStartEffect, position, Quaternion.identity);
+                    Destroy(attackEffect, 1f);
+                }
                 vfx = Instantiate(enemy.enemySkill.skillPrefab, position, Quaternion.identity);
                 var skillManager = vfx.AddComponent<SkillManager>();
                 skillManager.enemy = enemy;

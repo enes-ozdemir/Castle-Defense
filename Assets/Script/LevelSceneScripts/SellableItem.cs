@@ -10,15 +10,3 @@ public class SellableItem : ScriptableObject
     public Sprite specialOfferSprite;
     public string specialOfferText;
 }
-
-[CreateAssetMenu]
-public class WeaponItem : SellableItem
-{
-    public int baseDamage;
-}
-
-[CreateAssetMenu]
-public class ArrowItem : SellableItem
-{
-    public int baseInterval;
-}
