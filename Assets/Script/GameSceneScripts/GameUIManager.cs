@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameUIManager : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class GameUIManager : MonoBehaviour
     {
         maxEnemyCount = waveSpawner.enemiesToSpawn.Count;
         currentEnemyCount = maxEnemyCount;
-        levelText.text = "Level " + GameManager.currentLevel;
+        levelText.text = "Level " + GameManager.selectedLevel;
         tempMoney = 0;
         tempDiamond = 0;
     }
@@ -28,7 +29,16 @@ public class GameUIManager : MonoBehaviour
     private void Update()
     {
         enemyCountText.text = currentEnemyCount + " / " + maxEnemyCount;
-        moneyText.text = tempMoney.ToString();
-        diamondText.text = tempDiamond.ToString();
+        moneyText.text = tempMoney + Constant.SpriteIndex;
+        diamondText.text = tempDiamond + Constant.SpriteIndex;
+    }
+
+    public void LoadMapScene()
+    {
+        SceneManager.LoadScene("MapScene");
+    }
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene("GameScene");
     }
 }

@@ -1,15 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private int money;
-
     [SerializeField] private TextMeshProUGUI moneyText;
+    [SerializeField] private TextMeshProUGUI diamondText;
     [SerializeField] private Button settingsButton;
     [SerializeField] private Button shopButton;
     [SerializeField] private Button upgradeButton;
@@ -21,7 +17,6 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        money = GameManager.money;
         shopButton.onClick.AddListener(OnShopClick);
         upgradeButton.onClick.AddListener(OnUpgradeClick);
     }
@@ -29,18 +24,22 @@ public class UIManager : MonoBehaviour
     public void OnShopClick()
     {
         shopUI.SetActive(!shopUI.activeInHierarchy);
+        upgradeUI.SetActive(false);
         GameManager.money += 100;
+        GameManager.diamond += 100;
     }
 
     public void OnUpgradeClick()
     {
         upgradeUI.SetActive(!upgradeUI.activeInHierarchy);
+        shopUI.SetActive(false);
         GameManager.money += 1000;
+        GameManager.diamond += 1000;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        money = GameManager.money;
-        moneyText.text = money.ToString();
+        moneyText.text = GameManager.money + Constant.SpriteIndex;
+        diamondText.text = GameManager.diamond + Constant.SpriteIndex;
     }
 }

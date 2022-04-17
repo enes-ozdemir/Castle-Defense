@@ -16,3 +16,9 @@ public class WeaponItem : SellableItem
 {
     public int baseDamage;
 }
+
+[CreateAssetMenu]
+public class ArrowItem : SellableItem
+{
+    public int baseInterval;
+}

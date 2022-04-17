@@ -5,6 +5,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject victoryCanvas;
     [SerializeField] private GameObject defeatCanvas;
+    [SerializeField] private GameObject prizeCanvas;
 
     [SerializeField] private EarningsPanel earningsPanel;
 
@@ -40,6 +41,7 @@ public class GameController : MonoBehaviour
                 break;
             case State.Win:
                 PlayerWon();
+                GameManager.currentLevel++;
                 break;
             case State.Lose:
                 PlayerLost();
@@ -69,9 +71,17 @@ public class GameController : MonoBehaviour
 
     private void PauseTheGame()
     {
-        earningsPanel.UpdatePanel();
+        prizeCanvas.SetActive(true);
         BaseEnemyManager.isBaseAttackAllowed = false;
         BaseEnemyManager.isBaseMovementAllowed = false;
         ArrowManager.canAttack = false;
+    }
+
+    private void Update()
+    {
+        if (earningsPanel.isActiveAndEnabled)
+        {
+            earningsPanel.UpdatePanel();
+        }
     }
 }

@@ -32,6 +32,7 @@ public class ShopItem : MonoBehaviour
             GameManager.diamond -= displayedItem.diamondCost;
 
             CheckIfWeaponBought();
+            CheckIfArrowBought();
         }
         else
         {
@@ -46,6 +47,15 @@ public class ShopItem : MonoBehaviour
         {
             GameManager.weapon.weaponStats.weaponBaseDamage = item.baseDamage;
             GameManager.weapon.weaponSprite = item.itemSprite;
+        }
+    }
+
+    private void CheckIfArrowBought()
+    {
+        if (displayedItem is ArrowItem item)
+        {
+            GameManager.arrow.ArrowStats.fireInterval = item.baseInterval;
+            GameManager.arrow.arrowSprite = item.itemSprite;
         }
     }
 
@@ -75,16 +85,32 @@ public class ShopItem : MonoBehaviour
             specialOfferText.text = displayedItem.specialOfferText;
         }
 
+        CheckIfItemArrow();
         CheckIfItemWeapon();
+    }
+
+    private void CheckIfItemArrow()
+    {
+        if (displayedItem is ArrowItem item)
+        {
+            damageText.transform.parent.gameObject.SetActive(true);
+            if (item != null) damageText.text = "Attack Speed \n" + item.baseInterval;
+        }
+        else if (displayedItem is not WeaponItem)
+        {
+            damageText.transform.parent.gameObject.SetActive(false);
+        }
     }
 
     private void CheckIfItemWeapon()
     {
         if (displayedItem is WeaponItem item)
         {
+            Debug.Log("Displayed WEapon");
+            damageText.transform.parent.gameObject.SetActive(true);
             if (item != null) damageText.text = "Damage \n" + item.baseDamage;
         }
-        else
+        else if (displayedItem is not ArrowItem)
         {
             damageText.transform.parent.gameObject.SetActive(false);
         }

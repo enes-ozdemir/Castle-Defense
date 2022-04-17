@@ -25,23 +25,20 @@ public class UpgradePanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI castleUpgradeText;
     private int castleUpgradeCost;
 
-    private const string SpriteIndex = "<sprite=0>";
-
-
     private void Start()
     {
         SetBowInfo();
         SetArrowInfo();
         SetCastleInfo();
-
     }
 
     private void SetBowInfo()
     {
         bowText.text = GameManager.weapon.weaponLevel.ToString();
-        bowDamageText.text = "Damage \n" + GameManager.weapon.weaponStats.additionalWeaponDamage;
+        bowDamageText.text = "Damage \n" + GameManager.weapon.weaponStats.additionalWeaponDamage +
+                             GameManager.weapon.weaponStats.weaponBaseDamage;
         bowUpgradeCost = GameManager.weapon.weaponStats.weaponUpgradeCost;
-        bowUpgradeText.text = bowUpgradeCost.ToString() + SpriteIndex;;
+        bowUpgradeText.text = bowUpgradeCost + Constant.SpriteIndex;
         bowImage.sprite = GameManager.weapon.weaponSprite;
     }
 
@@ -49,17 +46,16 @@ public class UpgradePanel : MonoBehaviour
     {
         arrowText.text = GameManager.arrow.arrowLevel.ToString();
         arrowImage.sprite = GameManager.arrow.arrowSprite;
-        arrowUpgradeCost = GameManager.arrow.ArrowStats.arrowUpgradeCost ;
+        arrowUpgradeCost = GameManager.arrow.ArrowStats.arrowUpgradeCost;
         arrowDamageText.text = "Attack Speed \n" + GameManager.arrow.ArrowStats.fireInterval;
-        arrowUpgradeText.text = arrowUpgradeCost.ToString() + SpriteIndex;;
+        arrowUpgradeText.text = arrowUpgradeCost + Constant.SpriteIndex;
     }
 
     private void SetCastleInfo()
     {
-        Debug.Log("SetCastleInfo called");
         castleText.text = GameManager.castle.castleLevel.ToString();
         castleHealthText.text = "Health \n" + GameManager.castle.castleHealth;
-        castleUpgradeText.text = GameManager.castle.castleUpgradeCost.ToString() + SpriteIndex;
+        castleUpgradeText.text = GameManager.castle.castleUpgradeCost + Constant.SpriteIndex;
     }
 
     public void OnArrowUpgrade()
@@ -71,7 +67,7 @@ public class UpgradePanel : MonoBehaviour
         {
             GameManager.money -= currentUpgradeCost;
             GameManager.arrow.ArrowStats.arrowUpgradeCost += 10;
-            GameManager.arrow.ArrowStats.fireInterval += 0.1f;
+            GameManager.arrow.ArrowStats.fireInterval += 0.05f;
             GameManager.arrow.arrowLevel++;
             SetArrowInfo();
         }
@@ -118,5 +114,4 @@ public class UpgradePanel : MonoBehaviour
             Debug.Log("Not enough money");
         }
     }
-
 }

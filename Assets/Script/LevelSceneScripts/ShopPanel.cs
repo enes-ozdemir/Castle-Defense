@@ -1,28 +1,69 @@
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class ShopPanel : MonoBehaviour
 {
-    [SerializeField] private SellableItem[] items;
-    [FormerlySerializedAs("shopItemPrafab")] [SerializeField] private GameObject shopItemPrefab;
+    [FormerlySerializedAs("items")] [SerializeField]
+    private SellableItem[] bowItems;
+
+    [SerializeField] private SellableItem[] arrowItems;
+    [SerializeField] private GameObject shopItemPrefab;
+
+    [SerializeField] private GameObject arrowPanel;
+    [SerializeField] private GameObject bowPanel;
+
+    [SerializeField] private Button bowButton;
+    [SerializeField] private Button arrowButton;
 
     void Start()
     {
         SetShopItems();
+        SetButtonClicks();
+    }
+
+    private void SetButtonClicks()
+    {
+        bowButton.onClick.AddListener(DisplayBowPanel);
+        arrowButton.onClick.AddListener(DisplayArrowPanel);
+    }
+
+    private void DisplayBowPanel()
+    {
+        bowPanel.SetActive(true);
+        arrowPanel.SetActive(false);
+    }
+
+    private void DisplayArrowPanel()
+    {
+        bowPanel.SetActive(false);
+        arrowPanel.SetActive(true);
     }
 
     private void SetShopItems()
     {
-        foreach (var item in items)
+        SetBowItems();
+        SetArrowItems();
+    }
+
+    private void SetBowItems()
+    {
+        foreach (var item in bowItems)
         {
             var newItem = Instantiate(shopItemPrefab, transform.position, quaternion.identity);
-            newItem.transform.SetParent(gameObject.transform);
+            newItem.transform.SetParent(bowPanel.gameObject.transform);
             newItem.GetComponent<ShopItem>().displayedItem = item;
         }
     }
 
-    void Update()
+    private void SetArrowItems()
     {
+        foreach (var item in arrowItems)
+        {
+            var newItem = Instantiate(shopItemPrefab, transform.position, quaternion.identity);
+            newItem.transform.SetParent(arrowPanel.gameObject.transform);
+            newItem.GetComponent<ShopItem>().displayedItem = item;
+        }
     }
 }

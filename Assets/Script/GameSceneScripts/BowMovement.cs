@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 
 public class BowMovement : MonoBehaviour
 {
-    [FormerlySerializedAs("crosshairs")] public GameObject crosshair;
+    public GameObject crosshair;
     public Vector3 target;
 
 
@@ -23,7 +23,7 @@ public class BowMovement : MonoBehaviour
         crosshair.transform.position = new Vector3(target.x, target.y);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         SetCrossHairToMouse();
     }
