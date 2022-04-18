@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour
         prizeCanvas.SetActive(true);
         BaseEnemyManager.isBaseAttackAllowed = false;
         BaseEnemyManager.isBaseMovementAllowed = false;
-        ArrowManager.canAttack = false;
+        //ArrowManager.canAttack = false;
     }
 
     private void Update()

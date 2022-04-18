@@ -4,7 +4,7 @@ using Script;
 
 public class ArrowManager : MonoBehaviour
 {
-    public GameObject arrowStart;
+    public GameObject[] arrowStart;
     public float arrowSpeed = 10f;
     public GameObject player;
 
@@ -66,9 +66,12 @@ public class ArrowManager : MonoBehaviour
 
     private void FireArrow(Vector2 dir, float rotationZ)
     {
-        GameObject arrow = ObjectPooler.Instance.SpawnArrowFromPool("Arrow", arrowStart.transform.position,
-            Quaternion.Euler(0, 0, rotationZ));
-        arrow.gameObject.GetComponent<SpriteRenderer>().sprite = arrowSprite;
-        arrow.GetComponent<Rigidbody2D>().velocity = dir * arrowSpeed;
+        for (int i = 0; i < GameManager.weapon.weaponStats.arrowCount; i++)
+        {
+            GameObject arrow = ObjectPooler.Instance.SpawnArrowFromPool("Arrow", arrowStart[i].transform.position,
+                Quaternion.Euler(0, 0, rotationZ)); 
+            arrow.gameObject.GetComponent<SpriteRenderer>().sprite = arrowSprite;
+            arrow.GetComponent<Rigidbody2D>().velocity = dir * arrowSpeed;
+        }
     }
 }
