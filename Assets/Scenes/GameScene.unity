@@ -7148,10 +7148,10 @@ MonoBehaviour:
   - {fileID: 1371828765}
   - {fileID: 800881983}
   - {fileID: 479515231}
-  arrowSpeed: 20
+  arrowSpeed: 50
   player: {fileID: 620908480}
   bowMovement: {fileID: 620908485}
-  fireInterval: 0.15
+  fireInterval: 1
   fireTimer: 0
 --- !u!114 &1511446820
 MonoBehaviour:

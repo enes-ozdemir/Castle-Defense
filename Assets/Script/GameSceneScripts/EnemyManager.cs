@@ -27,6 +27,8 @@ public class EnemyManager : BaseEnemyManager
 
     [SerializeField] private GameObject bloodParticle;
 
+    public bool isDead=false;
+
     private void Awake()
     {
         attackDelay = enemy.attackSpeed;
@@ -97,7 +99,9 @@ public class EnemyManager : BaseEnemyManager
 
         if (currentHealth <= 0)
         {
-            Die();
+            if(!isDead) Die();
+            isDead = true;
+            
         }
         else
         {
