@@ -18,13 +18,18 @@ public class ArrowManager : MonoBehaviour
     private Vector3 difference;
     private float rotationZ;
 
-    [HideInInspector] public static bool canAttack;
+    [HideInInspector] private static bool _canAttack;
+
+    private int arrowCount;
 
     private void Awake()
     {
         arrowSprite = GameManager.arrow.arrowSprite;
         bowMovement = GetComponent<BowMovement>();
-        canAttack = true;
+        _canAttack = true;
+        fireInterval = 1 / GameManager.arrow.arrowStats.fireInterval;
+        Debug.Log("Fire Interval : " + fireInterval);
+        arrowCount = GameManager.arrow.arrowStats.arrowCount;
     }
 
     private void FixedUpdate()
@@ -54,7 +59,7 @@ public class ArrowManager : MonoBehaviour
 
     private void IsArrowFired()
     {
-        if (!canAttack) return;
+        if (!_canAttack) return;
         if (Input.GetMouseButton(0))
         {
             float distance = difference.magnitude;
@@ -66,10 +71,10 @@ public class ArrowManager : MonoBehaviour
 
     private void FireArrow(Vector2 dir, float rotationZ)
     {
-        for (int i = 0; i < GameManager.weapon.weaponStats.arrowCount; i++)
+        for (int i = 0; i < arrowCount; i++)
         {
             GameObject arrow = ObjectPooler.Instance.SpawnArrowFromPool("Arrow", arrowStart[i].transform.position,
-                Quaternion.Euler(0, 0, rotationZ)); 
+                Quaternion.Euler(0, 0, rotationZ));
             arrow.gameObject.GetComponent<SpriteRenderer>().sprite = arrowSprite;
             arrow.GetComponent<Rigidbody2D>().velocity = dir * arrowSpeed;
         }

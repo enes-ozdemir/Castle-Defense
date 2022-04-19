@@ -5,7 +5,6 @@ public class WeaponManager : MonoBehaviour
 {
     [SerializeField] private int weaponLevel = 1;
     [SerializeField] private int arrowLevel;
-    [SerializeField] public int damage;
 
     [SerializeField] private Sprite[] bowSprites;
     [SerializeField] private Sprite[] arrowSprites;
@@ -33,7 +32,6 @@ public class WeaponManager : MonoBehaviour
 
     private void SetWeaponSprite()
     {
-        damage = GameManager.weapon.weaponStats.additionalWeaponDamage;
         bowSprite.sprite = GameManager.weapon.weaponSprite;
         arrowSprite.sprite = GameManager.arrow.arrowSprite;
     }

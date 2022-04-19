@@ -4,11 +4,11 @@ public class Arrow : MonoBehaviour
 {
     public int arrowLevel = 1;
     public Sprite arrowSprite;
-    public ArrowStats ArrowStats;
+    public ArrowStats arrowStats;
 
     private void Awake()
     {
         GameManager.arrow = this;
-        ArrowStats = new ArrowStats();
+        arrowStats = new ArrowStats();
     }
 }

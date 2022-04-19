@@ -54,7 +54,7 @@ public class ShopItem : MonoBehaviour
     {
         if (displayedItem is ArrowItem item)
         {
-            GameManager.arrow.ArrowStats.fireInterval = item.baseInterval;
+            GameManager.arrow.arrowStats.fireInterval = item.baseInterval;
             GameManager.arrow.arrowSprite = item.itemSprite;
         }
     }
