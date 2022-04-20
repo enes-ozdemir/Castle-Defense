@@ -29,8 +29,8 @@ public class GameUIManager : MonoBehaviour
     private void Update()
     {
         enemyCountText.text = currentEnemyCount + " / " + maxEnemyCount;
-        moneyText.text = tempMoney +" "+ Constant.SpriteIndex;
-        diamondText.text = tempDiamond +" "+ Constant.SpriteIndex;
+        moneyText.text = tempMoney + " " + Constant.SpriteIndex;
+        diamondText.text = tempDiamond + " " + Constant.SpriteIndex;
     }
 
     public void LoadMapScene()
@@ -41,7 +41,8 @@ public class GameUIManager : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene("GameScene");
-    }  
+    }
+
     public void NextLevel()
     {
         if (GameManager.selectedLevel <= GameManager.currentLevel)
@@ -49,6 +50,7 @@ public class GameUIManager : MonoBehaviour
             Debug.Log("Selected level increased");
             GameManager.selectedLevel++;
         }
+
         levelText.text = "Level " + GameManager.selectedLevel;
         SceneManager.LoadScene("GameScene");
     }

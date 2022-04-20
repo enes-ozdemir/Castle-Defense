@@ -2709,7 +2709,9 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  m_Layer: 0
+  - component: {fileID: 519420034}
+  - component: {fileID: 519420033}
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -2782,6 +2784,83 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 68f5a51dc712ecf488c439cb32588201, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 519420032}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &523696151
 GameObject:
   m_ObjectHideFlags: 0
@@ -3377,31 +3456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0d491992e73964886a7f54111d1fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponLevel: 3
-  arrowLevel: 0
-  bowSprites:
-  - {fileID: 21300000, guid: dd00325472aa81b49b34a80d32a2dea6, type: 3}
-  - {fileID: 21300000, guid: 0a5594047a092424fb1cccd5cd919c09, type: 3}
-  - {fileID: 21300000, guid: ae640309740b6314bba6c137072da91c, type: 3}
-  - {fileID: 21300000, guid: 63be945edceb67a49b667c4519f63686, type: 3}
-  - {fileID: 21300000, guid: 883c203083067a942b35b4f4aafdeb5d, type: 3}
-  - {fileID: 21300000, guid: 42526b1da705c9f438c463fa401a074d, type: 3}
-  - {fileID: 21300000, guid: d2f24524d06c4764696b99ca03eaf782, type: 3}
-  - {fileID: 21300000, guid: 7a15a3005ac46d8428f7ea1f43915a12, type: 3}
-  - {fileID: 21300000, guid: 7a7ff0b1891fb494ba0b92b979ef75af, type: 3}
-  - {fileID: 21300000, guid: a3f13049f7dceb041bda2682de071226, type: 3}
-  - {fileID: 21300000, guid: 54df43d4e20c35a4f8c6ba6ea6678009, type: 3}
-  - {fileID: 21300000, guid: 00f8335b136554b4ebfc642df3f465b6, type: 3}
-  arrowSprites:
-  - {fileID: 21300000, guid: bb2dc23d305331f4aa69f1a45a2d3af6, type: 3}
-  - {fileID: 21300000, guid: 736639ec62f1ba941841b9b1e5e51ee6, type: 3}
-  - {fileID: 21300000, guid: 90bdc9c0fddb27444b5358cc15909d5c, type: 3}
-  - {fileID: 21300000, guid: 47efc3514147d7a4480bc2977b9e28cf, type: 3}
-  - {fileID: 21300000, guid: 73c54bf7c2a954543b498ff50aceb434, type: 3}
-  bowPrefab: {fileID: 620908480}
   arrowPrefab: {fileID: 1123762622671715702, guid: cf53e2ce287f29b48beaf368dafd5224, type: 3}
-  currentBowPrefab: {fileID: 21300000, guid: d2f24524d06c4764696b99ca03eaf782, type: 3}
-  currentArrowPrefab: {fileID: 21300000, guid: 90bdc9c0fddb27444b5358cc15909d5c, type: 3}
 --- !u!114 &620908485
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -45,8 +45,8 @@ public class ShopItem : MonoBehaviour
     {
         if (displayedItem is WeaponItem item)
         {
-            GameManager.weapon.weaponStats.weaponBaseDamage = item.baseDamage;
-            GameManager.weapon.weaponSprite = item.itemSprite;
+            WeaponStats.weaponBaseDamage = item.baseDamage;
+            Weapon.weaponSprite = item.itemSprite;
         }
     }
 
@@ -54,8 +54,8 @@ public class ShopItem : MonoBehaviour
     {
         if (displayedItem is ArrowItem item)
         {
-            GameManager.arrow.arrowStats.fireInterval = item.baseInterval;
-            GameManager.arrow.arrowSprite = item.itemSprite;
+            ArrowStats.fireInterval = item.baseInterval;
+            Arrow.arrowSprite = item.itemSprite;
         }
     }
 

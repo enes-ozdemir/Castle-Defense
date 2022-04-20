@@ -1,7 +1,7 @@
 ﻿public class ArrowStats
 {
-    public int arrowUpgradeCost = 1000;
-    public float fireInterval = 1f;
-    public int arrowCount = 1;
-    public int arrowCountUpgradeCost = 1000;
+    public static int arrowUpgradeCost = 1000;
+    public static float fireInterval = 1f;
+    public static int arrowCount = 1;
+    public static int arrowCountUpgradeCost = 1000;
 }

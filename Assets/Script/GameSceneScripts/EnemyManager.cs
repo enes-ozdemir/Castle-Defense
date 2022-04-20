@@ -27,12 +27,12 @@ public class EnemyManager : BaseEnemyManager
 
     [SerializeField] private GameObject bloodParticle;
 
-    public bool isDead=false;
+    public bool isDead = false;
 
     private void Awake()
     {
         attackDelay = enemy.attackSpeed;
-        
+
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         col = GetComponent<Collider2D>();
@@ -75,8 +75,11 @@ public class EnemyManager : BaseEnemyManager
                     var attackEffect = Instantiate(enemy.enemySkill.skillStartEffect, position, Quaternion.identity);
                     Destroy(attackEffect, 1f);
                 }
-                vfx = Instantiate(enemy.enemySkill.skillPrefab, position+new Vector3(0,0.2f,0), Quaternion.identity);
+
+                vfx = Instantiate(enemy.enemySkill.skillPrefab, position + new Vector3(0, 0.2f, 0),
+                    Quaternion.identity);
                 var skillManager = vfx.AddComponent<SkillManager>();
+                Destroy(vfx, 5f);
                 skillManager.enemy = enemy;
             }
 
@@ -99,9 +102,8 @@ public class EnemyManager : BaseEnemyManager
 
         if (currentHealth <= 0)
         {
-            if(!isDead) Die();
+            if (!isDead) Die();
             isDead = true;
-            
         }
         else
         {
@@ -127,7 +129,7 @@ public class EnemyManager : BaseEnemyManager
         if (collision.tag.Equals("Arrow"))
         {
             collision.gameObject.SetActive(false);
-            GetHit(GameManager.weapon.weaponStats.additionalWeaponDamage + GameManager.weapon.weaponStats.weaponBaseDamage);
+            GetHit(WeaponStats.additionalWeaponDamage + WeaponStats.weaponBaseDamage);
 
             if (isMovementAllowed)
             {

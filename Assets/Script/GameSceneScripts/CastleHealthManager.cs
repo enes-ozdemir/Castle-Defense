@@ -14,7 +14,7 @@ public class CastleHealthManager : MonoBehaviour
 
     void Start()
     {
-        maxHealth = GameManager.castle.castleHealth;
+        maxHealth = Castle.castleHealth;
         currentHealth = maxHealth;
         SetCastleHealthUI();
     }

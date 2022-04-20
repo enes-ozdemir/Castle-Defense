@@ -2,13 +2,12 @@
 
 public class Weapon : MonoBehaviour
 {
-    public int weaponLevel = 1;
-    public Sprite weaponSprite;
-    public WeaponStats weaponStats;
+    public static int weaponLevel = 1;
+    public static Sprite weaponSprite;
+    public StarterKit starterKit;
 
     private void Awake()
     {
-        GameManager.weapon = this;
-        weaponStats = new WeaponStats();
+        if (weaponSprite == null) weaponSprite = starterKit.weaponSprite;
     }
 }

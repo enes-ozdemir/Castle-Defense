@@ -1,6 +1,6 @@
 ﻿public class WeaponStats
 {
-    public int additionalWeaponDamage = 10;
-    public int weaponBaseDamage = 10;
-    public int weaponUpgradeGoldCost = 100;
+    public static int additionalWeaponDamage = 10;
+    public static int weaponBaseDamage = 10;
+    public static int weaponUpgradeGoldCost = 100;
 }

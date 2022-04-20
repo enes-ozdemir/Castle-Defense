@@ -1,20 +1,8 @@
-using System;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    [SerializeField] private int weaponLevel = 1;
-    [SerializeField] private int arrowLevel;
-
-    [SerializeField] private Sprite[] bowSprites;
-    [SerializeField] private Sprite[] arrowSprites;
-
-    public GameObject bowPrefab;
     public GameObject arrowPrefab;
-
-    [SerializeField] private Sprite currentBowPrefab;
-    [SerializeField] private Sprite currentArrowPrefab;
-
     private SpriteRenderer bowSprite;
     private SpriteRenderer arrowSprite;
 
@@ -24,15 +12,14 @@ public class WeaponManager : MonoBehaviour
         arrowSprite = arrowPrefab.GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
+    private void Start()
     {
-        //Move this to wave break later
         SetWeaponSprite();
     }
 
     private void SetWeaponSprite()
     {
-        bowSprite.sprite = GameManager.weapon.weaponSprite;
-        arrowSprite.sprite = GameManager.arrow.arrowSprite;
+        bowSprite.sprite = Weapon.weaponSprite;
+        arrowSprite.sprite = Arrow.arrowSprite;
     }
 }

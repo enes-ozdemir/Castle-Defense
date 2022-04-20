@@ -24,12 +24,12 @@ public class ArrowManager : MonoBehaviour
 
     private void Awake()
     {
-        arrowSprite = GameManager.arrow.arrowSprite;
+        arrowSprite =Arrow.arrowSprite;
         bowMovement = GetComponent<BowMovement>();
         _canAttack = true;
-        fireInterval = 1 / GameManager.arrow.arrowStats.fireInterval;
+        fireInterval = 1 / ArrowStats.fireInterval;
         Debug.Log("Fire Interval : " + fireInterval);
-        arrowCount = GameManager.arrow.arrowStats.arrowCount;
+        arrowCount = ArrowStats.arrowCount;
     }
 
     private void FixedUpdate()

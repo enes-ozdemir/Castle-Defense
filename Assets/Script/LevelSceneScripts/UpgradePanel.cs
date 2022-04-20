@@ -35,6 +35,8 @@ public class UpgradePanel : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Start calistii");
+        Debug.Log(Weapon.weaponLevel + "level");
         SetBowInfo();
         SetArrowInfo();
         SetCastleInfo();
@@ -43,48 +45,49 @@ public class UpgradePanel : MonoBehaviour
 
     private void SetBowInfo()
     {
-        bowText.text = GameManager.weapon.weaponLevel.ToString();
-        bowDamageText.text = "Damage \n" + (GameManager.weapon.weaponStats.additionalWeaponDamage +
-                             GameManager.weapon.weaponStats.weaponBaseDamage);
-        bowUpgradeCost = GameManager.weapon.weaponStats.weaponUpgradeGoldCost;
+        Debug.Log(Weapon.weaponLevel + "Start gamamangercalistii");
+        bowText.text = Weapon.weaponLevel.ToString();
+        bowDamageText.text = "Damage \n" + (WeaponStats.additionalWeaponDamage +
+                                            WeaponStats.weaponBaseDamage);
+        bowUpgradeCost = WeaponStats.weaponUpgradeGoldCost;
         bowUpgradeText.text = bowUpgradeCost + Constant.SpriteIndex;
-        bowImage.sprite = GameManager.weapon.weaponSprite;
+        bowImage.sprite = Weapon.weaponSprite;
     }
 
     private void SetArrowCountInfo()
     {
-        arrowCountLevelText.text = GameManager.arrow.arrowStats.arrowCount.ToString();
-        arrowCountText.text = "Arrow Count \n" + GameManager.arrow.arrowStats.arrowCount;
-        arrowCountUpgradeCost = GameManager.arrow.arrowStats.arrowCountUpgradeCost;
+        arrowCountLevelText.text = ArrowStats.arrowCount.ToString();
+        arrowCountText.text = "Arrow Count \n" + ArrowStats.arrowCount;
+        arrowCountUpgradeCost = ArrowStats.arrowCountUpgradeCost;
         arrowCountUpgradeText.text = arrowCountUpgradeCost + Constant.SpriteIndex;
     }
 
     private void SetArrowInfo()
     {
-        arrowText.text = GameManager.arrow.arrowLevel.ToString();
-        arrowImage.sprite = GameManager.arrow.arrowSprite;
-        arrowUpgradeCost = GameManager.arrow.arrowStats.arrowUpgradeCost;
-        arrowDamageText.text = "Attack Speed \n" + GameManager.arrow.arrowStats.fireInterval;
+        arrowText.text = Arrow.arrowLevel.ToString();
+        arrowImage.sprite = Arrow.arrowSprite;
+        arrowUpgradeCost = ArrowStats.arrowUpgradeCost;
+        arrowDamageText.text = "Attack Speed \n" + ArrowStats.fireInterval;
         arrowUpgradeText.text = arrowUpgradeCost + Constant.SpriteIndex;
     }
 
     private void SetCastleInfo()
     {
-        castleText.text = GameManager.castle.castleLevel.ToString();
-        castleHealthText.text = "Health \n" + GameManager.castle.castleHealth;
-        castleUpgradeText.text = GameManager.castle.castleUpgradeCost + Constant.SpriteIndex;
+        castleText.text = Castle.castleLevel.ToString();
+        castleHealthText.text = "Health \n" + Castle.castleHealth;
+        castleUpgradeText.text = Castle.castleUpgradeCost + Constant.SpriteIndex;
     }
 
     public void OnArrowCountUpgrade()
     {
         Debug.Log("OnArrowCountUpgrade called");
-        var currentUpgradeCost = GameManager.arrow.arrowStats.arrowCountUpgradeCost;
+        var currentUpgradeCost = ArrowStats.arrowCountUpgradeCost;
         var currentMoney = GameManager.money;
         if (currentUpgradeCost <= currentMoney)
         {
             GameManager.money -= currentUpgradeCost;
-            GameManager.arrow.arrowStats.arrowCountUpgradeCost += 10;
-            GameManager.arrow.arrowStats.arrowCount++;
+            ArrowStats.arrowCountUpgradeCost += 10;
+            ArrowStats.arrowCount++;
             SetArrowCountInfo();
         }
         else
@@ -96,14 +99,14 @@ public class UpgradePanel : MonoBehaviour
     public void OnArrowUpgrade()
     {
         Debug.Log("OnArrowUpgrade called");
-        var currentUpgradeCost = GameManager.arrow.arrowStats.arrowUpgradeCost;
+        var currentUpgradeCost = ArrowStats.arrowUpgradeCost;
         var currentMoney = GameManager.money;
         if (currentUpgradeCost <= currentMoney)
         {
             GameManager.money -= currentUpgradeCost;
-            GameManager.arrow.arrowStats.arrowUpgradeCost += 10;
-            GameManager.arrow.arrowStats.fireInterval += 0.05f;
-            GameManager.arrow.arrowLevel++;
+            ArrowStats.arrowUpgradeCost += 10;
+            ArrowStats.fireInterval += 0.05f;
+            Arrow.arrowLevel++;
             SetArrowInfo();
         }
         else
@@ -115,14 +118,14 @@ public class UpgradePanel : MonoBehaviour
     public void OnCastleUpgrade()
     {
         Debug.Log("OnCastleUpgrade called");
-        var currentUpgradeCost = GameManager.castle.castleUpgradeCost;
+        var currentUpgradeCost = Castle.castleUpgradeCost;
         var currentMoney = GameManager.money;
         if (currentUpgradeCost <= currentMoney)
         {
             GameManager.money -= currentUpgradeCost;
-            GameManager.castle.castleUpgradeCost += 10;
-            GameManager.castle.castleHealth += 100;
-            GameManager.castle.castleLevel++;
+            Castle.castleUpgradeCost += 10;
+            Castle.castleHealth += 100;
+            Castle.castleLevel++;
             SetCastleInfo();
         }
         else
@@ -134,14 +137,14 @@ public class UpgradePanel : MonoBehaviour
     public void OnBowUpgrade()
     {
         Debug.Log("OnBowUpgrade called");
-        var currentUpgradeCost = GameManager.weapon.weaponStats.weaponUpgradeGoldCost;
+        var currentUpgradeCost = WeaponStats.weaponUpgradeGoldCost;
         var currentMoney = GameManager.money;
         if (currentUpgradeCost <= currentMoney)
         {
             GameManager.money -= currentUpgradeCost;
-            GameManager.weapon.weaponStats.weaponUpgradeGoldCost += 10;
-            GameManager.weapon.weaponStats.additionalWeaponDamage += 10;
-            GameManager.weapon.weaponLevel++;
+            WeaponStats.weaponUpgradeGoldCost += 10;
+            WeaponStats.additionalWeaponDamage += 10;
+            Weapon.weaponLevel++;
             SetBowInfo();
         }
         else
