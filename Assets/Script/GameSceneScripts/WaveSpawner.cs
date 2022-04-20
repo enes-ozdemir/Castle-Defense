@@ -73,11 +73,11 @@ public class WaveSpawner : MonoBehaviour
                 enemiesToSpawn.RemoveAt(0);
 
                 //Require further edit
-                if (enemiesToSpawn.Count < 5 && !isBossArrived)
+                if (enemiesToSpawn.Count < 2 && !isBossArrived)
                 {
                     SpawnBoss();
                 }
-                else if (enemiesToSpawn.Count < 25)
+                else if (enemiesToSpawn.Count < 10)
                 {
                     Debug.Log("Enemies to spawn is less than 25");
                     spawnTimer = 0.1f;
@@ -136,7 +136,7 @@ public class WaveSpawner : MonoBehaviour
                     generatedEnemies.Add(enemyToGenerate.enemyPrefab);
                     waveValue -= randEnemyCost;
                 }
-                else if (waveValue <= 5) break;
+                else if (waveValue <= 100) break;
             }
             else Debug.Log("No enemy to generate");
         }

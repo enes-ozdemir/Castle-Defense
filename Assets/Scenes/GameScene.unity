@@ -903,8 +903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26dd95c2c565419ca9f07973752b6549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowLevel: 1
-  arrowSprite: {fileID: 21300000, guid: 3624318f092eb924f83ba3829f7355ad, type: 3}
+  starterKit: {fileID: 0}
 --- !u!114 &149350929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,8 +916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092dcbd271724b8a8dbdf3a6c6d299fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponLevel: 1
-  weaponSprite: {fileID: 21300000, guid: 883c203083067a942b35b4f4aafdeb5d, type: 3}
+  starterKit: {fileID: 0}
 --- !u!114 &149350930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -931,9 +929,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efaa62bdeb49474d84cb3f9ce591b417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castleLevel: 1
-  castleHealth: 5000
-  castleUpgradeCost: 100
 --- !u!4 &149350931
 Transform:
   m_ObjectHideFlags: 0

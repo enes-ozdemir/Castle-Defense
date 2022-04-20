@@ -31,7 +31,7 @@ public class GoldDropManager : MonoBehaviour
     private void CheckDiamondDrop(int goldAmount, Vector3 position)
     {
         var diamondDropChange = Random.Range(0, 10);
-        if (diamondDropChange >= 9)
+        if (diamondDropChange >= 8)
         {
             Debug.Log("Daimond earned " + goldAmount);
             var coin = Instantiate(diamondDrop, position, Quaternion.identity);
@@ -49,9 +49,10 @@ public class GoldDropManager : MonoBehaviour
         {
             Debug.Log("Gold earned " + goldAmount);
             var coin = Instantiate(goldDrop, position, Quaternion.identity);
+            int earnedGoldAmount = (int) (goldAmount * (Random.Range(0.9f, 1.2f)));
             coin.transform.DOMove(goldTarget.position, 1f)
                 .SetEase(Ease.InOutBack)
-                .OnComplete((() => EarnMoney(goldAmount)));
+                .OnComplete((() => EarnMoney(earnedGoldAmount)));
             //Add this to end of the animation later
         }
     }

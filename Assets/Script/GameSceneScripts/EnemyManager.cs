@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -28,6 +29,8 @@ public class EnemyManager : BaseEnemyManager
     [SerializeField] private GameObject bloodParticle;
 
     public bool isDead = false;
+
+    [SerializeField] private GameObject damageText;
 
     private void Awake()
     {
@@ -88,7 +91,6 @@ public class EnemyManager : BaseEnemyManager
         }
     }
 
-
     private void MoveTowardsTower()
     {
         rb.transform.position += new Vector3(-1, 0, 0) * Time.deltaTime * enemy.speed;
@@ -96,7 +98,8 @@ public class EnemyManager : BaseEnemyManager
 
     private void GetHit(int damage)
     {
-        Instantiate(bloodParticle, transform.position, Quaternion.identity);
+        var bloodParticlePrefab = Instantiate(bloodParticle, transform.position, Quaternion.identity);
+        Destroy(bloodParticlePrefab, 1f);
         healthBar.healthCanvas.gameObject.SetActive(true);
         currentHealth -= damage;
 
@@ -129,13 +132,15 @@ public class EnemyManager : BaseEnemyManager
         if (collision.tag.Equals("Arrow"))
         {
             collision.gameObject.SetActive(false);
-            GetHit(WeaponStats.additionalWeaponDamage + WeaponStats.weaponBaseDamage);
-
-            if (isMovementAllowed)
+            int damage = (int) ((WeaponStats.additionalWeaponDamage + WeaponStats.weaponBaseDamage) *
+                                Random.Range(0.8f, 1.2f));
+            GetHit(damage);
+            var damageTextPrefab = Instantiate(damageText, transform.position + new Vector3(0, 0.4f, 0),
+                Quaternion.identity);
+            damageTextPrefab.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
+            if (isMovementAllowed && !enemy.isBoss)
             {
-                Vector3 hitForce =
-                    new Vector3(
-                        0.05f, 0, 0);
+                Vector3 hitForce = new Vector3(0.05f, 0, 0);
                 transform.position += hitForce;
             }
         }

@@ -35,7 +35,6 @@ public class UpgradePanel : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Start calistii");
         Debug.Log(Weapon.weaponLevel + "level");
         SetBowInfo();
         SetArrowInfo();
@@ -45,7 +44,6 @@ public class UpgradePanel : MonoBehaviour
 
     private void SetBowInfo()
     {
-        Debug.Log(Weapon.weaponLevel + "Start gamamangercalistii");
         bowText.text = Weapon.weaponLevel.ToString();
         bowDamageText.text = "Damage \n" + (WeaponStats.additionalWeaponDamage +
                                             WeaponStats.weaponBaseDamage);
@@ -86,7 +84,7 @@ public class UpgradePanel : MonoBehaviour
         if (currentUpgradeCost <= currentMoney)
         {
             GameManager.money -= currentUpgradeCost;
-            ArrowStats.arrowCountUpgradeCost += 10;
+            ArrowStats.arrowCountUpgradeCost += 5000 * ArrowStats.arrowCount;
             ArrowStats.arrowCount++;
             SetArrowCountInfo();
         }
@@ -104,7 +102,7 @@ public class UpgradePanel : MonoBehaviour
         if (currentUpgradeCost <= currentMoney)
         {
             GameManager.money -= currentUpgradeCost;
-            ArrowStats.arrowUpgradeCost += 10;
+            ArrowStats.arrowUpgradeCost += 500;
             ArrowStats.fireInterval += 0.05f;
             Arrow.arrowLevel++;
             SetArrowInfo();
@@ -123,8 +121,8 @@ public class UpgradePanel : MonoBehaviour
         if (currentUpgradeCost <= currentMoney)
         {
             GameManager.money -= currentUpgradeCost;
-            Castle.castleUpgradeCost += 10;
-            Castle.castleHealth += 100;
+            Castle.castleUpgradeCost += 500 * (Castle.castleLevel / 2);
+            Castle.castleHealth += 500;
             Castle.castleLevel++;
             SetCastleInfo();
         }
