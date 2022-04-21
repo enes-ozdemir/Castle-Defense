@@ -1,16 +1,19 @@
+using Script.Utils;
 using TMPro;
 using UnityEngine;
 
-public class EarningsPanel : MonoBehaviour
+namespace Script.GameSceneScripts
 {
-    [SerializeField] private TextMeshProUGUI moneyText;
-    [SerializeField] private TextMeshProUGUI diamondText;
-
-    [SerializeField] private GameUIManager gameUIManager;
-
-    public void UpdatePanel()
+    public class EarningsPanel : MonoBehaviour
     {
-        moneyText.text = gameUIManager.tempMoney + " " + Constant.SpriteIndex;
-        diamondText.text = gameUIManager.tempDiamond + " " + Constant.SpriteIndex;
+        [SerializeField] private TextMeshProUGUI moneyText;
+        [SerializeField] private TextMeshProUGUI diamondText;
+        [SerializeField] private GameUIManager gameUIManager;
+
+        public void UpdatePanel()
+        {
+            moneyText.text = gameUIManager.tempMoney + " " + Constant.SpriteIndex;
+            diamondText.text = gameUIManager.tempDiamond + " " + Constant.SpriteIndex;
+        }
     }
 }

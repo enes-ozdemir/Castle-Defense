@@ -1,32 +1,33 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
-public class GameAssets : MonoBehaviour
+namespace Script.Utils
 {
-    private static GameAssets _Instance;
-
-    public static GameAssets Instance
+    public class GameAssets : MonoBehaviour
     {
-        get
+        private static GameAssets _instance;
+
+        public static GameAssets Instance
         {
-            if (_Instance == null)
-                _Instance = (Instantiate(Resources.Load("GameAssets")) as GameObject).GetComponent<GameAssets>();
-            return _Instance;
+            get
+            {
+                if (_instance == null)
+                    _instance = (Instantiate(Resources.Load("GameAssets")) as GameObject).GetComponent<GameAssets>();
+                return _instance;
+            }
         }
-    }
 
-    public SoundAudioClip[] soundAudioClipArray;
+        public SoundAudioClip[] soundAudioClipArray;
 
-    [System.Serializable]
-    public class SoundAudioClip
-    {
-        public SoundManager.Sound sound;
-        public AudioClip audioClip;
-    }
+        [System.Serializable]
+        public class SoundAudioClip
+        {
+            public SoundManager.Sound sound;
+            public AudioClip audioClip;
+        }
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
+        private void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 }

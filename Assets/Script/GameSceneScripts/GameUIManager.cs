@@ -1,59 +1,69 @@
+using Script.GameManagerScripts;
+using Script.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameUIManager : MonoBehaviour
+namespace Script.GameSceneScripts
 {
-    public int tempMoney;
-    public int tempDiamond;
-
-    [SerializeField] private TextMeshProUGUI moneyText;
-    [SerializeField] private TextMeshProUGUI diamondText;
-    [SerializeField] private TextMeshProUGUI enemyCountText;
-    [SerializeField] private TextMeshProUGUI levelText;
-
-    [SerializeField] private WaveSpawner waveSpawner;
-
-    public static int currentEnemyCount;
-    private int maxEnemyCount;
-
-    private void Start()
+    public class GameUIManager : MonoBehaviour
     {
-        SoundManager.PlaySound(SoundManager.Sound.BattleMusic,0.5f,true);
-        maxEnemyCount = waveSpawner.enemiesToSpawn.Count;
-        currentEnemyCount = maxEnemyCount;
-        levelText.text = "Level " + GameManager.selectedLevel;
-        tempMoney = 0;
-        tempDiamond = 0;
-    }
+        public int tempMoney;
+        public int tempDiamond;
+        
+        public static int currentEnemyCount;
+        private int maxEnemyCount;
 
-    private void Update()
-    {
-        enemyCountText.text = currentEnemyCount + " / " + maxEnemyCount;
-        moneyText.text = tempMoney + " " + Constant.SpriteIndex;
-        diamondText.text = tempDiamond + " " + Constant.SpriteIndex;
-    }
+        [SerializeField] private TextMeshProUGUI moneyText;
+        [SerializeField] private TextMeshProUGUI diamondText;
+        [SerializeField] private TextMeshProUGUI enemyCountText;
+        [SerializeField] private TextMeshProUGUI levelText;
 
-    public void LoadMapScene()
-    {
-        Cursor.visible = true;
-        SceneManager.LoadScene("MapScene");
-    }
+        [SerializeField] private WaveSpawner waveSpawner;
 
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene("GameScene");
-    }
-
-    public void NextLevel()
-    {
-        if (GameManager.selectedLevel <= GameManager.currentLevel)
+        private void Start()
         {
-            Debug.Log("Selected level increased");
-            GameManager.selectedLevel++;
+            SoundManager.PlaySound(SoundManager.Sound.BattleMusic, 0.5f, true);
+
+            InitUI();
         }
 
-        levelText.text = "Level " + GameManager.selectedLevel;
-        SceneManager.LoadScene("GameScene");
+        private void InitUI()
+        {
+            maxEnemyCount = waveSpawner.enemiesToSpawn.Count;
+            currentEnemyCount = maxEnemyCount;
+            levelText.text = "Level " + GameManager.selectedLevel;
+            tempMoney = 0;
+            tempDiamond = 0;
+        }
+
+        private void Update()
+        {
+            enemyCountText.text = currentEnemyCount + " / " + maxEnemyCount;
+            moneyText.text = tempMoney + " " + Constant.SpriteIndex;
+            diamondText.text = tempDiamond + " " + Constant.SpriteIndex;
+        }
+
+        public void LoadMapScene()
+        {
+            Cursor.visible = true;
+            SceneManager.LoadScene("MapScene");
+        }
+
+        public void RestartLevel()
+        {
+            SceneManager.LoadScene("GameScene");
+        }
+
+        public void NextLevel()
+        {
+            if (GameManager.selectedLevel <= GameManager.currentLevel)
+            {
+                GameManager.selectedLevel++;
+            }
+
+            levelText.text = "Level " + GameManager.selectedLevel;
+            SceneManager.LoadScene("GameScene");
+        }
     }
 }

@@ -1,13 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+namespace Script.GameSceneScripts
 {
-    [SerializeField] public Image healthBar;
-    [SerializeField] public Canvas healthCanvas;
-
-    public void SetHealth(float amount)
+    public class HealthBar : MonoBehaviour
     {
-        healthBar.fillAmount = amount;
+        [SerializeField] public Image healthBar;
+        [SerializeField] public Canvas healthCanvas;
+
+        public void SetHealth(float amount)
+        {
+            healthBar.fillAmount = amount;
+        }
     }
 }

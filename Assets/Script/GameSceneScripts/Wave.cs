@@ -1,18 +1,21 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class Wave : ScriptableObject
+namespace Script.GameSceneScripts
 {
-    public List<WaveUnit> waveUnits;
-    public int waveDuration;
-    public int waveValue;
-    public Enemy boss;
-}
+    [CreateAssetMenu]
+    public class Wave : ScriptableObject
+    {
+        public List<WaveUnit> waveUnits;
+        public int waveDuration;
+        public int waveValue;
+        public Enemy boss;
+    }
 
-[System.Serializable]
-public class WaveUnit
-{
-    public Enemy enemy;
-    public int rarity;
+    [System.Serializable]
+    public class WaveUnit
+    {
+        public Enemy enemy;
+        public int rarity;
+    }
 }

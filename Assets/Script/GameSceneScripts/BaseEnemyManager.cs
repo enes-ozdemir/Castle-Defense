@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 
-public class BaseEnemyManager : MonoBehaviour
+namespace Script.GameSceneScripts
 {
-    public static bool isBaseAttackAllowed;
-    public static bool isBaseMovementAllowed;
-
-    private void Awake()
+    public class BaseEnemyManager : MonoBehaviour
     {
-        isBaseAttackAllowed = true;
-        isBaseMovementAllowed = true;
+        public static bool isBaseAttackAllowed;
+        public static bool isBaseMovementAllowed;
+
+        private void Awake()
+        {
+            isBaseAttackAllowed = true;
+            isBaseMovementAllowed = true;
+        }
     }
 }

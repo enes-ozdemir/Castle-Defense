@@ -1,67 +1,72 @@
-﻿using UnityEngine;
+﻿using Script.GameManagerScripts;
+using Script.Utils;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
-public class LevelManager : MonoBehaviour
+namespace Script.LevelSceneScripts
 {
-    [SerializeField] private GameObject[] levels;
-    [SerializeField] public int currentLevel;
-    [SerializeField] private Level levelObject;
-
-    private void Start()
+    public class LevelManager : MonoBehaviour
     {
-        currentLevel = GameManager.currentLevel;
-        SetLevelPrefab();
-        SoundManager.PlaySound(SoundManager.Sound.BackgroundMusic);
-    }
+        [SerializeField] private GameObject[] levels;
+        [SerializeField] public int currentLevel;
+        [SerializeField] private Level levelObject;
 
-    private void SetLevelPrefab()
-    {
-        SetLevelButtonClicks();
-        SetOldLevelImages();
-        SetLockedLevelImages();
-        SetCurrentLevelImage();
-    }
-
-    private void SetCurrentLevelImage()
-    {
-        var currentLevelImage = levels[currentLevel].gameObject.GetComponent<Image>();
-        currentLevelImage.sprite = levelObject.currentLevelImage;
-    }
-
-    private void SetLockedLevelImages()
-    {
-        for (int j = levels.Length - 1; j > levels.Length - (levels.Length - currentLevel); j--)
+        private void Start()
         {
-            var levelImage = levels[j].gameObject.GetComponent<Image>();
-            levelImage.sprite = levelObject.lockImage;
-        }
-    }
+            SoundManager.PlaySound(SoundManager.Sound.BackgroundMusic);
 
-    private void SetOldLevelImages()
-    {
-        for (int i = 0; i < currentLevel; i++)
+            currentLevel = GameManager.currentLevel;
+            SetLevelPrefab();
+        }
+
+        private void SetLevelPrefab()
         {
-            var levelImage = levels[i].gameObject.GetComponent<Image>();
-            levelImage.sprite = levelObject.oldLevelImage;
+            SetLevelButtonClicks();
+            SetOldLevelImages();
+            SetLockedLevelImages();
+            SetCurrentLevelImage();
         }
-    }
 
-    private void SetLevelButtonClicks()
-    {
-        for (int i = 0; i <= currentLevel; i++)
+        private void SetCurrentLevelImage()
         {
-            var index = i;
-            var levelButton = levels[index].GetComponent<Button>();
-            levelButton.onClick.AddListener(() => LevelButtonClick(index));
+            var currentLevelImage = levels[currentLevel].gameObject.GetComponent<Image>();
+            currentLevelImage.sprite = levelObject.currentLevelImage;
         }
-    }
 
-    private void LevelButtonClick(int selectedLevel)
-    {
-        Debug.Log($" {selectedLevel} Level selected");
-        GameManager.selectedLevel = selectedLevel;
-        SceneManager.LoadScene("GameScene");
+        private void SetLockedLevelImages()
+        {
+            for (int j = levels.Length - 1; j > levels.Length - (levels.Length - currentLevel); j--)
+            {
+                var levelImage = levels[j].gameObject.GetComponent<Image>();
+                levelImage.sprite = levelObject.lockImage;
+            }
+        }
+
+        private void SetOldLevelImages()
+        {
+            for (int i = 0; i < currentLevel; i++)
+            {
+                var levelImage = levels[i].gameObject.GetComponent<Image>();
+                levelImage.sprite = levelObject.oldLevelImage;
+            }
+        }
+
+        private void SetLevelButtonClicks()
+        {
+            for (int i = 0; i <= currentLevel; i++)
+            {
+                var index = i;
+                var levelButton = levels[index].GetComponent<Button>();
+                levelButton.onClick.AddListener(() => LevelButtonClick(index));
+            }
+        }
+
+        private void LevelButtonClick(int selectedLevel)
+        {
+            Debug.Log($" {selectedLevel} Level selected");
+            GameManager.selectedLevel = selectedLevel;
+            SceneManager.LoadScene("GameScene");
+        }
     }
 }

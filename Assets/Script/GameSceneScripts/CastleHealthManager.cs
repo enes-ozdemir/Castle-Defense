@@ -1,43 +1,52 @@
+using Script.GameManagerScripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CastleHealthManager : MonoBehaviour
+namespace Script.GameSceneScripts
 {
-    [SerializeField] private TextMeshProUGUI healthText;
-    [SerializeField] private Image castleHealth;
-
-    private int maxHealth;
-    [HideInInspector] public int currentHealth;
-
-    public Transform castleLocation;
-
-    void Start()
+    public class CastleHealthManager : MonoBehaviour
     {
-        maxHealth = Castle.castleHealth;
-        currentHealth = maxHealth;
-        SetCastleHealthUI();
-    }
+        [SerializeField] private TextMeshProUGUI healthText;
+        [SerializeField] private Image castleHealth;
+        private int maxHealth;
 
-    public void CastleGotHit(int enemyDamage)
-    {
-        currentHealth -= enemyDamage;
-        SetCastleHealthUI();
-        CheckIfGameOver();
-    }
+        [HideInInspector] public int currentHealth;
 
-    private void SetCastleHealthUI()
-    {
-        castleHealth.fillAmount = (float) currentHealth / maxHealth;
-        healthText.text = currentHealth + " / " + maxHealth;
-    }
+        public Transform castleLocation;
 
-    private void CheckIfGameOver()
-    {
-        if (currentHealth <= 0)
+        void Start()
         {
-            GameController.Instance.UpdateGameState(GameController.State.Lose);
-            Debug.Log("Game Over");
+            SetCastleHealth();
+            SetCastleHealthUI();
+        }
+
+        private void SetCastleHealth()
+        {
+            maxHealth = Castle.castleHealth;
+            currentHealth = maxHealth;
+        }
+
+        public void CastleGotHit(int enemyDamage)
+        {
+            currentHealth -= enemyDamage;
+            SetCastleHealthUI();
+            CheckIfGameOver();
+        }
+
+        private void SetCastleHealthUI()
+        {
+            castleHealth.fillAmount = (float) currentHealth / maxHealth;
+            healthText.text = currentHealth + " / " + maxHealth;
+        }
+
+        private void CheckIfGameOver()
+        {
+            if (currentHealth <= 0)
+            {
+                GameController.Instance.UpdateGameState(GameController.State.Lose);
+                Debug.Log("Game Over");
+            }
         }
     }
 }

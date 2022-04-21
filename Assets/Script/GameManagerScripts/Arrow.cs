@@ -1,14 +1,16 @@
-﻿using Sirenix.OdinInspector;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Arrow : MonoBehaviour
+namespace Script.GameManagerScripts
 {
-    public static int arrowLevel = 1;
-    public static Sprite arrowSprite;
-    public StarterKit starterKit;
-
-    private void Awake()
+    public class Arrow : MonoBehaviour
     {
-        if (arrowSprite == null) arrowSprite = starterKit.arrowSprite;
+        public static int arrowLevel = 1;
+        public static Sprite arrowSprite;
+        public StarterKit starterKit;
+
+        private void Awake()
+        {
+            if (arrowSprite == null) arrowSprite = starterKit.arrowSprite;
+        }
     }
 }

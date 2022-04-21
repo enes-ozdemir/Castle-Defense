@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu]
-public class StarterKit : ScriptableObject
+namespace Script.GameManagerScripts
 {
-    public Sprite weaponSprite;
-    public Sprite arrowSprite;
+    [CreateAssetMenu]
+    public class StarterKit : ScriptableObject
+    {
+        public Sprite weaponSprite;
+        public Sprite arrowSprite;
+    }
 }

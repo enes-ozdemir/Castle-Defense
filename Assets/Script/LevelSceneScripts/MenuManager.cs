@@ -1,16 +1,19 @@
-using System;
+using Script.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuManager : MonoBehaviour
+namespace Script.LevelSceneScripts
 {
-    private void Start()
+    public class MenuManager : MonoBehaviour
     {
-        SoundManager.PlaySound(SoundManager.Sound.BackgroundMusic);
-    }
+        private void Start()
+        {
+            SoundManager.PlaySound(SoundManager.Sound.BackgroundMusic);
+        }
 
-    public void LoadMapScene()
-    {
-        SceneManager.LoadScene("MapScene");
+        public void LoadMapScene()
+        {
+            SceneManager.LoadScene("MapScene");
+        }
     }
 }

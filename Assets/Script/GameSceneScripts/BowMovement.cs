@@ -1,27 +1,30 @@
 using UnityEngine;
 
-public class BowMovement : MonoBehaviour
+namespace Script.GameSceneScripts
 {
-    public GameObject crosshair;
-    public Vector3 target;
-
-
-    [SerializeField] private Camera _camera;
-
-    private void Start()
+    public class BowMovement : MonoBehaviour
     {
-        Cursor.visible = false;
-    }
+        public GameObject crosshair;
+        public Vector3 target;
 
-    private void SetCrossHairToMouse()
-    {
-        target = _camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
-            _camera.transform.position.z));
-        crosshair.transform.position = new Vector3(target.x, target.y);
-    }
 
-    private void Update()
-    {
-        SetCrossHairToMouse();
+        [SerializeField] private Camera _camera;
+
+        private void Start()
+        {
+            Cursor.visible = false;
+        }
+
+        private void SetCrossHairToMouse()
+        {
+            target = _camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
+                _camera.transform.position.z));
+            crosshair.transform.position = new Vector3(target.x, target.y);
+        }
+
+        private void Update()
+        {
+            SetCrossHairToMouse();
+        }
     }
 }

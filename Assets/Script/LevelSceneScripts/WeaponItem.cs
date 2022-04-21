@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu]
-public class WeaponItem : SellableItem
+namespace Script.LevelSceneScripts
 {
-    public int baseDamage;
+    [CreateAssetMenu]
+    public class WeaponItem : SellableItem
+    {
+        public int baseDamage;
+    }
 }

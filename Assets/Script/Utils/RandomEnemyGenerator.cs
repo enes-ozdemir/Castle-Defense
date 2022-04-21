@@ -1,33 +1,36 @@
 using System.Collections.Generic;
+using Script.GameSceneScripts;
 using Random = UnityEngine.Random;
 
-public static class RandomEnemyGenerator
+namespace Script.Utils
 {
-    public static Enemy GetRandomEnemy(List<WaveUnit> weightedValues)
+    public static class RandomEnemyGenerator
     {
-        Enemy enemyToGenerate = null;
-
-        var totalWeight = 0;
-
-        foreach (var enemyType in weightedValues)
+        public static Enemy GetRandomEnemy(List<WaveUnit> weightedValues)
         {
-            totalWeight += enemyType.rarity;
-        }
+            Enemy enemyToGenerate = null;
 
-        var randomWeightValue = Random.Range(1, totalWeight + 1);
+            var totalWeight = 0;
 
-        var processedWeight = 0;
-
-        foreach (var enemyType in weightedValues)
-        {
-            processedWeight += enemyType.rarity;
-            if (randomWeightValue <= processedWeight)
+            foreach (var enemyType in weightedValues)
             {
-                enemyToGenerate = enemyType.enemy;
-                break;
+                totalWeight += enemyType.rarity;
             }
-        }
 
-        return enemyToGenerate;
+            var randomWeightValue = Random.Range(1, totalWeight + 1);
+            var processedWeight = 0;
+
+            foreach (var enemyType in weightedValues)
+            {
+                processedWeight += enemyType.rarity;
+                if (randomWeightValue <= processedWeight)
+                {
+                    enemyToGenerate = enemyType.enemy;
+                    break;
+                }
+            }
+
+            return enemyToGenerate;
+        }
     }
 }

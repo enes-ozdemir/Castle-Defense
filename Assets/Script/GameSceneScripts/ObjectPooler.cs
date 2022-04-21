@@ -1,8 +1,7 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Collections.Generic;
 
-namespace Script
+namespace Script.GameSceneScripts
 {
     public class ObjectPooler : MonoBehaviour
     {

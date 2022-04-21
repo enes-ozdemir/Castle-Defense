@@ -1,59 +1,62 @@
 ﻿using UnityEngine;
 
-public static class SoundManager
+namespace Script.Utils
 {
-    public enum Sound
+    public static class SoundManager
     {
-        BackgroundMusic,
-        BattleMusic,
-        ArrowSound,
-        EnemyHit,
-        GoldDrop,
-        EnemyWalk,
-        EnemySound,
-        BombExplosion,
-        SkillExplosion,
-        BossGrowl,
-        Win,
-        Loss,
-        DiamondDrop,
-        SpearHit,
-        EnemyAttackToCastle,
-    }
-
-    private static GameObject _oneShotGameObject;
-    private static AudioSource _oneShotAudioSource;
-
-    public static void PlaySound(Sound sound, float volume, bool isLoop)
-    {
-        if (_oneShotGameObject == null)
+        public enum Sound
         {
-            _oneShotGameObject = new GameObject("Sound");
-            _oneShotAudioSource = _oneShotGameObject.AddComponent<AudioSource>();
-            _oneShotAudioSource.volume = volume;
-            _oneShotAudioSource.loop = isLoop;
+            BackgroundMusic,
+            BattleMusic,
+            ArrowSound,
+            EnemyHit,
+            GoldDrop,
+            EnemyWalk,
+            EnemySound,
+            BombExplosion,
+            SkillExplosion,
+            BossGrowl,
+            Win,
+            Loss,
+            DiamondDrop,
+            SpearHit,
+            EnemyAttackToCastle,
         }
 
-        _oneShotAudioSource.PlayOneShot(GetAudioclip(sound));
-    }
+        private static GameObject _oneShotGameObject;
+        private static AudioSource _oneShotAudioSource;
 
-    public static void PlaySound(Sound sound)
-    {
-        GameObject soundGameobject = new GameObject("Sound");
-        AudioSource audioSource = soundGameobject.AddComponent<AudioSource>();
-        audioSource.PlayOneShot(GetAudioclip(sound));
-    }
-
-    private static AudioClip GetAudioclip(Sound sound)
-    {
-        foreach (GameAssets.SoundAudioClip soundAudioclip in GameAssets.Instance.soundAudioClipArray)
+        public static void PlaySound(Sound sound, float volume, bool isLoop)
         {
-            if (soundAudioclip.sound == sound)
+            if (_oneShotGameObject == null)
             {
-                return soundAudioclip.audioClip;
+                _oneShotGameObject = new GameObject("Sound");
+                _oneShotAudioSource = _oneShotGameObject.AddComponent<AudioSource>();
+                _oneShotAudioSource.volume = volume;
+                _oneShotAudioSource.loop = isLoop;
             }
+
+            _oneShotAudioSource.PlayOneShot(GetAudioClip(sound));
         }
 
-        return null;
+        public static void PlaySound(Sound sound)
+        {
+            GameObject soundGameObject = new GameObject("Sound");
+            AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+            audioSource.PlayOneShot(GetAudioClip(sound));
+        }
+
+        private static AudioClip GetAudioClip(Sound sound)
+        {
+            foreach (GameAssets.SoundAudioClip soundAudioClip in GameAssets.Instance.soundAudioClipArray)
+            {
+                if (soundAudioClip.sound == sound)
+                {
+                    return soundAudioClip.audioClip;
+                }
+            }
+
+            return null;
+        }
     }
 }

@@ -1,29 +1,34 @@
-﻿using UnityEngine;
+﻿using Script.Utils;
+using UnityEngine;
 
-public class SkillManager : MonoBehaviour
+namespace Script.GameSceneScripts
 {
-    [SerializeField] public Enemy enemy;
-    private GameObject skillEndPrefab;
-
-    private void Start()
+    public class SkillManager : MonoBehaviour
     {
-        skillEndPrefab = enemy.enemySkill.skillEndEffect;
-    }
+        [SerializeField] public Enemy enemy;
+        private GameObject skillEndPrefab;
 
-    void Update()
-    {
-        transform.position += new Vector3(-1, 0, 0) * Time.deltaTime * enemy.enemySkill.skillSpeed;
-    }
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.tag.Equals("Castle"))
+        private void Start()
         {
-            SoundManager.PlaySound(enemy.enemySkill.sound);
-            var explosionPosition = col.ClosestPoint(transform.position);
-            var explosion = Instantiate(skillEndPrefab, explosionPosition, Quaternion.identity);
-            Destroy(gameObject);
-            Destroy(explosion, 1.5f);
+            skillEndPrefab = enemy.enemySkill.skillEndEffect;
+        }
+
+        private void Update()
+        {
+            transform.position += new Vector3(-1, 0, 0) * Time.deltaTime * enemy.enemySkill.skillSpeed;
+        }
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.tag.Equals("Castle"))
+            {
+                SoundManager.PlaySound(enemy.enemySkill.sound);
+                
+                var explosionPosition = col.ClosestPoint(transform.position);
+                var explosion = Instantiate(skillEndPrefab, explosionPosition, Quaternion.identity);
+                Destroy(gameObject);
+                Destroy(explosion, 1.5f);
+            }
         }
     }
 }

@@ -1,85 +1,93 @@
 using System.Collections;
+using Script.GameSceneScripts;
+using Script.Utils;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+namespace Script.GameManagerScripts
 {
-    [SerializeField] private GameObject victoryCanvas;
-    [SerializeField] private GameObject defeatCanvas;
-    [SerializeField] private GameObject prizeCanvas;
-
-    [SerializeField] private EarningsPanel earningsPanel;
-
-    #region "Singleton"
-
-    public static GameController Instance;
-
-    private void Awake()
+    public class GameController : MonoBehaviour
     {
-        Instance = this;
-    }
+        [SerializeField] private GameObject victoryCanvas;
+        [SerializeField] private GameObject defeatCanvas;
+        [SerializeField] private GameObject prizeCanvas;
 
-    #endregion
+        [SerializeField] private EarningsPanel earningsPanel;
 
-    public enum State
-    {
-        Play,
-        Win,
-        Lose,
-    }
+        #region "Singleton"
 
-    public void UpdateGameState(State gameState)
-    {
-        switch (gameState)
+        public static GameController Instance;
+
+        private void Awake()
         {
-            case State.Play:
-                break;
-            case State.Win:
-                StartCoroutine(PlayerWon());
-                if (GameManager.currentLevel == GameManager.selectedLevel) GameManager.currentLevel++;
-                break;
-            case State.Lose:
-                StartCoroutine(PlayerLost());
-                break;
+            Instance = this;
         }
 
-        //todo Pause the game with this event
-    }
+        #endregion
 
-    private void Start()
-    {
-        UpdateGameState(State.Play);
-    }
-
-    private IEnumerator PlayerLost()
-    {
-        SoundManager.PlaySound(SoundManager.Sound.Loss);
-        Cursor.visible = true;
-        PauseTheGame();
-        yield return new WaitForSeconds(0.2f);
-        defeatCanvas.SetActive(true);
-    }
-
-    private IEnumerator PlayerWon()
-    {
-        SoundManager.PlaySound(SoundManager.Sound.Win);
-        Cursor.visible = true;
-        PauseTheGame();
-        yield return new WaitForSeconds(0.2f);
-        victoryCanvas.SetActive(true);
-    }
-
-    private void PauseTheGame()
-    {
-        prizeCanvas.SetActive(true);
-        BaseEnemyManager.isBaseAttackAllowed = false;
-        BaseEnemyManager.isBaseMovementAllowed = false;
-    }
-
-    private void Update()
-    {
-        if (earningsPanel.isActiveAndEnabled)
+        public enum State
         {
-            earningsPanel.UpdatePanel();
+            Play,
+            Win,
+            Lose,
+        }
+
+        public void UpdateGameState(State gameState)
+        {
+            switch (gameState)
+            {
+                case State.Play:
+                    break;
+                case State.Win:
+                    StartCoroutine(ShowWinScreen());
+                    if (GameManager.currentLevel == GameManager.selectedLevel) GameManager.currentLevel++;
+                    break;
+                case State.Lose:
+                    StartCoroutine(ShowLoseScreen());
+                    break;
+            }
+        }
+
+        private void Start()
+        {
+            UpdateGameState(State.Play);
+        }
+
+        private IEnumerator ShowLoseScreen()
+        {
+            SoundManager.PlaySound(SoundManager.Sound.Loss);
+            Cursor.visible = true;
+            PauseTheGame();
+            yield return new WaitForSeconds(0.2f);
+            defeatCanvas.SetActive(true);
+        }
+
+        private IEnumerator ShowWinScreen()
+        {
+            SoundManager.PlaySound(SoundManager.Sound.Win);
+            Cursor.visible = true;
+            PauseTheGame();
+            yield return new WaitForSeconds(0.2f);
+            victoryCanvas.SetActive(true);
+        }
+
+        private void PauseTheGame()
+        {
+            prizeCanvas.SetActive(true);
+            BaseEnemyManager.isBaseAttackAllowed = false;
+            BaseEnemyManager.isBaseMovementAllowed = false;
+        }
+
+        private void Update()
+        {
+            SetEarningPanel();
+        }
+
+        private void SetEarningPanel()
+        {
+            if (earningsPanel.isActiveAndEnabled)
+            {
+                earningsPanel.UpdatePanel();
+            }
         }
     }
 }

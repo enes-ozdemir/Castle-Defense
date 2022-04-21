@@ -1,25 +1,29 @@
+using Script.GameManagerScripts;
 using UnityEngine;
 
-public class WeaponManager : MonoBehaviour
+namespace Script.GameSceneScripts
 {
-    public GameObject arrowPrefab;
-    private SpriteRenderer bowSprite;
-    private SpriteRenderer arrowSprite;
-
-    private void Awake()
+    public class WeaponManager : MonoBehaviour
     {
-        bowSprite = GetComponent<SpriteRenderer>();
-        arrowSprite = arrowPrefab.GetComponent<SpriteRenderer>();
-    }
+        public GameObject arrowPrefab;
+        private SpriteRenderer bowSprite;
+        private SpriteRenderer arrowSprite;
 
-    private void Start()
-    {
-        SetWeaponSprite();
-    }
+        private void Awake()
+        {
+            bowSprite = GetComponent<SpriteRenderer>();
+            arrowSprite = arrowPrefab.GetComponent<SpriteRenderer>();
+        }
 
-    private void SetWeaponSprite()
-    {
-        bowSprite.sprite = Weapon.weaponSprite;
-        arrowSprite.sprite = Arrow.arrowSprite;
+        private void Start()
+        {
+            SetWeaponSprite();
+        }
+
+        private void SetWeaponSprite()
+        {
+            bowSprite.sprite = Weapon.weaponSprite;
+            arrowSprite.sprite = Arrow.arrowSprite;
+        }
     }
 }

@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu]
-public class Level : ScriptableObject
+namespace Script.LevelSceneScripts
 {
-    [SerializeField] public Sprite lockImage;
-    [SerializeField] public Sprite currentLevelImage;
-    [SerializeField] public Sprite oldLevelImage;
+    [CreateAssetMenu]
+    public class Level : ScriptableObject
+    {
+        [SerializeField] public Sprite lockImage;
+        [SerializeField] public Sprite currentLevelImage;
+        [SerializeField] public Sprite oldLevelImage;
+    }
 }

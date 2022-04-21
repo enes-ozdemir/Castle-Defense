@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu]
-public class ArrowItem : SellableItem
+namespace Script.LevelSceneScripts
 {
-    public float baseInterval;
+    [CreateAssetMenu]
+    public class ArrowItem : SellableItem
+    {
+        public float baseInterval;
+    }
 }

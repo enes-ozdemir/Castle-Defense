@@ -1,83 +1,96 @@
-﻿using System;
+﻿using Script.GameManagerScripts;
+using Script.Utils;
 using UnityEngine;
-using Script;
 
-public class ArrowManager : MonoBehaviour
+namespace Script.GameSceneScripts
 {
-    public GameObject[] arrowStart;
-    public float arrowSpeed = 10f;
-    public GameObject player;
-
-    [SerializeField] private BowMovement bowMovement;
-
-    private Vector3 target;
-    private Sprite arrowSprite;
-
-    [SerializeField] private float fireInterval = 1f;
-    [SerializeField] private float fireTimer;
-    private Vector3 difference;
-    private float rotationZ;
-
-    [HideInInspector] private static bool _canAttack;
-
-    private int arrowCount;
-
-    private void Awake()
+    public class ArrowManager : MonoBehaviour
     {
-        arrowSprite =Arrow.arrowSprite;
-        bowMovement = GetComponent<BowMovement>();
-        _canAttack = true;
-        fireInterval = 1 / ArrowStats.fireInterval;
-        Debug.Log("Fire Interval : " + fireInterval);
-        arrowCount = ArrowStats.arrowCount;
-    }
+        public GameObject player;
 
-    private void FixedUpdate()
-    {
-        SetBowRotation();
-    }
+        //Arrow Settings
+        public GameObject[] arrowStart;
+        public float arrowSpeed = 10f;
+        private int arrowCount;
+        private Sprite arrowSprite;
 
-    private void Update()
-    {
-        if (fireTimer <= 0)
+        //Bow Settings
+        [SerializeField] private BowMovement bowMovement;
+        [SerializeField] private float fireInterval = 1f;
+        [SerializeField] private float fireTimer;
+        private Vector3 target;
+        private Vector3 differenceFromTarget;
+        private float rotationZ;
+        private static bool _canPlayerAttack;
+
+        private void Awake()
         {
-            IsArrowFired();
-            fireTimer = fireInterval;
+            bowMovement = GetComponent<BowMovement>();
+
+            InitBowAndArrowConfig();
         }
-        else
+
+        
+        private void InitBowAndArrowConfig()
         {
-            fireTimer -= Time.fixedDeltaTime;
+            arrowSprite = Arrow.arrowSprite;
+            arrowCount = ArrowStats.arrowCount;
+            fireInterval = 1 / ArrowStats.fireInterval;
+            _canPlayerAttack = true;
+
+            Debug.Log("Fire Interval : " + fireInterval);
+            Debug.Log("Arrow Count : " + arrowCount);
         }
-    }
 
-    private void SetBowRotation()
-    {
-        difference = bowMovement.target - player.transform.position;
-        rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 50f;
-        transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
-    }
-
-    private void IsArrowFired()
-    {
-        if (!_canAttack) return;
-        if (Input.GetMouseButton(0))
+        private void FixedUpdate()
         {
-            float distance = difference.magnitude;
-            Vector2 dir = difference / distance;
-            dir.Normalize();
-            FireArrow(dir, rotationZ + 50f);
+            SetBowRotation();
         }
-    }
 
-    private void FireArrow(Vector2 dir, float rotationZ)
-    {
-        for (int i = 0; i < arrowCount; i++)
+        private void Update()
         {
-            SoundManager.PlaySound(SoundManager.Sound.ArrowSound);
-            GameObject arrow = ObjectPooler.Instance.SpawnArrowFromPool("Arrow", arrowStart[i].transform.position,
-                Quaternion.Euler(0, 0, rotationZ));
-            arrow.gameObject.GetComponent<SpriteRenderer>().sprite = arrowSprite;
-            arrow.GetComponent<Rigidbody2D>().velocity = dir * arrowSpeed;
+            CheckFireTimer();
+        }
+
+        private void CheckFireTimer()
+        {
+            if (fireTimer <= 0)
+            {
+                IsArrowFired();
+                fireTimer = fireInterval;
+            }
+            else fireTimer -= Time.fixedDeltaTime;
+        }
+
+        private void SetBowRotation()
+        {
+            differenceFromTarget = bowMovement.target - player.transform.position;
+            rotationZ = Mathf.Atan2(differenceFromTarget.y, differenceFromTarget.x) * Mathf.Rad2Deg - 50f;
+            transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
+        }
+
+        private void IsArrowFired()
+        {
+            if (!_canPlayerAttack) return;
+            if (Input.GetMouseButton(0))
+            {
+                float distance = differenceFromTarget.magnitude;
+                Vector2 dir = differenceFromTarget / distance;
+                dir.Normalize();
+                FireArrow(dir, rotationZ + 50f);
+            }
+        }
+
+        private void FireArrow(Vector2 dir, float rotationZ)
+        {
+            for (int i = 0; i < arrowCount; i++)
+            {
+                SoundManager.PlaySound(SoundManager.Sound.ArrowSound);
+                GameObject arrow = ObjectPooler.Instance.SpawnArrowFromPool("Arrow", arrowStart[i].transform.position,
+                    Quaternion.Euler(0, 0, rotationZ));
+                arrow.gameObject.GetComponent<SpriteRenderer>().sprite = arrowSprite;
+                arrow.GetComponent<Rigidbody2D>().velocity = dir * arrowSpeed;
+            }
         }
     }
 }

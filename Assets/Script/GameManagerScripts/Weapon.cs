@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 
-public class Weapon : MonoBehaviour
+namespace Script.GameManagerScripts
 {
-    public static int weaponLevel = 1;
-    public static Sprite weaponSprite;
-    public StarterKit starterKit;
-
-    private void Awake()
+    public class Weapon : MonoBehaviour
     {
-        if (weaponSprite == null) weaponSprite = starterKit.weaponSprite;
+        public static int weaponLevel = 1;
+        public static Sprite weaponSprite;
+        public StarterKit starterKit;
+
+        private void Awake()
+        {
+            if (weaponSprite == null) weaponSprite = starterKit.weaponSprite;
+        }
     }
 }
