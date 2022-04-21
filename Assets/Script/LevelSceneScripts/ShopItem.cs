@@ -106,7 +106,6 @@ public class ShopItem : MonoBehaviour
     {
         if (displayedItem is WeaponItem item)
         {
-            Debug.Log("Displayed WEapon");
             damageText.transform.parent.gameObject.SetActive(true);
             if (item != null) damageText.text = "Damage \n" + item.baseDamage;
         }

@@ -15,6 +15,7 @@
 
 # Ignore Game Assets
 /[Aa]ssets/Asset
+/[Aa]ssets/Sounds
 /[Aa]ssets/Prefabs
 /[Aa]ssets/Objects
 /[Aa]ssets/Plugins/Sirenix

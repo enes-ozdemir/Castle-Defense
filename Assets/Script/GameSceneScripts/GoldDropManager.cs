@@ -25,20 +25,20 @@ public class GoldDropManager : MonoBehaviour
     {
         Debug.Log("Checking Gold");
         CheckGoldDrop(goldAmount, position);
-        CheckDiamondDrop(goldAmount, position);
+        CheckDiamondDrop(position);
     }
 
-    private void CheckDiamondDrop(int goldAmount, Vector3 position)
+    private void CheckDiamondDrop(Vector3 position)
     {
         var diamondDropChange = Random.Range(0, 10);
         if (diamondDropChange >= 8)
         {
-            Debug.Log("Daimond earned " + goldAmount);
-            var coin = Instantiate(diamondDrop, position, Quaternion.identity);
+            SoundManager.PlaySound(SoundManager.Sound.DiamondDrop);
+            Debug.Log("Diamond earned");
+            var coin = Instantiate(diamondDrop, position + new Vector3(1, 0, 0), Quaternion.identity);
             coin.transform.DOMove(goldTarget.position, 1f)
                 .SetEase(Ease.InOutBack)
                 .OnComplete((() => EarnDiamond(1)));
-            //Add this to end of the animation later
         }
     }
 
@@ -47,13 +47,13 @@ public class GoldDropManager : MonoBehaviour
         var goldDropChange = Random.Range(0, 5);
         if (goldDropChange >= 3)
         {
+            SoundManager.PlaySound(SoundManager.Sound.GoldDrop);
             Debug.Log("Gold earned " + goldAmount);
             var coin = Instantiate(goldDrop, position, Quaternion.identity);
             int earnedGoldAmount = (int) (goldAmount * (Random.Range(0.9f, 1.2f)));
             coin.transform.DOMove(goldTarget.position, 1f)
                 .SetEase(Ease.InOutBack)
                 .OnComplete((() => EarnMoney(earnedGoldAmount)));
-            //Add this to end of the animation later
         }
     }
 

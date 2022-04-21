@@ -116,6 +116,8 @@ public class EnemyManager : BaseEnemyManager
 
     private void Die()
     {
+        if (GameUIManager.currentEnemyCount != 0) GameUIManager.currentEnemyCount--;
+
         healthBar.SetHealth((float) currentHealth / maxHealth);
         isMovementAllowed = false;
         anim.Play("Dead");

@@ -19,9 +19,9 @@ public class SkillManager : MonoBehaviour
     {
         if (col.tag.Equals("Castle"))
         {
+            SoundManager.PlaySound(enemy.enemySkill.sound);
             var explosionPosition = col.ClosestPoint(transform.position);
             var explosion = Instantiate(skillEndPrefab, explosionPosition, Quaternion.identity);
-            //var particle = GetComponent<ParticleSystem>();
             Destroy(gameObject);
             Destroy(explosion, 1.5f);
         }

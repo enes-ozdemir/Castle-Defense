@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -8,11 +8,6 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject prizeCanvas;
 
     [SerializeField] private EarningsPanel earningsPanel;
-
-
-    private State currentState;
-
-    public static event Action<State> OnGameStateChanged;
 
     #region "Singleton"
 
@@ -34,21 +29,19 @@ public class GameController : MonoBehaviour
 
     public void UpdateGameState(State gameState)
     {
-        currentState = gameState;
         switch (gameState)
         {
             case State.Play:
                 break;
             case State.Win:
-                PlayerWon();
-                GameManager.currentLevel++;
+                StartCoroutine(PlayerWon());
+                if (GameManager.currentLevel == GameManager.selectedLevel) GameManager.currentLevel++;
                 break;
             case State.Lose:
-                PlayerLost();
+                StartCoroutine(PlayerLost());
                 break;
         }
 
-        OnGameStateChanged?.Invoke(gameState);
         //todo Pause the game with this event
     }
 
@@ -57,16 +50,22 @@ public class GameController : MonoBehaviour
         UpdateGameState(State.Play);
     }
 
-    private void PlayerLost()
+    private IEnumerator PlayerLost()
     {
-        defeatCanvas.SetActive(true);
+        SoundManager.PlaySound(SoundManager.Sound.Loss);
+        Cursor.visible = true;
         PauseTheGame();
+        yield return new WaitForSeconds(0.2f);
+        defeatCanvas.SetActive(true);
     }
 
-    private void PlayerWon()
+    private IEnumerator PlayerWon()
     {
-        victoryCanvas.SetActive(true);
+        SoundManager.PlaySound(SoundManager.Sound.Win);
+        Cursor.visible = true;
         PauseTheGame();
+        yield return new WaitForSeconds(0.2f);
+        victoryCanvas.SetActive(true);
     }
 
     private void PauseTheGame()
@@ -74,7 +73,6 @@ public class GameController : MonoBehaviour
         prizeCanvas.SetActive(true);
         BaseEnemyManager.isBaseAttackAllowed = false;
         BaseEnemyManager.isBaseMovementAllowed = false;
-        //ArrowManager.canAttack = false;
     }
 
     private void Update()

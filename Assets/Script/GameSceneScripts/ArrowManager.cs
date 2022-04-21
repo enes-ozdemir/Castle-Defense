@@ -73,6 +73,7 @@ public class ArrowManager : MonoBehaviour
     {
         for (int i = 0; i < arrowCount; i++)
         {
+            SoundManager.PlaySound(SoundManager.Sound.ArrowSound);
             GameObject arrow = ObjectPooler.Instance.SpawnArrowFromPool("Arrow", arrowStart[i].transform.position,
                 Quaternion.Euler(0, 0, rotationZ));
             arrow.gameObject.GetComponent<SpriteRenderer>().sprite = arrowSprite;

@@ -25,16 +25,14 @@ public class UIManager : MonoBehaviour
     {
         shopUI.SetActive(!shopUI.activeInHierarchy);
         upgradeUI.SetActive(false);
-        GameManager.money += 100;
-        GameManager.diamond += 100;
     }
 
     public void OnUpgradeClick()
     {
         upgradeUI.SetActive(!upgradeUI.activeInHierarchy);
         shopUI.SetActive(false);
-        GameManager.money += 1000;
-        GameManager.diamond += 1000;
+        // GameManager.money += 1000;
+        // GameManager.diamond += 1000;
     }
 
     private void FixedUpdate()

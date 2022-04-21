@@ -81,6 +81,12 @@ public class UpgradePanel : MonoBehaviour
         Debug.Log("OnArrowCountUpgrade called");
         var currentUpgradeCost = ArrowStats.arrowCountUpgradeCost;
         var currentMoney = GameManager.money;
+        if (ArrowStats.arrowCount == 5)
+        {
+            
+            PopupManager.ShowMessagePopup(Constant.ArrowCountError);
+
+        }
         if (currentUpgradeCost <= currentMoney)
         {
             GameManager.money -= currentUpgradeCost;
@@ -90,6 +96,7 @@ public class UpgradePanel : MonoBehaviour
         }
         else
         {
+            PopupManager.ShowCannotAffordPopup();
             Debug.Log("Not enough money");
         }
     }
@@ -109,6 +116,7 @@ public class UpgradePanel : MonoBehaviour
         }
         else
         {
+            PopupManager.ShowCannotAffordPopup();
             Debug.Log("Not enough money");
         }
     }
@@ -128,6 +136,7 @@ public class UpgradePanel : MonoBehaviour
         }
         else
         {
+            PopupManager.ShowCannotAffordPopup();
             Debug.Log("Not enough money");
         }
     }
@@ -147,6 +156,7 @@ public class UpgradePanel : MonoBehaviour
         }
         else
         {
+            PopupManager.ShowCannotAffordPopup();
             Debug.Log("Not enough money");
         }
     }

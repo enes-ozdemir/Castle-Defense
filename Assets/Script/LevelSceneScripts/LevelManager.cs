@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     {
         currentLevel = GameManager.currentLevel;
         SetLevelPrefab();
+        SoundManager.PlaySound(SoundManager.Sound.BackgroundMusic);
     }
 
     private void SetLevelPrefab()

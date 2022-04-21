@@ -3,5 +3,5 @@
 [CreateAssetMenu]
 public class ArrowItem : SellableItem
 {
-    public int baseInterval;
+    public float baseInterval;
 }

@@ -14,11 +14,12 @@ public class GameUIManager : MonoBehaviour
 
     [SerializeField] private WaveSpawner waveSpawner;
 
-    private int currentEnemyCount;
+    public static int currentEnemyCount;
     private int maxEnemyCount;
 
     private void Start()
     {
+        SoundManager.PlaySound(SoundManager.Sound.BattleMusic,0.5f,true);
         maxEnemyCount = waveSpawner.enemiesToSpawn.Count;
         currentEnemyCount = maxEnemyCount;
         levelText.text = "Level " + GameManager.selectedLevel;
@@ -35,6 +36,7 @@ public class GameUIManager : MonoBehaviour
 
     public void LoadMapScene()
     {
+        Cursor.visible = true;
         SceneManager.LoadScene("MapScene");
     }
 

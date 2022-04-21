@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class BowMovement : MonoBehaviour
 {
@@ -12,9 +10,8 @@ public class BowMovement : MonoBehaviour
 
     private void Start()
     {
-        // Cursor.visible = false;
+        Cursor.visible = false;
     }
-
 
     private void SetCrossHairToMouse()
     {

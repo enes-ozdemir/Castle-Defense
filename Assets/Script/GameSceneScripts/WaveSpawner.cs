@@ -100,7 +100,7 @@ public class WaveSpawner : MonoBehaviour
             isBossArrived = true;
             spawnTimer = 1f;
             Debug.Log("Boss spawned");
-
+            SoundManager.PlaySound(SoundManager.Sound.BossGrowl);
             var bossPrefab = enemyWaves[currentWave].boss.enemyPrefab;
             var enemyObject = Instantiate(bossPrefab,
                 spawnLocations[0].position,

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Wave : ScriptableObject
 {
     public List<WaveUnit> waveUnits;
-    public int award;
     public int waveDuration;
     public int waveValue;
     public Enemy boss;

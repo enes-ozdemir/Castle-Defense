@@ -22,6 +22,13 @@ public class PopupManager : MonoBehaviour
         Instance.StartCoroutine(WaitForFadeEffect(_cannotAffordText.gameObject));
         _cannotAffordText.transform.position = mousePosition;
     }
+    public static void ShowMessagePopup(string message)
+    {
+        Vector3 mousePosition = Input.mousePosition + new Vector3(0, 50, 0);
+        _cannotAffordText.text = message;
+        Instance.StartCoroutine(WaitForFadeEffect(_cannotAffordText.gameObject));
+        _cannotAffordText.transform.position = mousePosition;
+    }
 
     private static IEnumerator WaitForFadeEffect(GameObject popupObject)
     {
