@@ -7254,6 +7254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bba71136eda54af694822d0802913a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 620908480}
   arrowStart:
   - {fileID: 1863903643}
   - {fileID: 800881983}
@@ -7261,7 +7262,6 @@ MonoBehaviour:
   - {fileID: 220205603}
   - {fileID: 1371828765}
   arrowSpeed: 20
-  player: {fileID: 620908480}
   bowMovement: {fileID: 620908485}
   fireInterval: 1
   fireTimer: 0
@@ -8662,6 +8662,7 @@ MonoBehaviour:
   waveDuration: 20
   spawnInterval: 1
   maxEnemyCount: 0
+  gameController: {fileID: 320658248}
 --- !u!114 &1967137492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9318,6 +9319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthText: {fileID: 338184526}
   castleHealth: {fileID: 943412553}
+  gameController: {fileID: 320658248}
   currentHealth: 1000
   castleLocation: {fileID: 276665251}
 --- !u!4 &3918965549821222969

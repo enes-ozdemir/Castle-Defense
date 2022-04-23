@@ -1,6 +1,8 @@
+using System;
 using Script.GameManagerScripts;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Script.GameSceneScripts
 {
@@ -29,9 +31,12 @@ namespace Script.GameSceneScripts
         [Header("Attack Config")] private float lastAttackTime;
         public float attackDelay;
 
-        private void Awake()
+        [SerializeField] private WaveSpawner waveSpawner;
+
+        private void Start()
         {
             InitEnemy();
+            waveSpawner = GetComponentInParent<WaveSpawner>();
         }
 
         private void InitEnemy()
@@ -142,7 +147,7 @@ namespace Script.GameSceneScripts
 
             GoldDropManager.Instance.CheckLoot(enemy.enemyGoldAward, transform.position);
 
-            WaveSpawner.RemoveEnemyFromWave();
+            waveSpawner.RemoveEnemyFromWave();
             Destroy(col);
             Destroy(prefab, 1f);
         }

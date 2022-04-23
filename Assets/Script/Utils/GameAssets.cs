@@ -27,6 +27,7 @@ namespace Script.Utils
 
         private void Awake()
         {
+            if(_instance!=null) Destroy(this);
             DontDestroyOnLoad(gameObject);
         }
     }

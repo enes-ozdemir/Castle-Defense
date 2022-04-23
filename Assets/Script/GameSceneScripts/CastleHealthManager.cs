@@ -9,6 +9,7 @@ namespace Script.GameSceneScripts
     {
         [SerializeField] private TextMeshProUGUI healthText;
         [SerializeField] private Image castleHealth;
+        [SerializeField] private GameController gameController;
         private int maxHealth;
 
         [HideInInspector] public int currentHealth;
@@ -44,7 +45,7 @@ namespace Script.GameSceneScripts
         {
             if (currentHealth <= 0)
             {
-                GameController.Instance.UpdateGameState(GameController.State.Lose);
+                gameController.UpdateGameState(GameController.State.Lose);
                 Debug.Log("Game Over");
             }
         }

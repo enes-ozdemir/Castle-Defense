@@ -23,6 +23,8 @@ namespace Script.GameSceneScripts
         public int maxEnemyCount;
         private static int _currentEnemyCount;
 
+        [SerializeField] private GameController gameController;
+
         private void Awake()
         {
             isBossArrived = false;
@@ -51,15 +53,15 @@ namespace Script.GameSceneScripts
             }
         }
 
-        public static void RemoveEnemyFromWave()
+        public void RemoveEnemyFromWave()
         {
             _currentEnemyCount--;
             CheckIfPlayerWon();
         }
 
-        private static void CheckIfPlayerWon()
+        private void CheckIfPlayerWon()
         {
-            if (_currentEnemyCount <= 0) GameController.Instance.UpdateGameState(GameController.State.Win);
+            if (_currentEnemyCount <= 0) gameController.UpdateGameState(GameController.State.Win);
         }
 
         private void FixedUpdate()

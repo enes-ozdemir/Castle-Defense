@@ -13,17 +13,6 @@ namespace Script.GameManagerScripts
 
         [SerializeField] private EarningsPanel earningsPanel;
 
-        #region "Singleton"
-
-        public static GameController Instance;
-
-        private void Awake()
-        {
-            Instance = this;
-        }
-
-        #endregion
-
         public enum State
         {
             Play,
