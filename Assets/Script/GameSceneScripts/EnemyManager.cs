@@ -3,6 +3,9 @@ using Script.GameManagerScripts;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Script.GameSceneScripts
 {
@@ -67,22 +70,24 @@ namespace Script.GameSceneScripts
 
         private void CheckAttack()
         {
-            //Todo integrate attack speed
             float distanceToCastle = Mathf.Abs(transform.position.x - castleHealthManager.castleLocation.position.x);
             if (distanceToCastle < enemy.attackRange && Time.time > lastAttackTime + attackDelay)
             {
                 anim.Play("Attack");
                 isMovementAllowed = false;
                 isAttackAllowed = true;
-
-                CheckIfRangeUnit();
-
-                castleHealthManager.CastleGotHit(enemy.damage);
                 lastAttackTime = Time.time;
+
+                if (!CheckIfRangeUnit()) CastleGotHitByEnemy();
             }
         }
 
-        private void CheckIfRangeUnit()
+        public void CastleGotHitByEnemy()
+        {
+            castleHealthManager.CastleGotHit(enemy.damage);
+        }
+
+        private bool CheckIfRangeUnit()
         {
             if (enemy.isRangeUnit)
             {
@@ -102,8 +107,12 @@ namespace Script.GameSceneScripts
                 Destroy(vfx, 5f);
 
                 var skillManager = vfx.AddComponent<SkillManager>();
-                skillManager.enemy = enemy;
+                skillManager.enemyManager = this;
+
+                return true;
             }
+
+            return false;
         }
 
         private void MoveTowardsCastle()
