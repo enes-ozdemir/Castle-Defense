@@ -151,8 +151,8 @@ namespace Script.LevelSceneScripts
             if (currentUpgradeCost <= currentMoney)
             {
                 GameManager.money -= currentUpgradeCost;
-                WeaponStats.weaponUpgradeGoldCost += 10;
-                WeaponStats.additionalWeaponDamage += 10;
+                WeaponStats.weaponUpgradeGoldCost += 50;
+                WeaponStats.additionalWeaponDamage += 5;
                 Weapon.weaponLevel++;
                 SetBowInfo();
             }
