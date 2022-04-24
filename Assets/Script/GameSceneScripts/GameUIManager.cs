@@ -32,7 +32,7 @@ namespace Script.GameSceneScripts
         {
             maxEnemyCount = waveSpawner.enemiesToSpawn.Count;
             currentEnemyCount = maxEnemyCount;
-            levelText.text = "Level " + GameManager.selectedLevel;
+            levelText.text = "Level " + (GameManager.selectedLevel+1);
             tempMoney = 0;
             tempDiamond = 0;
         }

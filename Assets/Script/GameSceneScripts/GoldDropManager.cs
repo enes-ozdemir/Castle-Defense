@@ -36,7 +36,7 @@ namespace Script.GameSceneScripts
         private void CheckDiamondDrop(Vector3 position)
         {
             var diamondDropChange = Random.Range(0, 10);
-            if (diamondDropChange >= 8)
+            if (diamondDropChange >= 9)
             {
                 SoundManager.PlaySound(SoundManager.Sound.DiamondDrop);
                 Debug.Log("Diamond earned");

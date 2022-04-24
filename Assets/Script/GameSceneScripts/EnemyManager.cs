@@ -54,7 +54,7 @@ namespace Script.GameSceneScripts
             currentHealth = maxHealth;
             isMovementAllowed = true;
 
-            healthBar.healthCanvas.gameObject.SetActive(false);
+            if(!enemy.isBoss) healthBar.healthCanvas.gameObject.SetActive(false);
             castleHealthManager = GetComponentInParent<CastleHealthManager>();
         }
 
@@ -158,6 +158,7 @@ namespace Script.GameSceneScripts
 
             waveSpawner.RemoveEnemyFromWave();
             Destroy(col);
+            Destroy(damageText);
             Destroy(prefab, 1f);
         }
 
@@ -183,7 +184,7 @@ namespace Script.GameSceneScripts
         {
             if (isMovementAllowed && !enemy.isBoss)
             {
-                Vector3 hitForce = new Vector3(0.05f, 0, 0);
+                Vector3 hitForce = new Vector3(0.08f, 0, 0);
                 transform.position += hitForce;
             }
         }

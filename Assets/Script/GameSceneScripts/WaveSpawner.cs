@@ -11,10 +11,11 @@ namespace Script.GameSceneScripts
         public List<Wave> enemyWaves = new();
         public List<GameObject> enemiesToSpawn = new();
         public Transform[] spawnLocations;
+        public List<Vector3> usedSpawnLocations;
 
         public int currentWave;
         private int waveValue;
-        public int waveDuration;
+        private int waveDuration;
 
         [SerializeField] private float spawnInterval;
         private float spawnTimer;
@@ -27,9 +28,9 @@ namespace Script.GameSceneScripts
 
         private void Awake()
         {
+            GetSpawnLocations();
             isBossArrived = false;
 
-            //Set Wave settings
             currentWave = GameManager.selectedLevel;
             Debug.Log(currentWave + "currentWave");
             waveDuration = enemyWaves[currentWave].waveDuration;
@@ -38,6 +39,14 @@ namespace Script.GameSceneScripts
             GenerateWave();
 
             SetEnemyCount();
+        }
+
+        private void GetSpawnLocations()
+        {
+            foreach (var loc in spawnLocations)
+            {
+                usedSpawnLocations.Add(loc.transform.position);
+            }
         }
 
         private void SetEnemyCount()
@@ -70,9 +79,29 @@ namespace Script.GameSceneScripts
             {
                 if (enemiesToSpawn.Count > 0)
                 {
-                    var spawnLoc = spawnLocations[Random.Range(0, spawnLocations.Length - 1)].position;
+                    Vector3 spawnLoc;
+                    int range;
+                    if (usedSpawnLocations.Count > 0)
+                    {
+                        range = Random.Range(0, usedSpawnLocations.Count - 1);
+                        spawnLoc = usedSpawnLocations[range];
+                        usedSpawnLocations.Remove(spawnLoc);
+                    }
+                    else
+                    {
+                        if (spawnTimer > 0.1)
+                        {
+                            spawnTimer -= 0.05f;
+                        }
+
+                        GetSpawnLocations();
+                        spawnLoc = spawnLocations[0].transform.position;
+                        range = 1;
+                    }
 
                     var enemyObject = Instantiate(enemiesToSpawn[0], spawnLoc, Quaternion.identity, transform);
+
+                    enemyObject.GetComponent<SpriteRenderer>().sortingOrder = range;
 
                     enemyObject.GetComponent<EnemyManager>().prefab = enemyObject;
 
@@ -101,19 +130,26 @@ namespace Script.GameSceneScripts
         {
             if (enemyWaves[currentWave].boss != null)
             {
-                var shake = gameObject.AddComponent<CameraShake>();
-                shake.ShakeCaller(1, 1f);
+                AddCameraShake();
+                SoundManager.PlaySound(SoundManager.Sound.BossGrowl);
+                Debug.Log("Boss spawned");
+
                 isBossArrived = true;
                 spawnTimer = 1f;
-                Debug.Log("Boss spawned");
-                SoundManager.PlaySound(SoundManager.Sound.BossGrowl);
                 var bossPrefab = enemyWaves[currentWave].boss.enemyPrefab;
                 var enemyObject = Instantiate(bossPrefab,
-                    spawnLocations[0].position,
+                    spawnLocations[3].position,
                     Quaternion.identity, transform);
 
                 enemyObject.GetComponent<EnemyManager>().prefab = enemyObject;
+                enemyObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
             }
+        }
+
+        private void AddCameraShake()
+        {
+            var shake = gameObject.AddComponent<CameraShake>();
+            shake.ShakeCaller(1, 1f);
         }
 
         private void GenerateWave()

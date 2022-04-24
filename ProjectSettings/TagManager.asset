@@ -9,6 +9,8 @@ TagManager:
   - Arrow
   - MidCastle
   - FarCastle
+  - Missile
+  - Blocker
   layers:
   - Default
   - TransparentFX
