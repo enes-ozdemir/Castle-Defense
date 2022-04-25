@@ -49,9 +49,6 @@ namespace Script.GameSceneScripts
 
         private void CheckGoldDrop(int goldAmount, Vector3 position)
         {
-            var goldDropChange = Random.Range(0, 5);
-            if (goldDropChange >= 3)
-            {
                 SoundManager.PlaySound(SoundManager.Sound.GoldDrop);
                 Debug.Log("Gold earned " + goldAmount);
                 var coin = Instantiate(goldDrop, position, Quaternion.identity);
@@ -59,7 +56,6 @@ namespace Script.GameSceneScripts
                 coin.transform.DOMove(goldTarget.position, 1f)
                     .SetEase(Ease.InOutBack)
                     .OnComplete((() => EarnMoney(earnedGoldAmount)));
-            }
         }
 
         private void EarnMoney(int goldAmount)

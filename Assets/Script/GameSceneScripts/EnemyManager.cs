@@ -158,7 +158,6 @@ namespace Script.GameSceneScripts
 
             waveSpawner.RemoveEnemyFromWave();
             Destroy(col);
-            Destroy(damageText);
             Destroy(prefab, 1f);
         }
 
@@ -175,6 +174,7 @@ namespace Script.GameSceneScripts
                     Quaternion.identity);
 
                 damageTextPrefab.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
+                Destroy(damageTextPrefab,1f);
 
                 CheckIfAddForceToEnemy();
             }

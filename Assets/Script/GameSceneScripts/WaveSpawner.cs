@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Script.GameManagerScripts;
 using Script.Utils;
@@ -65,11 +66,13 @@ namespace Script.GameSceneScripts
         public void RemoveEnemyFromWave()
         {
             _currentEnemyCount--;
+            //  StartCoroutine(CheckIfPlayerWon());
             CheckIfPlayerWon();
         }
 
         private void CheckIfPlayerWon()
         {
+            // yield return new WaitForSeconds(1f);
             if (_currentEnemyCount <= 0) gameController.UpdateGameState(GameController.State.Win);
         }
 
@@ -91,7 +94,7 @@ namespace Script.GameSceneScripts
                     {
                         if (spawnTimer > 0.1)
                         {
-                            spawnTimer -= 0.05f;
+                            spawnTimer -= 0.1f;
                         }
 
                         GetSpawnLocations();
@@ -177,8 +180,7 @@ namespace Script.GameSceneScripts
                     {
                         generatedEnemies.Add(enemyToGenerate.enemyPrefab);
                         waveValue -= randEnemyCost;
-                    }
-                    else if (waveValue <= 100) break;
+                    }else break;
                 }
                 else Debug.Log("No enemy to generate");
             }

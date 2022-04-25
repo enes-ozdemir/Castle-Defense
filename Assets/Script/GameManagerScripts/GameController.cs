@@ -43,20 +43,26 @@ namespace Script.GameManagerScripts
 
         private IEnumerator ShowLoseScreen()
         {
-            SoundManager.PlaySound(SoundManager.Sound.Loss);
-            Cursor.visible = true;
-            PauseTheGame();
-            yield return new WaitForSeconds(0.2f);
-            defeatCanvas.SetActive(true);
+            if (!victoryCanvas.activeInHierarchy)
+            {
+                SoundManager.PlaySound(SoundManager.Sound.Loss);
+                Cursor.visible = true;
+                PauseTheGame();
+                yield return new WaitForSeconds(1f);
+                defeatCanvas.SetActive(true);
+            }
         }
 
         private IEnumerator ShowWinScreen()
         {
-            SoundManager.PlaySound(SoundManager.Sound.Win);
-            Cursor.visible = true;
-            PauseTheGame();
-            yield return new WaitForSeconds(0.2f);
-            victoryCanvas.SetActive(true);
+            if (!defeatCanvas.activeInHierarchy)
+            {
+                SoundManager.PlaySound(SoundManager.Sound.Win);
+                Cursor.visible = true;
+                PauseTheGame();
+                yield return new WaitForSeconds(1f);
+                victoryCanvas.SetActive(true);
+            }
         }
 
         private void PauseTheGame()
