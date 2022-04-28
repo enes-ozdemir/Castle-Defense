@@ -30,7 +30,6 @@ namespace Script.GameSceneScripts
             InitBowAndArrowConfig();
         }
 
-        
         private void InitBowAndArrowConfig()
         {
             arrowSprite = Arrow.arrowSprite;

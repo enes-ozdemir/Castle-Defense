@@ -117,7 +117,7 @@ namespace Script.GameSceneScripts
                     }
                     else if (enemiesToSpawn.Count < 10)
                     {
-                        Debug.Log("Enemies to spawn is less than 25");
+                        Debug.Log("Enemies to spawn is less than 10" + spawnTimer);
                         spawnTimer = 0.1f;
                     }
                     else spawnTimer = spawnInterval;
@@ -152,7 +152,7 @@ namespace Script.GameSceneScripts
         private void AddCameraShake()
         {
             var shake = gameObject.AddComponent<CameraShake>();
-            shake.ShakeCaller(1, 1f);
+            shake.ShakeCaller(0.7f, 1f);
         }
 
         private void GenerateWave()
@@ -180,7 +180,8 @@ namespace Script.GameSceneScripts
                     {
                         generatedEnemies.Add(enemyToGenerate.enemyPrefab);
                         waveValue -= randEnemyCost;
-                    }else break;
+                    }
+                    else break;
                 }
                 else Debug.Log("No enemy to generate");
             }

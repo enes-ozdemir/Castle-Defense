@@ -49,6 +49,7 @@ namespace Script.GameManagerScripts
                 Cursor.visible = true;
                 PauseTheGame();
                 yield return new WaitForSeconds(1f);
+                prizeCanvas.SetActive(true);
                 defeatCanvas.SetActive(true);
             }
         }
@@ -61,13 +62,13 @@ namespace Script.GameManagerScripts
                 Cursor.visible = true;
                 PauseTheGame();
                 yield return new WaitForSeconds(1f);
+                prizeCanvas.SetActive(true);
                 victoryCanvas.SetActive(true);
             }
         }
 
         private void PauseTheGame()
         {
-            prizeCanvas.SetActive(true);
             BaseEnemyManager.isBaseAttackAllowed = false;
             BaseEnemyManager.isBaseMovementAllowed = false;
         }

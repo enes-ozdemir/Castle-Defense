@@ -1374,7 +1374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -108.100006, y: 0.7000808}
+  m_AnchoredPosition: {x: -78, y: 0.7000808}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &200557684
@@ -4278,8 +4278,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819600956}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5317, y: 4.3098, z: 0.008517169}
-  m_LocalScale: {x: 0.8268013, y: 0.73875415, z: 0.27521}
+  m_LocalPosition: {x: -0.5317, y: 3.5408, z: 0.008517169}
+  m_LocalScale: {x: 0.8268013, y: 0.9320476, z: 0.27521}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1436820920}
@@ -5075,7 +5075,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 52.159065, w: 0}
+  m_margin: {x: 0, y: 0, z: -2.7490005, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -8694,7 +8694,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 251, y: -40.1}
+  m_AnchoredPosition: {x: 281.1, y: -40.1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1937755108
@@ -8865,6 +8865,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b2d534782c0b27d4796d0073683c310c, type: 2}
   - {fileID: 11400000, guid: b17e45e5ea13bc4429b7ad125058b140, type: 2}
   - {fileID: 11400000, guid: 56f05c48c56f7464285e69d4abc85de0, type: 2}
+  - {fileID: 11400000, guid: 927a7c21463f9e24c8f13c67bbbc1938, type: 2}
+  - {fileID: 11400000, guid: fe542f6cf537113459310341534dd3f8, type: 2}
+  - {fileID: 11400000, guid: ac90c1d4b2c9ca346992390b034d4b28, type: 2}
+  - {fileID: 11400000, guid: 00cda99270b0abf4bbc19f18d035a54b, type: 2}
+  - {fileID: 11400000, guid: 8a7dbe12e4215d841adeb70fc8bff7a6, type: 2}
+  - {fileID: 11400000, guid: c6ce1c161fb42aa4fa2c3c87cd41b15c, type: 2}
+  - {fileID: 11400000, guid: f5727873df2671c458f41d973f75f2b9, type: 2}
+  - {fileID: 11400000, guid: a0561ff216bb1e34884a67e7224e748e, type: 2}
   enemiesToSpawn: []
   spawnLocations:
   - {fileID: 970140338}
@@ -8881,7 +8889,7 @@ MonoBehaviour:
   - {fileID: 763301124}
   usedSpawnLocations: []
   currentWave: 1
-  spawnInterval: 0.25
+  spawnInterval: 0.15
   maxEnemyCount: 0
   gameController: {fileID: 320658248}
 --- !u!114 &1967137492

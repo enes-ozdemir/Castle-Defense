@@ -7,7 +7,6 @@ namespace Script.GameSceneScripts
         public GameObject crosshair;
         public Vector3 target;
 
-
         [SerializeField] private Camera _camera;
 
         private void Start()

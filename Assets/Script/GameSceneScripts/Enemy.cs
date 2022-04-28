@@ -19,7 +19,8 @@ namespace Script.GameSceneScripts
         [SerializeField] public float attackSpeed = 1;
         [SerializeField] public float attackRange = 1f;
         [SerializeField] public bool isRangeUnit;
-        [SerializeField] public bool isBoss=false;
+        [SerializeField] public bool isBoss = false;
+        [SerializeField] public bool isPushable = true;
 
         [SerializeField] public Skill enemySkill;
 

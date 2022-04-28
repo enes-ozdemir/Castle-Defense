@@ -1,11 +1,7 @@
-using System;
 using Script.GameManagerScripts;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace Script.GameSceneScripts
 {
@@ -144,14 +140,16 @@ namespace Script.GameSceneScripts
 
         private void Die()
         {
+            healthBar.healthCanvas.gameObject.SetActive(false);
+            anim.enabled = false;
             isDead = true;
 
-            healthBar.healthCanvas.gameObject.SetActive(false);
 
             if (GameUIManager.currentEnemyCount != 0) GameUIManager.currentEnemyCount--;
 
             healthBar.SetHealth((float) currentHealth / maxHealth);
             isMovementAllowed = false;
+            anim.enabled = true;
             anim.Play("Dead");
 
             GoldDropManager.Instance.CheckLoot(enemy.enemyGoldAward, transform.position);
@@ -182,9 +180,9 @@ namespace Script.GameSceneScripts
 
         private void CheckIfAddForceToEnemy()
         {
-            if (isMovementAllowed && !enemy.isBoss)
+            if (isMovementAllowed && !enemy.isBoss && enemy.isPushable)
             {
-                Vector3 hitForce = new Vector3(0.08f, 0, 0);
+                Vector3 hitForce = new Vector3(0.06f, 0, 0);
                 transform.position += hitForce;
             }
         }
