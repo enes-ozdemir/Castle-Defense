@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "240975630588",
+    "project_id": "castle-defense-b5cbe",
+    "storage_bucket": "castle-defense-b5cbe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240975630588:android:6b51cd33e639656f3c4779",
+        "android_client_info": {
+          "package_name": "com.enesozdemir.castledefense"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "240975630588-275dsljim6o4m2in0u4051k629h5e9d0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAajzWo3epKTVn7c8GYcg6Mm7WdmTNVUe8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "240975630588-275dsljim6o4m2in0u4051k629h5e9d0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

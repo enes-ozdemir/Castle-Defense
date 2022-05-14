@@ -1,6 +1,7 @@
 using Script.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 namespace Script.LevelSceneScripts
 {

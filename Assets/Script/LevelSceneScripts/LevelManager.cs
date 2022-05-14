@@ -1,4 +1,5 @@
-﻿using Script.GameManagerScripts;
+﻿using Firebase.Analytics;
+using Script.GameManagerScripts;
 using Script.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -65,6 +66,7 @@ namespace Script.LevelSceneScripts
         private void LevelButtonClick(int selectedLevel)
         {
             Debug.Log($" {selectedLevel} Level selected");
+            FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventLevelStart);
             GameManager.selectedLevel = selectedLevel;
             SceneManager.LoadScene("GameScene");
         }
