@@ -10,7 +10,7 @@ namespace Script.GameSceneScripts
     {
         public int tempMoney;
         public int tempDiamond;
-        
+
         public static int currentEnemyCount;
         private int maxEnemyCount;
 
@@ -20,6 +20,7 @@ namespace Script.GameSceneScripts
         [SerializeField] private TextMeshProUGUI levelText;
 
         [SerializeField] private WaveSpawner waveSpawner;
+        public GameObject rewardObject;
 
         private void Start()
         {
@@ -32,7 +33,7 @@ namespace Script.GameSceneScripts
         {
             maxEnemyCount = waveSpawner.enemiesToSpawn.Count;
             currentEnemyCount = maxEnemyCount;
-            levelText.text = "Level " + (GameManager.selectedLevel+1);
+            levelText.text = "Level " + (GameManager.selectedLevel + 1);
             tempMoney = 0;
             tempDiamond = 0;
         }

@@ -50,7 +50,7 @@ namespace Script.GameSceneScripts
             currentHealth = maxHealth;
             isMovementAllowed = true;
 
-            if(!enemy.isBoss) healthBar.healthCanvas.gameObject.SetActive(false);
+            if (!enemy.isBoss) healthBar.healthCanvas.gameObject.SetActive(false);
             castleHealthManager = GetComponentInParent<CastleHealthManager>();
         }
 
@@ -67,7 +67,7 @@ namespace Script.GameSceneScripts
         private void CheckAttack()
         {
             float distanceToCastle = Mathf.Abs(transform.position.x - castleHealthManager.castleLocation.position.x);
-            if (distanceToCastle < enemy.attackRange && Time.time > lastAttackTime + attackDelay)
+            if (distanceToCastle < enemy.attackRange && Time.time > lastAttackTime + attackDelay && !isDead)
             {
                 anim.Play("Attack");
                 isMovementAllowed = false;
@@ -172,7 +172,7 @@ namespace Script.GameSceneScripts
                     Quaternion.identity);
 
                 damageTextPrefab.GetComponentInChildren<TextMeshPro>().text = damage.ToString();
-                Destroy(damageTextPrefab,1f);
+                Destroy(damageTextPrefab, 1f);
 
                 CheckIfAddForceToEnemy();
             }
