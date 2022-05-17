@@ -1,7 +1,6 @@
 using Script.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using DG.Tweening;
 
 namespace Script.LevelSceneScripts
 {
@@ -14,7 +13,8 @@ namespace Script.LevelSceneScripts
 
         public void LoadMapScene()
         {
-            SceneManager.LoadScene("MapScene");
+            SceneManagement.sceneNumber = Constant.MapScene;
+            SceneManager.LoadScene("LoadingScene");
         }
     }
 }

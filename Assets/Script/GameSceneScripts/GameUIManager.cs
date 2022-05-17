@@ -48,12 +48,16 @@ namespace Script.GameSceneScripts
         public void LoadMapScene()
         {
             Cursor.visible = true;
-            SceneManager.LoadScene("MapScene");
+            SceneManagement.sceneNumber = Constant.MapScene;
+            SceneManager.LoadScene("LoadingScene");
+            
         }
 
         public void RestartLevel()
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManagement.sceneNumber = Constant.GameScene;
+            SceneManager.LoadScene("LoadingScene");
+            
         }
 
         public void NextLevel()
@@ -64,7 +68,8 @@ namespace Script.GameSceneScripts
             }
 
             levelText.text = "Level " + GameManager.selectedLevel;
-            SceneManager.LoadScene("GameScene");
+            SceneManagement.sceneNumber = Constant.GameScene;
+            SceneManager.LoadScene("LoadingScene");
         }
     }
 }

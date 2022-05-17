@@ -182,10 +182,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 954139b7d59b57946b255ee3bf89e01f, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -1251,10 +1251,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Script.LevelSceneScripts.MenuManager, Assembly-CSharp
-        m_MethodName: LoadMapScene
-        m_Mode: 1
+      - m_Target: {fileID: 1219743626}
+        m_TargetAssemblyTypeName: LoadingManager, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1697,6 +1697,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 185c8b3778f04b843943d4d988fce7d8, type: 3}
   - {fileID: 21300000, guid: c8f64e8eb6f1cf742ba4e8eba57cf887, type: 3}
   - {fileID: 21300000, guid: 7005ff1cf86db92439ab78769a8cfaf8, type: 3}
+  LoadingBarFill: {fileID: 44482175}
 --- !u!1 &1381046763
 GameObject:
   m_ObjectHideFlags: 0

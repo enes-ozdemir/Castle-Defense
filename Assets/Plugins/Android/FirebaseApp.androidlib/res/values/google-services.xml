@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
+  <string name="gcm_defaultSenderId" translatable="false">240975630588</string>
+  <string name="google_storage_bucket" translatable="false">castle-defense-b5cbe.appspot.com</string>
+  <string name="project_id" translatable="false">castle-defense-b5cbe</string>
+  <string name="google_api_key" translatable="false">AIzaSyAajzWo3epKTVn7c8GYcg6Mm7WdmTNVUe8</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAajzWo3epKTVn7c8GYcg6Mm7WdmTNVUe8</string>
+  <string name="google_app_id" translatable="false">1:240975630588:android:6b51cd33e639656f3c4779</string>
+  <string name="default_web_client_id" translatable="false">240975630588-275dsljim6o4m2in0u4051k629h5e9d0.apps.googleusercontent.com</string>
+</resources>

@@ -21,8 +21,7 @@ apply plugin: 'com.android.library'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-       implementation 'com.unity3d.ads:unity-ads:4.1.0'
-    implementation 'com.google.ads.mediation:unity:4.1.0.0'
+
 // Android Resolver Dependencies Start
     implementation 'com.google.android.gms:play-services-ads:20.6.0' // Assets/GoogleMobileAds/Editor/GoogleMobileAdsDependencies.xml:7
     implementation 'com.google.android.gms:play-services-base:18.0.1' // Assets/Firebase/Editor/AppDependencies.xml:17

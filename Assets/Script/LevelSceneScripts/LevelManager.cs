@@ -68,7 +68,8 @@ namespace Script.LevelSceneScripts
             Debug.Log($" {selectedLevel} Level selected");
             FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventLevelStart);
             GameManager.selectedLevel = selectedLevel;
-            SceneManager.LoadScene("GameScene");
+            SceneManagement.sceneNumber = Constant.GameScene;
+            SceneManager.LoadScene("LoadingScene");
         }
     }
 }

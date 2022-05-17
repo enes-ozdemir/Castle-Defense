@@ -12,5 +12,10 @@
             "By buying 'Arrow Count Upgrade' you can fire more than one arrow",
             "Even if you fail a level you still keep every gold and diamond from that level. That means you can return stronger",
         };
+
+        public const int MenuScene = 0;
+        public const int MapScene = 1;
+        public const int GameScene = 2;
+        public const int LoadingScene = 3;
     }
 }
