@@ -12,8 +12,8 @@ namespace Script.GameSceneScripts
 
         public void UpdatePanel()
         {
-            moneyText.text = gameUIManager.tempMoney + " " + Constant.SpriteIndex;
-            diamondText.text = gameUIManager.tempDiamond + " " + Constant.SpriteIndex;
+            moneyText.text = gameUIManager.tempMoney + "  " + Constant.SpriteIndex;
+            diamondText.text = gameUIManager.tempDiamond + "  " + Constant.SpriteIndex;
         }
     }
 }

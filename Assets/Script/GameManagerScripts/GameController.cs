@@ -29,9 +29,11 @@ namespace Script.GameManagerScripts
                 case State.Win:
                     StartCoroutine(ShowWinScreen());
                     if (GameManager.currentLevel == GameManager.selectedLevel) GameManager.currentLevel++;
+                    ArrowManager.canPlayerAttack = false;
                     break;
                 case State.Lose:
                     StartCoroutine(ShowLoseScreen());
+                    ArrowManager.canPlayerAttack = false;
                     break;
             }
         }

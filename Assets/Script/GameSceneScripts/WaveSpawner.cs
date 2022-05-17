@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using Script.GameManagerScripts;
 using Script.Utils;
@@ -66,14 +65,15 @@ namespace Script.GameSceneScripts
         public void RemoveEnemyFromWave()
         {
             _currentEnemyCount--;
-            //  StartCoroutine(CheckIfPlayerWon());
             CheckIfPlayerWon();
         }
 
         private void CheckIfPlayerWon()
         {
-            // yield return new WaitForSeconds(1f);
-            if (_currentEnemyCount <= 0) gameController.UpdateGameState(GameController.State.Win);
+            if (_currentEnemyCount <= 0)
+            {
+                gameController.UpdateGameState(GameController.State.Win);
+            }
         }
 
         private void FixedUpdate()

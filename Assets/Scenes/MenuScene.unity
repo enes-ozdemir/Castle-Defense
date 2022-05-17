@@ -204,8 +204,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Castle Defense
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 40521200895724bf688c4a63c2f5ade0, type: 2}
-  m_sharedMaterial: {fileID: -4171563015097924827, guid: 40521200895724bf688c4a63c2f5ade0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 18e5ede33e490485d9576cb16d82ad1e, type: 2}
+  m_sharedMaterial: {fileID: -4171563015097924827, guid: 18e5ede33e490485d9576cb16d82ad1e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1638,9 +1638,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93395fc55c48724bb285c789da0403d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logoObject: {fileID: 163707753}
-  logoTarget: {x: 0, y: 0, z: 0}
-  pressText: {fileID: 652959658}
 --- !u!4 &1219743625
 Transform:
   m_ObjectHideFlags: 0

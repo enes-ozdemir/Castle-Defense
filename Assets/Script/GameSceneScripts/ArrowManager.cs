@@ -21,7 +21,7 @@ namespace Script.GameSceneScripts
         private Vector3 target;
         private Vector3 differenceFromTarget;
         private float rotationZ;
-        private static bool _canPlayerAttack;
+        public static bool canPlayerAttack;
 
         private void Awake()
         {
@@ -35,7 +35,7 @@ namespace Script.GameSceneScripts
             arrowSprite = Arrow.arrowSprite;
             arrowCount = ArrowStats.arrowCount;
             fireInterval = 1 / ArrowStats.fireInterval;
-            _canPlayerAttack = true;
+            canPlayerAttack = true;
 
             Debug.Log("Fire Interval : " + fireInterval);
             Debug.Log("Arrow Count : " + arrowCount);
@@ -70,7 +70,7 @@ namespace Script.GameSceneScripts
 
         private void IsArrowFired()
         {
-            if (!_canPlayerAttack) return;
+            if (!canPlayerAttack) return;
             if (Input.GetMouseButton(0))
             {
                 float distance = differenceFromTarget.magnitude;

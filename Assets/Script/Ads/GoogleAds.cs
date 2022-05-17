@@ -31,7 +31,6 @@ public class GoogleAds : MonoBehaviour
 
     public RewardedAd RequestRewardBasedVideo(EventHandler<Reward> rewardCallback)
     {
-        Debug.Log("Video requested");
         rewardedAd = new RewardedAd(adUnitId);
 
         rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
@@ -99,26 +98,26 @@ public class GoogleAds : MonoBehaviour
 
     private void HandleRewardedAdLoaded(object sender, EventArgs args)
     {
-        Debug.Log("HandleRewardedAdLoaded");
+//        Debug.Log("HandleRewardedAdLoaded");
     }
 
     private void HandleRewardedAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     {
-        Debug.Log("HandleRewardedAdFailedToLoad" + args.LoadAdError);
+    //    Debug.Log("HandleRewardedAdFailedToLoad" + args.LoadAdError);
     }
 
     private void HandleRewardedAdOpening(object sender, EventArgs args)
     {
-        Debug.Log("HandleRewardedAdOpening");
+    //    Debug.Log("HandleRewardedAdOpening");
     }
 
     private void HandleRewardedAdFailedToShow(object sender, AdErrorEventArgs args)
     {
-        Debug.Log("HandleRewardedAdFailedToShow" + args.Message);
+   //     Debug.Log("HandleRewardedAdFailedToShow" + args.Message);
     }
 
     private void HandleRewardedAdClosed(object sender, EventArgs args)
     {
-        Debug.Log("HandleRewardedAdClosed");
+     //   Debug.Log("HandleRewardedAdClosed");
     }
 }

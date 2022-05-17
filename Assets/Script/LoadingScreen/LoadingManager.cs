@@ -15,7 +15,6 @@ public class LoadingManager : MonoBehaviour
     [SerializeField] private Image backgroundImage;
     [SerializeField] private Sprite[] loadingBackgrounds;
 
-    [FormerlySerializedAs("LoadingBarFill")]
     public Image loadingBarFill;
 
     public void LoadScene(int sceneId)
@@ -42,6 +41,7 @@ public class LoadingManager : MonoBehaviour
         int random = Random.Range(1, loadingBackgrounds.Length);
         backgroundImage.sprite = loadingBackgrounds[random];
 
+        Debug.Log("Scene number"+SceneManagement.sceneNumber);
         LoadScene(SceneManagement.sceneNumber);
     }
 }

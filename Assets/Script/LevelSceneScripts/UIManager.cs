@@ -31,7 +31,7 @@ namespace Script.LevelSceneScripts
 
         public void InteractWithWinUI()
         {
-            winUI.SetActive(!shopUI.activeInHierarchy);
+            winUI.SetActive(!winUI.activeInHierarchy);
         }
 
         public void OnShopClick()

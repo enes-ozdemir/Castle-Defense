@@ -41,8 +41,8 @@ namespace Script.GameSceneScripts
         private void Update()
         {
             enemyCountText.text = currentEnemyCount + " / " + maxEnemyCount;
-            moneyText.text = tempMoney + " " + Constant.SpriteIndex;
-            diamondText.text = tempDiamond + " " + Constant.SpriteIndex;
+            moneyText.text = tempMoney + "  " + Constant.SpriteIndex;
+            diamondText.text = tempDiamond + "  " + Constant.SpriteIndex;
         }
 
         public void LoadMapScene()
