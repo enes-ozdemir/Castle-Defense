@@ -65,7 +65,6 @@ namespace Script.LevelSceneScripts
         {
             buyButton.onClick.AddListener(SetButtonClick);
 
-            Debug.Log("Start Shop Item");
             itemNameText.text = displayedItem.itemName;
 
             if (displayedItem.goldCost > 0)
