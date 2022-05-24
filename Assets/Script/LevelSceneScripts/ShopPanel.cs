@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Sirenix.Utilities.Editor;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;

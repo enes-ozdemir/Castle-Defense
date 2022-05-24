@@ -34,7 +34,7 @@ namespace Script.GameSceneScripts
         {
             arrowSprite = Arrow.arrowSprite;
             arrowCount = ArrowStats.arrowCount;
-            fireInterval = 1 / ArrowStats.fireInterval;
+            fireInterval = 0.2f / ArrowStats.fireInterval;
             canPlayerAttack = true;
 
             Debug.Log("Fire Interval : " + fireInterval);

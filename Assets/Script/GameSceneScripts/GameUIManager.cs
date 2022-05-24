@@ -25,7 +25,6 @@ namespace Script.GameSceneScripts
         private void Start()
         {
             SoundManager.PlaySound(SoundManager.Sound.BattleMusic, 0.5f, true);
-
             InitUI();
         }
 
@@ -50,14 +49,12 @@ namespace Script.GameSceneScripts
             Cursor.visible = true;
             SceneManagement.sceneNumber = Constant.MapScene;
             SceneManager.LoadScene("LoadingScene");
-            
         }
 
         public void RestartLevel()
         {
             SceneManagement.sceneNumber = Constant.GameScene;
             SceneManager.LoadScene("LoadingScene");
-            
         }
 
         public void NextLevel()
