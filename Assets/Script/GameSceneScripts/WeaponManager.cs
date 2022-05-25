@@ -9,9 +9,6 @@ namespace Script.GameSceneScripts
         private SpriteRenderer bowSprite;
         private SpriteRenderer arrowSprite;
 
-        [SerializeField] private Sprite[] bowSprites;
-        [SerializeField] private Sprite[] arrowSprites;
-
         private void Awake()
         {
             bowSprite = GetComponent<SpriteRenderer>();

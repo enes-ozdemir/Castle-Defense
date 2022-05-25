@@ -1,5 +1,4 @@
-﻿using System;
-using Firebase.Analytics;
+﻿using Firebase.Analytics;
 using Script.GameManagerScripts;
 using Script.Utils;
 using UnityEngine;
@@ -19,13 +18,13 @@ namespace Script.LevelSceneScripts
         private void Awake()
         {
             LoadGameData();
+            currentLevel = GameManager.currentLevel;
         }
 
         private void Start()
         {
             SoundManager.PlaySound(SoundManager.Sound.BackgroundMusic);
 
-            currentLevel = GameManager.currentLevel;
             SetLevelPrefab();
         }
 
@@ -63,8 +62,14 @@ namespace Script.LevelSceneScripts
             Weapon.weaponIndex = gameData.weaponItemIndex;
             Arrow.arrowIndex = gameData.arrowItemIndex;
 
-            Weapon.weaponSprite = spriteManager.weaponList[Weapon.weaponIndex-1].itemSprite;
-            Arrow.arrowSprite = spriteManager.arrowList[Arrow.arrowIndex-1].itemSprite;
+            if (gameData.weaponItemIndex != 0)
+            {
+                Weapon.weaponSprite = spriteManager.weaponList[Weapon.weaponIndex - 1].itemSprite;
+            }
+            if (gameData.arrowItemIndex != 0)
+            {
+                Arrow.arrowSprite = spriteManager.arrowList[Arrow.arrowIndex - 1].itemSprite;
+            }
         }
 
         private void SetLevelPrefab()
