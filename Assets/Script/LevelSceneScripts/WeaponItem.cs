@@ -6,5 +6,6 @@ namespace Script.LevelSceneScripts
     public class WeaponItem : SellableItem
     {
         public int baseDamage;
+        public int itemIndex = 0;
     }
 }

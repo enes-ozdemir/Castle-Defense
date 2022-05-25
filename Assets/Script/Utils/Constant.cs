@@ -1,4 +1,6 @@
-﻿namespace Script.Utils
+﻿using Script.LevelSceneScripts;
+
+namespace Script.Utils
 {
     public class Constant
     {

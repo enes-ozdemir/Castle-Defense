@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Script.GameManagerScripts;
 using Script.Utils;
@@ -195,6 +196,12 @@ namespace Script.GameSceneScripts
             var waveUnits = enemyWaves[currentWave].waveUnits;
             var enemyToGenerate = RandomEnemyGenerator.GetRandomEnemy(waveUnits);
             return enemyToGenerate;
+        }
+
+        private void OnDestroy()
+        {
+            SaveSystem.SaveGame();
+            Debug.Log("OnDestroy called");
         }
     }
 }

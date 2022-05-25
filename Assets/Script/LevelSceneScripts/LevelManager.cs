@@ -14,6 +14,8 @@ namespace Script.LevelSceneScripts
         [SerializeField] public int currentLevel;
         [SerializeField] private Level levelObject;
 
+        [SerializeField] private SpriteManager spriteManager;
+
         private void Awake()
         {
             LoadGameData();
@@ -25,38 +27,45 @@ namespace Script.LevelSceneScripts
 
             currentLevel = GameManager.currentLevel;
             SetLevelPrefab();
-
         }
-    private void LoadGameData()
-    {
-        GameData gameData = SaveSystem.LoadGameData();
 
-        if(gameData==null)
+        private void LoadGameData()
         {
-            Debug.Log("Game data is null");
-            return;
+            GameData gameData = SaveSystem.LoadGameData();
+
+            if (gameData == null)
+            {
+                Debug.Log("Game data is null");
+                return;
+            }
+
+            Debug.Log("Game data is loaded from the save");
+            GameManager.currentLevel = gameData.currentLevel;
+            GameManager.money = gameData.money;
+            GameManager.diamond = gameData.diamond;
+
+            Weapon.weaponLevel = gameData.weaponLevel;
+            Arrow.arrowLevel = gameData.arrowLevel;
+
+            WeaponStats.additionalWeaponDamage = gameData.additionalWeaponDamage;
+            WeaponStats.weaponBaseDamage = gameData.weaponBaseDamage;
+            WeaponStats.weaponUpgradeGoldCost = gameData.weaponUpgradeGoldCost;
+
+            ArrowStats.arrowUpgradeCost = gameData.arrowUpgradeCost;
+            ArrowStats.fireInterval = gameData.fireInterval;
+            ArrowStats.arrowCount = gameData.arrowCount;
+            ArrowStats.arrowCountUpgradeCost = gameData.arrowCountUpgradeCost;
+
+            Castle.castleLevel = gameData.castleLevel;
+            Castle.castleHealth = gameData.castleHealth;
+            Castle.castleUpgradeCost = gameData.castleUpgradeCost;
+
+            Weapon.weaponIndex = gameData.weaponItemIndex;
+            Arrow.arrowIndex = gameData.arrowItemIndex;
+
+            Weapon.weaponSprite = spriteManager.weaponList[Weapon.weaponIndex-1].itemSprite;
+            Arrow.arrowSprite = spriteManager.arrowList[Arrow.arrowIndex-1].itemSprite;
         }
-        Debug.Log("Game data is loaded from the save");
-        GameManager.currentLevel = gameData.currentLevel;
-        GameManager.money = gameData.money;
-        GameManager.diamond = gameData.diamond;
-
-        Weapon.weaponLevel = gameData.weaponLevel;
-        Arrow.arrowLevel = gameData.arrowLevel;
-
-        WeaponStats.additionalWeaponDamage = gameData.additionalWeaponDamage;
-        WeaponStats.weaponBaseDamage = gameData.weaponBaseDamage;
-        WeaponStats.weaponUpgradeGoldCost = gameData.weaponUpgradeGoldCost;
-
-        ArrowStats.arrowUpgradeCost = gameData.arrowUpgradeCost;
-        ArrowStats.fireInterval = gameData.fireInterval;
-        ArrowStats.arrowCount = gameData.arrowCount;
-        ArrowStats.arrowCountUpgradeCost = gameData.arrowCountUpgradeCost;
-
-        Castle.castleLevel = gameData.castleLevel;
-        Castle.castleHealth = gameData.castleHealth;
-        Castle.castleUpgradeCost = gameData.castleUpgradeCost;
-    }
 
         private void SetLevelPrefab()
         {
@@ -108,6 +117,12 @@ namespace Script.LevelSceneScripts
             GameManager.selectedLevel = selectedLevel;
             SceneManagement.sceneNumber = Constant.GameScene;
             SceneManager.LoadScene("LoadingScene");
+        }
+
+        private void OnDestroy()
+        {
+            SaveSystem.SaveGame();
+            Debug.Log("OnDestroy called");
         }
     }
 }

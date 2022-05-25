@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 350}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 300}
   m_MaxSize: {x: 32384, y: 24288}
   vertical: 0
-  controlID: 131
+  controlID: 211
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 300}
   m_MaxSize: {x: 16192, y: 24288}
   vertical: 1
-  controlID: 132
+  controlID: 212
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 133
+  controlID: 106
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 179
+  controlID: 119
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -812,9 +812,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1138.7233, y: 588.2622, z: 7.2715106}
+    m_Target: {x: 6.162925, y: 51.73576, z: 0.09943359}
     speed: 2
-    m_Value: {x: 1138.7233, y: 588.2622, z: 7.2715106}
+    m_Value: {x: 6.1526036, y: 51.79332, z: 0.098135516}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -865,9 +865,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 490.727
+    m_Target: 2.7548275
     speed: 2
-    m_Value: 490.727
+    m_Value: 2.8846362
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1278,7 +1278,7 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
     m_HSlider: 0
-    m_VSlider: 1
+    m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
@@ -1291,18 +1291,18 @@ MonoBehaviour:
       y: 21
       width: 969
       height: 193
-    m_Scale: {x: 0.26243228, y: 0.26243228}
-    m_Translation: {x: 484.5, y: 124.15911}
+    m_Scale: {x: 0.17870371, y: 0.17870371}
+    m_Translation: {x: 484.5, y: 96.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1846.1906
-      y: -473.10916
-      width: 3692.381
-      height: 735.42786
+      x: -2711.1917
+      y: -540
+      width: 5422.3833
+      height: 1080
     m_MinimalGUI: 1
   m_defaultScale: 0.17870371
   m_LastWindowPixelSize: {x: 969, y: 214}
@@ -1370,23 +1370,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 92680000
       m_LastClickedID: 0
-      m_ExpandedIDs: 085efeff5a5efeffb2b0feff02b1feff26b3feff82b3feffb4b3feffc4b3feff5ab4feff16b7feffeac9feff10cbfeffc2d0feffc0d1feff10d2feff34d4feff90d4feffa4d4feffb6d4feffcce5feff1ae6feff36e8feff8ae8feff96e8feffa0e8feff1002ffffb803ffff8e14fffff6faffff3a640000c6640000d46400007a65000084650000086700002e6700002c680000346800003c6800004468000010700100de720100feb00100ccb301004ecf0100cacf010012d0010032d00100b6d0010090d10100ccd10100c6e10100f4e10100e4f0010058f1010032f301003af40100fa0a0200c80d0200
+      m_ExpandedIDs: 2c58fffffefaffff3464000002670000847a0100dc7b01006c7c0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Content
-        m_OriginalName: Content
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 26668
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 13}
       m_SearchString: 
@@ -2045,22 +2045,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Objects/Items/Arrow
+    - Assets/Objects/Items/Crossbows
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 60
   m_LastFolders:
-  - Assets/Objects/Items/Arrow
+  - Assets/Objects/Items/Crossbows
   m_LastFoldersGridSize: 60
   m_LastProjectPath: Z:\Unity Samples\Castle\Castle-Defense
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 60ee0000
-    m_LastClickedID: 61024
-    m_ExpandedIDs: 00000000a0720000a2720000b6720000fe7200000c73000000ca9a3bffffff7f
+    m_SelectedIDs: 1e730000
+    m_LastClickedID: 29470
+    m_ExpandedIDs: 00000000a0720000a2720000e8720000fc7200001a73000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2132,7 +2132,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 14}
+      m_ClientGUIView: {fileID: 9}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -2178,7 +2178,7 @@ MonoBehaviour:
     m_CachedPref: 159
     m_ControlHash: 1412526313
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: 26408
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0

@@ -49,6 +49,7 @@ namespace Script.LevelSceneScripts
             {
                 WeaponStats.weaponBaseDamage = item.baseDamage;
                 Weapon.weaponSprite = item.itemSprite;
+                Weapon.weaponIndex = item.itemIndex;
             }
         }
 
@@ -58,6 +59,7 @@ namespace Script.LevelSceneScripts
             {
                 ArrowStats.fireInterval = item.baseInterval;
                 Arrow.arrowSprite = item.itemSprite;
+                Arrow.arrowIndex = item.itemIndex;
             }
         }
 

@@ -5,6 +5,7 @@ namespace Script.GameManagerScripts
     public class Arrow : MonoBehaviour
     {
         public static int arrowLevel = 1;
+        public static int arrowIndex = 0;
         public static Sprite arrowSprite;
         public StarterKit starterKit;
 

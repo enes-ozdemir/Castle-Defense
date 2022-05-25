@@ -8,10 +8,10 @@ namespace Script.LevelSceneScripts
 {
     public class ShopPanel : MonoBehaviour
     {
-        [SerializeField] private SellableItem[] bowItems;
+        private SellableItem[] bowItems;
         [SerializeField] private List<GameObject> bowItemObjects;
 
-        [SerializeField] private SellableItem[] arrowItems;
+        private SellableItem[] arrowItems;
         [SerializeField] private List<GameObject> arrowItemObjects;
 
         [SerializeField] private GameObject shopItemPrefab;
@@ -19,8 +19,13 @@ namespace Script.LevelSceneScripts
         [SerializeField] private Button bowButton;
         [SerializeField] private Button arrowButton;
 
+        [SerializeField] private SpriteManager spriteManager;
+
         void Start()
         {
+            bowItems = spriteManager.weaponList;
+            arrowItems = spriteManager.arrowList;
+
             bowItemObjects = new List<GameObject>();
             arrowItemObjects = new List<GameObject>();
             SetShopItems();
