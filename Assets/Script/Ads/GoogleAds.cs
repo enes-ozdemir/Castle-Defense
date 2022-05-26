@@ -7,7 +7,7 @@ using UnityEngine;
 public class GoogleAds : MonoBehaviour
 {
     private RewardedAd rewardedAd;
-    private readonly string adUnitId = "ca-app-pub-3940256099942544/5224354917";
+    private readonly string adUnitId = "ca-app-pub-9430454817447319/5608069181";
     private RewardedAd extraGoldAd;
     private RewardedAd extraDiamondAd;
     private RewardedAd doubleEarningsRewardedAd;
