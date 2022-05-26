@@ -30,7 +30,8 @@ namespace Script.GameSceneScripts
 
         public void CastleGotHit(int enemyDamage)
         {
-            currentHealth -= enemyDamage;
+            if (ArrowManager.canPlayerAttack == false) return;
+                currentHealth -= enemyDamage;
             SetCastleHealthUI();
             CheckIfGameOver();
         }

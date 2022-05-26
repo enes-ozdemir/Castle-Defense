@@ -49,15 +49,15 @@ public class GoogleAds : MonoBehaviour
 
     private void ReceiveGold(object sender, Reward args)
     {
-        Debug.Log("User received gold " + GameManager.currentLevel + 1 * 200);
-        GameManager.money += GameManager.currentLevel + 1 * 200;
+        Debug.Log("User received gold " + GameManager.currentLevel + 1 * 150);
+        GameManager.money += GameManager.currentLevel + 1 * 150;
     }
 
     private void ReceiveDiamond(object sender, Reward args)
     {
-        Debug.Log("User received diamond " + GameManager.currentLevel + 1 * 200);
+        Debug.Log("User received diamond " + 25);
 
-        GameManager.diamond += GameManager.currentLevel + 1 * 20;
+        GameManager.diamond += 25;
     }
 
     private void DoubleEarning(object sender, Reward args)
@@ -98,26 +98,26 @@ public class GoogleAds : MonoBehaviour
 
     private void HandleRewardedAdLoaded(object sender, EventArgs args)
     {
-//        Debug.Log("HandleRewardedAdLoaded");
+        Debug.Log("HandleRewardedAdLoaded");
     }
 
     private void HandleRewardedAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     {
-    //    Debug.Log("HandleRewardedAdFailedToLoad" + args.LoadAdError);
+        Debug.Log("HandleRewardedAdFailedToLoad" + args.LoadAdError);
     }
 
     private void HandleRewardedAdOpening(object sender, EventArgs args)
     {
-    //    Debug.Log("HandleRewardedAdOpening");
+        Debug.Log("HandleRewardedAdOpening");
     }
 
     private void HandleRewardedAdFailedToShow(object sender, AdErrorEventArgs args)
     {
-   //     Debug.Log("HandleRewardedAdFailedToShow" + args.Message);
+        Debug.Log("HandleRewardedAdFailedToShow" + args.Message);
     }
 
     private void HandleRewardedAdClosed(object sender, EventArgs args)
     {
-     //   Debug.Log("HandleRewardedAdClosed");
+        Debug.Log("HandleRewardedAdClosed");
     }
 }

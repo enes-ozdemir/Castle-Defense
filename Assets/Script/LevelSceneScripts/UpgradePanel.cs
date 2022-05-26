@@ -69,7 +69,7 @@ namespace Script.LevelSceneScripts
             arrowText.text = Arrow.arrowLevel.ToString();
             arrowImage.sprite = Arrow.arrowSprite;
             arrowUpgradeCost = ArrowStats.arrowUpgradeCost;
-            arrowDamageText.text = "Attack Speed \n" + ArrowStats.fireInterval;
+            arrowDamageText.text = "Attack Speed \n" + ArrowStats.fireInterval.ToString("0.00");
             arrowUpgradeText.text = arrowUpgradeCost + Constant.SpriteIndex;
         }
 

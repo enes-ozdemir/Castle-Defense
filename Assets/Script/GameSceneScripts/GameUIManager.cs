@@ -59,7 +59,7 @@ namespace Script.GameSceneScripts
 
         public void NextLevel()
         {
-            if (GameManager.selectedLevel <= GameManager.currentLevel)
+            if (GameManager.selectedLevel <= GameManager.currentLevel && GameManager.currentLevel != Constant.LastLevel)
             {
                 GameManager.selectedLevel++;
             }
