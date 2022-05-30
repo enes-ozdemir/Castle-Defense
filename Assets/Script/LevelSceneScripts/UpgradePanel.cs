@@ -131,7 +131,7 @@ namespace Script.LevelSceneScripts
             if (currentUpgradeCost <= currentMoney)
             {
                 GameManager.money -= currentUpgradeCost;
-                Castle.castleUpgradeCost += 500 * (Castle.castleLevel / 2);
+                Castle.castleUpgradeCost += 350 * (Castle.castleLevel / 2);
                 Castle.castleHealth += 500;
                 Castle.castleLevel++;
                 SetCastleInfo();

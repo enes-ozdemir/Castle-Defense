@@ -35,7 +35,7 @@ namespace Script.GameSceneScripts
 
         private void OpenTutorialPopup()
         {
-            if (GameManager.selectedLevel == 1)
+            if (GameManager.selectedLevel == 0)
             {
                 tutorialUI.SetActive(true);
             }
