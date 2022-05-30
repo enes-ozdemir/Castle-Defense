@@ -9,12 +9,14 @@ public class GoogleAds : MonoBehaviour
 {
     private RewardedAd rewardedAd;
     private readonly string adUnitId = "ca-app-pub-9430454817447319/5608069181";
-    private static readonly string bannerAdUnitId = "ca-app-pub-9430454817447319/4395510545";
+    private static readonly string bannerAdUnitId = "ca-app-pub-9430454817447319/8087930279";
     private RewardedAd extraGoldAd;
     private RewardedAd extraDiamondAd;
     private RewardedAd doubleEarningsRewardedAd;
     public static RewardedAd itemRewardedAd;
     public static SellableItem currentItemReward;
+
+    private static BannerView bannerView;
 
     [SerializeField] private GameUIManager gameUIManager;
 
@@ -35,7 +37,7 @@ public class GoogleAds : MonoBehaviour
 
     public static void LoadBannerAd()
     {
-        BannerView bannerView = new BannerView(bannerAdUnitId, AdSize.Banner, 320, 100);
+        bannerView = new BannerView(bannerAdUnitId, AdSize.Banner, 320, 100);
         // Create a 320x50 banner at the top of the screen.
         bannerView = new BannerView(bannerAdUnitId, AdSize.Banner, AdPosition.Top);
 
@@ -44,6 +46,11 @@ public class GoogleAds : MonoBehaviour
 
         // Load the banner with the request.
         bannerView.LoadAd(request);
+    }
+
+    public static void HideBannerAd()
+    {
+        if (bannerView != null) bannerView.Destroy();
     }
 
     public RewardedAd RequestRewardBasedVideo(EventHandler<Reward> rewardCallback)
@@ -82,7 +89,6 @@ public class GoogleAds : MonoBehaviour
             Debug.Log("current Item is null");
         }
     }
-
 
 
     private void ReceiveDiamond(object sender, Reward args)

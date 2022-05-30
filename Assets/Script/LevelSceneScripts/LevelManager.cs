@@ -26,6 +26,7 @@ namespace Script.LevelSceneScripts
             SoundManager.PlaySound(SoundManager.Sound.BackgroundMusic);
 
             SetLevelPrefab();
+            GoogleAds.HideBannerAd();
         }
 
         private void LoadGameData()

@@ -16,17 +16,35 @@ namespace Script.LevelSceneScripts
         [SerializeField] private GameObject shopUI;
         [SerializeField] private GameObject upgradeUI;
         [SerializeField] private GameObject winUI;
+        [SerializeField] private GameObject tutorialUI;
 
 
         private void Start()
         {
+            if (GameManager.currentLevel == 0)
+            {
+                tutorialUI.SetActive(true);
+            }
+
             shopButton.onClick.AddListener(OnShopClick);
             upgradeButton.onClick.AddListener(OnUpgradeClick);
-            
+
             if (GameManager.currentLevel == Constant.LastLevel)
             {
                 InteractWithWinUI();
             }
+        }
+
+        public void OpenTutorialUI()
+        {
+            Debug.Log("Active");
+            tutorialUI.SetActive(true);
+        }
+
+        public void CloseTutorialUI()
+        {
+            Debug.Log("Not Active");
+            tutorialUI.SetActive(false);
         }
 
         public void InteractWithWinUI()

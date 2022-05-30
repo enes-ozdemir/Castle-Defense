@@ -22,10 +22,23 @@ namespace Script.GameSceneScripts
         [SerializeField] private WaveSpawner waveSpawner;
         public GameObject rewardObject;
 
+        [SerializeField] private GameObject tutorialUI;
+
         private void Start()
         {
             SoundManager.PlaySound(SoundManager.Sound.BattleMusic, 0.5f, true);
             InitUI();
+            GoogleAds.HideBannerAd();
+
+            OpenTutorialPopup();
+        }
+
+        private void OpenTutorialPopup()
+        {
+            if (GameManager.selectedLevel == 1)
+            {
+                tutorialUI.SetActive(true);
+            }
         }
 
         private void InitUI()
