@@ -2829,7 +2829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13, y: -1}
+  m_AnchoredPosition: {x: -4, y: -1}
   m_SizeDelta: {x: 315.4385, y: 81.7457}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &378144182
@@ -2915,7 +2915,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -14.000229, w: 0}
+  m_margin: {x: -53.202835, y: 0, z: -62.642807, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5029,7 +5029,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 16.29707, y: 0, z: 6.7413483, w: 0}
+  m_margin: {x: 8.696621, y: 0, z: 6.7413483, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -6990,6 +6990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponList:
+  - {fileID: 11400000, guid: 064051244d3d23049bfa610d4b50830b, type: 2}
   - {fileID: 11400000, guid: 44d0ade5f0ac4a644b7c87f343febd02, type: 2}
   - {fileID: 11400000, guid: c49a2b62d8ab8114d8b4b718c6be2f96, type: 2}
   - {fileID: 11400000, guid: c27b2b009ffd60d4b85be5a56bff07ed, type: 2}
@@ -6997,8 +6998,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c953d87689b3eb94ba5f8bdd4e91850e, type: 2}
   - {fileID: 11400000, guid: 6182ed9c3c8b453459d52b78c2eeff4f, type: 2}
   - {fileID: 11400000, guid: d788ff83613f4904f873e5b8d6b2fb4a, type: 2}
+  - {fileID: 11400000, guid: 55d67ca3b759b6644babf095c2c4f188, type: 2}
   - {fileID: 11400000, guid: 21f45e75d559c114f936c9b9de982528, type: 2}
   arrowList:
+  - {fileID: 11400000, guid: 7c479cad411021b49ba20b6e716e5f7c, type: 2}
   - {fileID: 11400000, guid: 3221800258d80a241bfff131cc39b2ae, type: 2}
   - {fileID: 11400000, guid: 6f46ca775adca9346b9c734593dd7e9a, type: 2}
   - {fileID: 11400000, guid: f310816d4eaaf7c40bc91ab43f51ff3b, type: 2}

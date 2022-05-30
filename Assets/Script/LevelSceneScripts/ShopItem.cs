@@ -2,6 +2,7 @@ using Script.GameManagerScripts;
 using Script.Utils;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Script.LevelSceneScripts
@@ -18,8 +19,11 @@ namespace Script.LevelSceneScripts
 
         [SerializeField] private Image itemImage;
         [SerializeField] private Image specialOffer;
+        [SerializeField] private Sprite buttonBackground;
+        [SerializeField] private Sprite adsButtonBackground;
 
         [SerializeField] private Button buyButton;
+        [SerializeField] private TextMeshProUGUI adText;
 
         private void Start()
         {
@@ -45,17 +49,43 @@ namespace Script.LevelSceneScripts
 
         private void CheckIfWeaponBought()
         {
-            if (displayedItem is WeaponItem item)
+            if (displayedItem.isAd)
+            {
+                GoogleAds.currentItemReward = displayedItem;
+                GoogleAds.ShowItemRewardAd();
+            }
+            else if (displayedItem is WeaponItem item)
             {
                 WeaponStats.weaponBaseDamage = item.baseDamage;
                 Weapon.weaponSprite = item.itemSprite;
                 Weapon.weaponIndex = item.itemIndex;
             }
         }
+        
+        public static void SetRewardItem(SellableItem currentItemReward)
+        {
+            if (currentItemReward is ArrowItem arrowItem)
+            {
+                ArrowStats.fireInterval = arrowItem.baseInterval;
+                Arrow.arrowSprite = arrowItem.itemSprite;
+                Arrow.arrowIndex = arrowItem.itemIndex;
+            }
+            else if (currentItemReward is WeaponItem weaponItem)
+            {
+                WeaponStats.weaponBaseDamage = weaponItem.baseDamage;
+                Weapon.weaponSprite = weaponItem.itemSprite;
+                Weapon.weaponIndex = weaponItem.itemIndex;
+            }
+        }
 
         private void CheckIfArrowBought()
         {
-            if (displayedItem is ArrowItem item)
+            if (displayedItem.isAd)
+            {
+                GoogleAds.currentItemReward = displayedItem;
+                GoogleAds.ShowItemRewardAd();
+            }
+            else if (displayedItem is ArrowItem item)
             {
                 ArrowStats.fireInterval = item.baseInterval;
                 Arrow.arrowSprite = item.itemSprite;
@@ -65,6 +95,7 @@ namespace Script.LevelSceneScripts
 
         private void SetItemUI()
         {
+            buyButton.image.sprite = buttonBackground;
             buyButton.onClick.AddListener(SetButtonClick);
 
             itemNameText.text = displayedItem.itemName;
@@ -90,6 +121,18 @@ namespace Script.LevelSceneScripts
 
             CheckIfItemArrow();
             CheckIfItemWeapon();
+            CheckIfAdItem();
+        }
+
+        private void CheckIfAdItem()
+        {
+            if (displayedItem.isAd)
+            {
+                buyButton.image.sprite = adsButtonBackground;
+                diamondCostText.gameObject.SetActive(false);
+                goldCostText.gameObject.SetActive(false);
+                adText.gameObject.SetActive(true);
+            }
         }
 
         private void CheckIfItemArrow()

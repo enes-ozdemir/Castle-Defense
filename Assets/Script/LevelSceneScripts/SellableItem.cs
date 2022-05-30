@@ -11,5 +11,6 @@ namespace Script.LevelSceneScripts
         public int diamondCost;
         public Sprite specialOfferSprite;
         public string specialOfferText;
+        public bool isAd = false;
     }
 }

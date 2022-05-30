@@ -3,11 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class LoadingManager : MonoBehaviour
 {
@@ -35,13 +31,14 @@ public class LoadingManager : MonoBehaviour
 
     private void Start()
     {
+        GoogleAds.LoadBannerAd();
         int rand = Random.Range(1, Constant.Tips.Length);
         tipsText.text = Constant.Tips[rand];
 
         int random = Random.Range(1, loadingBackgrounds.Length);
         backgroundImage.sprite = loadingBackgrounds[random];
 
-        Debug.Log("Scene number"+SceneManagement.sceneNumber);
+        Debug.Log("Scene number" + SceneManagement.sceneNumber);
         LoadScene(SceneManagement.sceneNumber);
     }
 }

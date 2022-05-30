@@ -2,18 +2,21 @@ using GoogleMobileAds.Api;
 using System;
 using Script.GameManagerScripts;
 using Script.GameSceneScripts;
+using Script.LevelSceneScripts;
 using UnityEngine;
 
 public class GoogleAds : MonoBehaviour
 {
     private RewardedAd rewardedAd;
     private readonly string adUnitId = "ca-app-pub-9430454817447319/5608069181";
+    private static readonly string bannerAdUnitId = "ca-app-pub-9430454817447319/4395510545";
     private RewardedAd extraGoldAd;
     private RewardedAd extraDiamondAd;
     private RewardedAd doubleEarningsRewardedAd;
+    public static RewardedAd itemRewardedAd;
+    public static SellableItem currentItemReward;
 
     [SerializeField] private GameUIManager gameUIManager;
-
 
     private void Awake()
     {
@@ -27,6 +30,20 @@ public class GoogleAds : MonoBehaviour
         extraGoldAd = RequestRewardBasedVideo(ReceiveGold);
         extraDiamondAd = RequestRewardBasedVideo(ReceiveDiamond);
         doubleEarningsRewardedAd = RequestRewardBasedVideo(DoubleEarning);
+        itemRewardedAd = RequestRewardBasedVideo(GetItemReward);
+    }
+
+    public static void LoadBannerAd()
+    {
+        BannerView bannerView = new BannerView(bannerAdUnitId, AdSize.Banner, 320, 100);
+        // Create a 320x50 banner at the top of the screen.
+        bannerView = new BannerView(bannerAdUnitId, AdSize.Banner, AdPosition.Top);
+
+        // Create an empty ad request.
+        AdRequest request = new AdRequest.Builder().Build();
+
+        // Load the banner with the request.
+        bannerView.LoadAd(request);
     }
 
     public RewardedAd RequestRewardBasedVideo(EventHandler<Reward> rewardCallback)
@@ -52,6 +69,21 @@ public class GoogleAds : MonoBehaviour
         Debug.Log("User received gold " + GameManager.currentLevel + 1 * 150);
         GameManager.money += GameManager.currentLevel + 1 * 150;
     }
+
+    private static void GetItemReward(object sender, Reward args)
+    {
+        Debug.Log("User received an item" + currentItemReward.itemName);
+        if (currentItemReward != null)
+        {
+            ShopItem.SetRewardItem(currentItemReward);
+        }
+        else
+        {
+            Debug.Log("current Item is null");
+        }
+    }
+
+
 
     private void ReceiveDiamond(object sender, Reward args)
     {
@@ -85,6 +117,14 @@ public class GoogleAds : MonoBehaviour
         if (doubleEarningsRewardedAd.IsLoaded())
         {
             doubleEarningsRewardedAd.Show();
+        }
+    }
+
+    public static void ShowItemRewardAd()
+    {
+        if (itemRewardedAd.IsLoaded())
+        {
+            itemRewardedAd.Show();
         }
     }
 
