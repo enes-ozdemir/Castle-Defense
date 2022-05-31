@@ -2,6 +2,7 @@ using Script.GameManagerScripts;
 using Script.Utils;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Script.LevelSceneScripts
@@ -12,11 +13,14 @@ namespace Script.LevelSceneScripts
         [SerializeField] private TextMeshProUGUI diamondText;
         [SerializeField] private Button shopButton;
         [SerializeField] private Button upgradeButton;
+        [SerializeField] private Button arrowShopButton;
 
-        [SerializeField] private GameObject shopUI;
+        [FormerlySerializedAs("ShopUI")] [SerializeField] private GameObject shopUI;
         [SerializeField] private GameObject upgradeUI;
         [SerializeField] private GameObject winUI;
         [SerializeField] private GameObject tutorialUI;
+        
+        [SerializeField] private ShopPanel shopPanel;
 
 
         private void Start()
@@ -28,6 +32,7 @@ namespace Script.LevelSceneScripts
 
             shopButton.onClick.AddListener(OnShopClick);
             upgradeButton.onClick.AddListener(OnUpgradeClick);
+            arrowShopButton.onClick.AddListener(OnArrowShopClick);
 
             if (GameManager.currentLevel == Constant.LastLevel)
             {
@@ -56,6 +61,14 @@ namespace Script.LevelSceneScripts
         {
             shopUI.SetActive(!shopUI.activeInHierarchy);
             upgradeUI.SetActive(false);
+            shopPanel.SetBowItems();
+        }
+        
+        public void OnArrowShopClick()
+        {
+            shopUI.SetActive(!shopUI.activeInHierarchy);
+            upgradeUI.SetActive(false);
+            shopPanel.SetArrowItems();
         }
 
         public void OnUpgradeClick()

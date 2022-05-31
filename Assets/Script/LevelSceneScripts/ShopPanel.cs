@@ -63,8 +63,6 @@ namespace Script.LevelSceneScripts
                 newItem.GetComponent<ShopItem>().displayedItem = item;
                 bowItemObjects.Add(newItem);
             }
-
-            SetBowItems();
         }
 
         private void ChangeItemActive(List<GameObject> gameObjects, bool isActive)
@@ -75,13 +73,13 @@ namespace Script.LevelSceneScripts
             }
         }
 
-        private void SetBowItems()
+        public void SetBowItems()
         {
             ChangeItemActive(arrowItemObjects, false);
             ChangeItemActive(bowItemObjects, true);
         }
 
-        private void SetArrowItems()
+        public void SetArrowItems()
         {
             ChangeItemActive(bowItemObjects, false);
             ChangeItemActive(arrowItemObjects, true);
