@@ -19,7 +19,7 @@ namespace Script.GameSceneScripts
         private int waveDuration;
 
         [SerializeField] private float spawnInterval;
-        private float spawnTimer;
+        public float spawnTimer;
 
         private bool isBossArrived;
         public int maxEnemyCount;
