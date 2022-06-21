@@ -66,6 +66,6 @@ Epic Toon FX: https://assetstore.unity.com/packages/vfx/particles/epic-toon-fx-5
 
 118 sprite effects bundle: https://assetstore.unity.com/packages/2d/textures-materials/118-sprite-effects-bundle-161886
 
-6 SKULL GAME CHARACTER SPRITES PACK: https://craftpix.net/product/6-skull-game-character-sprites-pack/?num=1&count=27&sq=skull&pos=1
+6 SKULL GAME CHARACTER SPRITES PACK: https://craftpix.net/product/6-skull-game-character-sprites-pack/
 
-6 GOBLIN GAME CHARACTER SPRITES PACK: https://craftpix.net/product/6-goblin-game-character-sprites-pack/?num=1&count=6&sq=goblin&pos=0
+6 GOBLIN GAME CHARACTER SPRITES PACK: https://craftpix.net/product/6-goblin-game-character-sprites-pack/
