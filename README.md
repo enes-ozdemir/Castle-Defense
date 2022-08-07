@@ -8,7 +8,7 @@
 
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 [![Generic badge](https://img.shields.io/badge/status-Released-<COLOR>.svg)](https://shields.io/)
-[![Version](https://img.shields.io/badge/version-1.0-<COLOR>.svg)](https://shields.io/)
+[![Version](https://img.shields.io/badge/version-1.1-<COLOR>.svg)](https://shields.io/)
 
 # Castle-Defense
 
@@ -17,13 +17,13 @@
 </p>
 
 ## Introduction
-Tower Defense game where you control a crossbow to defend the castle from waves of enemies. Currently it consists of 16 levels with various enemys.
+Tower Defense game where you control a crossbow to defend the castle from waves of enemies. Currently, it consists of 16 levels with various enemies.
 
-There are different and more powerfull crossbows that you can buy with your gold and diamonds. More expensive crossbows are have more attack damage.
+There are different and more powerful crossbows that you can buy with your gold and diamonds. More expensive crossbows have more attack damage.
 There are 5 types of arrows. These arrows have different attack speed. Upgrading your arrow can increase your attack per second.
-Also there is a Upgrade panel that you can upgrade your attack damage, attack speed, arrow count and castle health.
+Also, there is an Upgrade panel where you can upgrade your attack damage, attack speed, arrow count and castle health.
 
-After you complete a level you can watch an rewarded ad to double your earnings.
+After you complete a level you can watch a rewarded ad to double your earnings.
 
 ## Gameplay Videos
 
@@ -54,7 +54,7 @@ https://user-images.githubusercontent.com/41696219/164554221-0d55fb73-65f9-4c65-
 </table>
 </div>
 
-## Used Assets
+## Assets
 **Note:** This repository doesn't include the assets those I don't hold the right to distrubute. 
 You have to acquire the assets to properly run the game in Unity.
 
